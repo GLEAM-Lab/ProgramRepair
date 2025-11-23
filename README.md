@@ -32,6 +32,8 @@ LLM-based APR systems can be categorized into four major paradigms based on thei
 - **Procedural**: Systems with scripted, multi-step workflows controlled by humans
 - **Agentic**: Systems where LLMs make autonomous decisions about workflow control
 
+![](./taxonomies.png)
+
 ---
 
 ## Fine-Tuning Approaches
