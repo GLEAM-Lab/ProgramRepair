@@ -140,7 +140,7 @@ Augment prompts with program analysis results.
 |-------|------|-------|-----|
 | APPATCH: Automated Adaptive Prompting Large Language Models for Real-World Software Vulnerability Patching | 2025 | USENIX Security | [PDF](Prompting%20Approaches/Analysis-Augmented%20Generation%20Enhanced%20Prompting/APPATCH%20Automated%20Adaptive%20Prompting%20Large%20Language%20Models%20for%20Real-World%20Software%20Vulnerability%20Patching.pdf) |
 | Aligning the Objective of LLM-Based Program Repair (D4C) | 2025 | ICSE | [PDF](Prompting%20Approaches/Analysis-Augmented%20Generation%20Enhanced%20Prompting/Aligning%20the%20Objective%20of%20LLM-based%20Program%20Repair..pdf) |
-| Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (TracePrompt) | 2025 | Workshop | [PDF](Prompting%20Approaches/Analysis-Augmented%20Generation%20Enhanced%20Prompting/Towards%20Effectively%20Leveraging%20%20Execution%20Traces%20for%20Program%20Repair%20with%20Code%20LLMs..pdf) |
+| Towards Effectively Leveraging Execution Traces for Program Repair with Code LLMs (TracePrompt) | 2025 | ACL Workshop | [PDF](Prompting%20Approaches/Analysis-Augmented%20Generation%20Enhanced%20Prompting/Towards%20Effectively%20Leveraging%20%20Execution%20Traces%20for%20Program%20Repair%20with%20Code%20LLMs..pdf) |
 
 ---
 
