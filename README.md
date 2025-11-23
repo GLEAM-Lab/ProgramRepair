@@ -1,4 +1,4 @@
-# LLM-based Automated Program Repair: A Comprehensive Taxonomy
+# A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications
 
 [![arXiv](https://img.shields.io/badge/arXiv-2506.23749-b31b1b.svg)](https://arxiv.org/abs/2506.23749)
 [![PDF](https://img.shields.io/badge/PDF-Download-brightgreen.svg)](https://arxiv.org/pdf/2506.23749.pdf)
