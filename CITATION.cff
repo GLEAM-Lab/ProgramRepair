@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this taxonomy in your research, please cite it as below."
+title: "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications"
+authors:
+  - family-names: "Yang"
+    given-names: "Boyang"
+  - family-names: "Cai"
+    given-names: "Zijian"
+  - family-names: "Liu"
+    given-names: "Fengling"
+  - family-names: "Le"
+    given-names: "Bach"
+  - family-names: "Zhang"
+    given-names: "Lingming"
+  - family-names: "Bissyandé"
+    given-names: "Tegawendé F."
+  - family-names: "Liu"
+    given-names: "Yang"
+  - family-names: "Tian"
+    given-names: "Haoye"
+type: article
+date-released: 2025-06-30
+url: "https://arxiv.org/abs/2506.23749"
+preferred-citation:
+  type: article
+  title: "A Survey of LLM-based Automated Program Repair: Taxonomies, Design Paradigms, and Applications"
+  authors:
+    - family-names: "Yang"
+      given-names: "Boyang"
+    - family-names: "Cai"
+      given-names: "Zijian"
+    - family-names: "Liu"
+      given-names: "Fengling"
+    - family-names: "Le"
+      given-names: "Bach"
+    - family-names: "Zhang"
+      given-names: "Lingming"
+    - family-names: "Bissyandé"
+      given-names: "Tegawendé F."
+    - family-names: "Liu"
+      given-names: "Yang"
+    - family-names: "Tian"
+      given-names: "Haoye"
+  journal: "arXiv preprint arXiv:2506.23749"
+  year: 2025
+  url: "https://arxiv.org/abs/2506.23749"
+  identifiers:
+    - type: other
+      value: "arXiv:2506.23749"
+      description: "arXiv identifier"
+
