@@ -218,9 +218,9 @@ LLMs evaluate and select among candidate patches.
 
 | Paper | Year | Venue | PDF |
 |-------|------|-------|-----|
-| CleanVul: Automatic Function-Level Vulnerability Detection in Code Commits Using LLM Heuristics (VulSifter) | 2024 | arXiv | [PDF](Agentic%20Approaches/LLM-as-Judges/CleanVul%20Automatic%20Function-Level%20Vulnerability%20Detection%20in%20Code%20%20Commits%20Using%20LLM%20Heuristics.pdf) |
-| Leveraging Large Language Model for Automatic Patch Correctness Assessment (LLM4PatchCorrect) | 2024 | TSE | [PDF](Agentic%20Approaches/LLM-as-Judges/Leveraging_Large_Language_Model_for_Automatic_Patch_Correctness_Assessment.pdf) |
-| Large Language Model Critics for Execution-Free Evaluation of Code Changes (Execution-free Critic) | 2025 | arXiv | [PDF](Agentic%20Approaches/LLM-as-Judges/Large%20Language%20Model%20Critics%20for%20%20Execution-Free%20Evaluation%20of%20Code%20Changes.pdf) |
+| TSAPR: A Tree Search Framework For Automated Program Repair | 2025 | arXiv | [PDF](Agentic%20Approaches/LLM-as-Judges/TSAPR%20A%20Tree%20Search%20Framework%20For%20Automated%20Program%20Repair.pdf) |
+| SpecRover: Code Intent Extraction via LLMs | 2025 | ICSE | [PDF](Agentic%20Approaches/LLM-as-Judges/SpecRover%20Code%20Intent%20Extraction%20via%20LLMs.pdf) |
+| Abstain and Validate: A Dual-LLM Policy for Reducing Noise in Agentic Program Repair | 2025 | arXiv | [PDF](Agentic%20Approaches/LLM-as-Judges/Abstain%20and%20Validate%20A%20Dual-LLM%20Policy%20for%20Reducing%20Noise%20in%20Agentic%20Program%20Repair.pdf) |
 
 ### Self-Controlled System
 

@@ -38,7 +38,7 @@ BENCH_TERMS = [
     "QuixBugs", "Bugs.jar", "HumanEvalFix", "HumanEval-Java", "HumanEval-Perl",
     "IntroClass", "ManySStuBs4J", "CodeFLAWS", "Bears", "d4j", "humaneval",
     # 漏洞相关 benchmarks
-    "CVEFixes", "Big-Vul", "CleanVul", "VulnLoc", "ExtractFix", "InstructVul",
+    "CVEFixes", "Big-Vul", "VulnLoc", "ExtractFix", "InstructVul",
     # 其他 benchmarks
     "BugsInPy", "RepoBugs", "LMDefects", "TutorCode", "MBPP", "APPS",
     "CodeNet", "CodeNet4Repair", "ACPR", "InferredBugs", "PyTyDefects",
@@ -67,7 +67,7 @@ TOOL_TERMS = [
     "VulMaster", "RepairCAT", "RepairLLaMA", "Repairllama",  # RepairLLaMA 的变体
     "MORepair", "KNOD", "Knod",  # KNOD 的变体
     "DistiLRR", "NARRepair", "Narrepair",  # NARRepair 的变体
-    "RePair", "SecRepair", "CleanVul",  # CleanVul 漏洞修复 
+    "RePair", "SecRepair",
     "Swe-rl", "SWE-RL", "Swe-agent",  # SWE-RL 的变体
     "AdaPatcher", "Smart-LLaMA-DPO", 
     "Tracefixer", "TraceFixer",  # TraceFixer 的变体
@@ -75,7 +75,7 @@ TOOL_TERMS = [
     "PyTy", "Pyty",  # PyTy 的变体
     "NTR",
     # LLM-as-Judges
-    "VulSifter", "LLM4PatchCorrect", "Execution-Free",
+    "TSAPR", "SpecRover", "Abstain and Validate",
     # Legacy/Other
     "CURE", "CoCoNut", "Recoder", "FitRepair"
 ]
@@ -1376,8 +1376,10 @@ def search_papers_by_tool_names(use_cache=True, top_k=3):
         # Fine-tuning
         "RepairLLaMA", "MORepair", "KNOD", "DistiLRR", "NARRepair",
         "InferFix", "PyTy", "TraceFixer", "Swe-rl",
+        # LLM-as-Judges
+        "TSAPR", "SpecRover",
         # Other
-        "CleanVul", "VulMaster", "CoCoNut"
+        "VulMaster", "CoCoNut"
     ]
     
     print(f"\n[INFO] Searching for papers by {len(priority_tools)} representative tool names...")
