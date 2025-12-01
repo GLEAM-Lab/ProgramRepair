@@ -69,7 +69,7 @@ TOOL_TERMS = [
     "DistiLRR", "NARRepair", "Narrepair",  # NARRepair 的变体
     "RePair", "SecRepair",
     "Swe-rl", "SWE-RL", "Swe-agent",  # SWE-RL 的变体
-    "AdaPatcher", "Smart-LLaMA-DPO", 
+    "AdaPatcher", "Vul-R2", "VulR2",  # Vul-R2 的变体 
     "Tracefixer", "TraceFixer",  # TraceFixer 的变体
     "InferFix", "Inferfix",  # InferFix 的变体
     "PyTy", "Pyty",  # PyTy 的变体
@@ -1375,7 +1375,7 @@ def search_papers_by_tool_names(use_cache=True, top_k=3):
         "AlphaRepair", "CEDAR", "APPATCH", "TracePrompt",
         # Fine-tuning
         "RepairLLaMA", "MORepair", "KNOD", "DistiLRR", "NARRepair",
-        "InferFix", "PyTy", "TraceFixer", "Swe-rl",
+        "InferFix", "PyTy", "TraceFixer", "Swe-rl", "Vul-R2",
         # LLM-as-Judges
         "TSAPR", "SpecRover",
         # Other

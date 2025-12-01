@@ -83,7 +83,7 @@ Apply reinforcement learning techniques to optimize repair models.
 | LLM-Powered Code Vulnerability Repair with Reinforcement Learning and Semantic Reward (SecRepair) | 2024 | arXiv | [PDF](Fine-Tuning%20Approaches/Reinforcement%20Learning%20Fine-Tuning/LLM-Powered%20Code%20Vulnerability%20Repair.pdf) |
 | SWE-RL: Advancing LLM Reasoning via Reinforcement Learning on Open Software Evolution | 2025 | arXiv | [PDF](Fine-Tuning%20Approaches/Reinforcement%20Learning%20Fine-Tuning/Swe-rl%20Advancing%20llm%20reasoning%20via%20reinforcement%20learning%20on%20open%20software%20%20evolution..pdf) |
 | Less is More: Adaptive Program Repair with Bug Localization and Preference Learning (AdaPatcher) | 2025 | AAAI | [PDF](Fine-Tuning%20Approaches/Reinforcement%20Learning%20Fine-Tuning/Less%20is%20More%20Adaptive%20Program%20Repair%20with%20Bug%20Localization%20and%20Preference%20Learning.pdf) |
-| Smart-LLaMA-DPO: Reinforced Large Language Model for Explainable Smart Contract Vulnerability Detection | 2025 | ISSTA | [PDF](Fine-Tuning%20Approaches/Reinforcement%20Learning%20Fine-Tuning/Smart-LLaMA-DPO%20Reinforced%20Large%20Language%20Model%20for%20Explainable%20Smart%20Contract%20%20Vulnerability%20Detection..pdf) |
+| Vul-R2: A Reasoning LLM for Automated Vulnerability Repair | 2025 | ASE | [PDF](Fine-Tuning%20Approaches/Reinforcement%20Learning%20Fine-Tuning/Vul-R2%20A%20Reasoning%20LLM%20for%20Automated%20Vulnerability%20Repair.pdf) |
 
 ### Context-Enriched Fine-Tuning
 
