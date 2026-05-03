@@ -1,6 +1,6 @@
 # 人工双标注说明
 
-这套材料是给两位人工标注者做独立复核用的，目标是对修订版 survey 里的 taxonomy 和 scenario 进行真正的双人标注，并留下后续可计算一致性统计的位置。
+这套材料是给两位人工标注者做独立复核用的，目标是对当前 survey 里的 taxonomy 和 scenario 进行真正的双人标注，并留下后续可计算一致性统计的位置。
 
 ## 需要用到的文件
 
@@ -20,7 +20,7 @@
 - `primary_paradigm`
   可选值：`Fine-Tuning`、`Prompting`、`Procedural`、`Agentic`
 - `control_subparadigm`
-  尽量使用论文修订版里的控制方式标签
+  尽量使用当前论文里的控制方式标签
 - `retrieval_tag`
   填 `yes` 或 `no`
 - `analysis_tag`
@@ -66,9 +66,9 @@ python3 artifact/compute_annotation_agreement.py artifact/human_taxonomy_annotat
 - 统计 `retrieval_tag` / `analysis_tag` 的一致性
 - 统计 `primary_scenario` 的原始一致率
 - 列出具体分歧系统
-- 帮你把这些数字写进论文正文和 response letter
+- 帮你把这些数字写进论文正文或 artifact 说明
 
 ## 说明
 
-- 这是一轮修订期的人类复核包，不是对最初 screening 过程的事后伪造。
+- 这是一轮当前 taxonomy 的人类复核包，不是对最初 screening 过程的事后伪造。
 - 因为原始 screening ledger 不在当前公开仓库里，这一轮能提供的是新的、可核查的人工双标注证据。

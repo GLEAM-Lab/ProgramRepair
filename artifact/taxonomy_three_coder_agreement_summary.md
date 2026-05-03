@@ -5,9 +5,7 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 ## Inputs
 
 - `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`: released final coding tables. The agreement calculation uses the overlapping 62 systems for which external recodings were collected.
-- `human_taxonomy_annotation_1.csv`: normalized external coder 1 sheet.
-- `human_taxonomy_annotation_2.csv`: normalized external coder 2 sheet; the missing `RepairCAT` row was filled using the same labels as external coder 1, as requested.
-- `human_taxonomy_annotation_external_pair.csv`: paired two-external-coder sheet compatible with `compute_annotation_agreement.py`.
+- `human_taxonomy_annotation_external_pair.csv`: normalized paired two-external-coder sheet compatible with `compute_annotation_agreement.py`; the missing `RepairCAT` row in one raw handoff sheet was filled using the same labels as the other external coder before this normalized public export was produced.
 - `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both external recodings.
 
 ## Pairwise Agreement

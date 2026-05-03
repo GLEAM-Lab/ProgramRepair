@@ -1,6 +1,6 @@
 # Survey Artifact Files
 
-This directory supplements the survey repository with auditable files referenced by the current manuscript and response letter.
+This directory supplements the survey repository with auditable files referenced by the current manuscript.
 
 Included files:
 
@@ -18,23 +18,23 @@ Included files:
 - `taxonomy_coding_guide.md`: operational rules for assigning one primary paradigm plus auxiliary tags, including hybrid-handling guidance and top-level corpus counts.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including primary paradigm, sub-paradigm, benchmark family, metric, and explicit assumptions.
 - `scenario_assignment_audit.csv`: per-paper deployment-scenario assignments used to replace the earlier qualitative scenario-fit figure with evidence-backed counts.
-- `extraction_form_fields.md`: field-by-field description of the shared extraction form used for the revised per-paper audit.
+- `extraction_form_fields.md`: field-by-field description of the shared extraction form used for the current per-paper audit.
 - `extraction_form_template.csv`: blank extraction template that mirrors the fields populated in the released audit tables.
 - `taxonomy_sensitivity_audit.md`: robustness check showing how stable the primary-paradigm labels remain under a stricter control-first re-coding pass.
-- `human_taxonomy_annotation_instructions.md`: handoff instructions for collecting true human double-coding after the current revision.
+- `human_taxonomy_annotation_instructions.md`: handoff instructions for collecting human double-coding evidence for the current manuscript audit.
 - `human_taxonomy_annotation_instructions_zh.md`: Chinese handoff note for distributing the same annotation package to external coders.
-- `human_taxonomy_annotation_template.csv`: blank annotation template aligned with the revised taxonomy and scenario fields.
+- `human_taxonomy_annotation_template.csv`: blank annotation template aligned with the current taxonomy and scenario fields.
 - `compute_annotation_agreement.py`: lightweight script for computing agreement statistics and enumerating disagreement rows once two coders have filled the template.
 - `human_taxonomy_annotation_external_pair.csv`: normalized paired annotation sheet for the two external taxonomy coders, compatible with `compute_annotation_agreement.py`.
 - `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two external recoding sheets.
 - `taxonomy_three_coder_agreement_summary.md`: pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system pre-update core recoding audit; the current 66-system taxonomy assignment is recorded in `taxonomy_assignment_audit.csv`.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.
 - `benchmark_protocol_summary.md`: corpus-level summary of metrics, assumptions, and benchmark concentration derived from the 66-system audit table used in the paper.
-- `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the revised corpus-context and benchmark-protocol synthesis.
+- `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the current corpus-context and benchmark-protocol synthesis.
 - `version_status_audit.md`: arXiv-to-venue status audit showing which retained studies now have verified archival publications and which remain arXiv-only in the current bibliography.
 
 Scope note:
 
-- These files document the released stage logs and the revised coding rules.
+- These files document the released stage logs and the current coding rules.
 - They do not reconstruct the original random-sample false-negative log from query refinement, because that intermediate record is not present in the currently released stage files.
 - Current screening agreement is reported from the released 474-record adjudicated selection files listed above. The taxonomy sensitivity audit is a separate robustness check for taxonomy coding stability.

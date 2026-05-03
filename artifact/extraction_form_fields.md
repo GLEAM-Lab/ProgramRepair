@@ -1,6 +1,6 @@
 # Extraction Form Fields
 
-This note documents the shared extraction form used to populate the revised per-paper audit tables.
+This note documents the shared extraction form used to populate the current per-paper audit tables.
 
 The form is designed to make the taxonomy, benchmark, and methodology claims auditable at the paper level. The populated outputs appear in `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`.
 
@@ -9,7 +9,7 @@ The form is designed to make the taxonomy, benchmark, and methodology claims aud
 - `system`
   The canonical system or paper name used throughout the survey.
 - `cited_version`
-  The version cited in the revised bibliography, for example the archival venue or retained preprint version.
+  The version cited in the current bibliography, for example the archival venue or retained preprint version.
 - `venue_year`
   The year associated with the cited version used in the survey.
 - `primary_paradigm`

@@ -7,7 +7,7 @@
 - `screening_annotation_template_474.csv`: 空白双人标注表，给两位标注者填写。
 - `screening_reference_labels_474.csv`: 当前论文最终筛选结果对应的 reference 表。该表只表示当前稿件的最终 include/exclude 状态，不是原始 screening ledger。
 - `remote_results/stage5.jsonl`: 冻结基线中的 462 条候选记录来源。
-- `artifact/fulltexts/download_report.csv`: 12 条正式出版更新候选记录来源。
+- `artifact/version_status_audit.md`: 正式出版更新和版本状态说明。
 - `artifact/taxonomy_assignment_audit.csv`: 当前论文最终保留的 66 条记录来源。
 
 ## 标注任务
@@ -54,4 +54,4 @@
 
 ## 报告口径
 
-这是一轮新增的可核查筛选复核，建议在论文和 response letter 中称为 `independent re-screening audit`。不要把它写成原始提交时的 human screening kappa。
+这是一轮新增的可核查筛选复核，建议称为 `independent re-screening audit`。不要把它写成原始提交时的 human screening kappa。

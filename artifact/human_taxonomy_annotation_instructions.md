@@ -1,11 +1,11 @@
 # Human Taxonomy Annotation Instructions
 
-This package is for collecting true human double-coding after the current major revision.
+This package is for collecting human double-coding evidence for the current manuscript audit.
 
 Primary files:
 
 - `taxonomy_coding_guide.md`: operational definitions for the primary paradigm, sub-paradigm, and auxiliary tags
-- `scenario_assignment_audit.csv`: the deployment-scenario scheme used in the revised paper
+- `scenario_assignment_audit.csv`: the deployment-scenario scheme used in the current manuscript
 - `human_taxonomy_annotation_template.csv`: the blank sheet to fill independently and then adjudicate
 - `compute_annotation_agreement.py`: agreement script to run after both coders finish
 
@@ -19,7 +19,7 @@ Each coder should work independently and fill only their own columns:
 Required fields per system:
 
 - `primary_paradigm`: one of `Fine-Tuning`, `Prompting`, `Procedural`, `Agentic`
-- `control_subparadigm`: use the revised survey's control labels where possible
+- `control_subparadigm`: use the current survey's control labels where possible
 - `retrieval_tag`: `yes` or `no`
 - `analysis_tag`: `yes` or `no`
 - `primary_scenario`: one of
@@ -55,7 +55,7 @@ To accelerate coding without losing consistency:
 
 1. Read `taxonomy_coding_guide.md`.
 2. Re-open the original paper PDF for the target system.
-3. Use the revised survey text only as a navigation aid, not as the ground truth to copy.
+3. Use the current survey text only as a navigation aid, not as the ground truth to copy.
 4. For borderline systems, inspect the method section first, then the evaluation setting, then the implementation loop.
 
 ## Suggested agreement outputs
@@ -70,5 +70,5 @@ The script reports:
 
 ## Scope note
 
-- This package supports a revision-era human validation pass.
+- This package supports a human validation pass for the current taxonomy.
 - It does not reconstruct the original screening-agreement ledger from the first-round review cycle.

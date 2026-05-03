@@ -35,7 +35,7 @@ This audit is a taxonomy robustness check. It is separate from the 474-record sc
 
 ## Interpretation
 
-The main consequence of this audit is that the taxonomy is reasonably stable at the top level, but hybrid systems are exactly where disagreements concentrate. This supports the revised manuscript's decision to:
+The main consequence of this audit is that the taxonomy is reasonably stable at the top level, but hybrid systems are exactly where disagreements concentrate. This supports the current manuscript's decision to:
 
 - keep one primary paradigm for corpus-level aggregation
 - record retrieval, analysis, and deployment scenario separately

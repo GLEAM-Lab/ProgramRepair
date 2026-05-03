@@ -23,4 +23,4 @@ How this relates to the paper:
 
 - Table 1 in the paper summarizes the representative keyword families for readability.
 - `remote_results/pipeline.py` is the canonical executable definition of the actual keyword pools and screening functions.
-- The revised paper adds explicit tool-name examples such as `SpecRover` and `Abstain and Validate` precisely because repository-level and agent-oriented papers sometimes foreground system names more strongly than the phrase `program repair`.
+- The current manuscript adds explicit tool-name examples such as `SpecRover` and `Abstain and Validate` because repository-level and agent-oriented papers sometimes foreground system names more strongly than the phrase `program repair`.

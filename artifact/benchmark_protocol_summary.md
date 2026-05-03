@@ -1,6 +1,6 @@
 # Benchmark Protocol Summary
 
-This summary aggregates the 66-system audit table used in the revised manuscript (`revised_submission/11.threats.tex`) to make benchmark fragmentation easier to inspect.
+This summary aggregates the 66-system audit table used in the current manuscript to make benchmark fragmentation easier to inspect.
 
 ## Metric families
 

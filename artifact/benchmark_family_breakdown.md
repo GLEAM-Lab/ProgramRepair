@@ -1,6 +1,6 @@
 # Benchmark Family Breakdown
 
-This file aggregates the final 66-system audit table into benchmark-family-level summaries so that the benchmark-protocol claims in the revised paper can be checked directly. Counts are derived from `artifact/taxonomy_assignment_audit.csv`.
+This file aggregates the final 66-system audit table into benchmark-family-level summaries so that the benchmark-protocol claims in the current manuscript can be checked directly. Counts are derived from `artifact/taxonomy_assignment_audit.csv`.
 
 ## Defects4J
 
