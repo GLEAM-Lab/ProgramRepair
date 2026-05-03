@@ -1,0 +1,30 @@
+category,title,why_high_confidence
+survey_review,A Comprehensive Survey of AI-Driven Advancements and Techniques in Automated Program Repair and Code Generation,explicit survey of APR and code generation rather than a primary repair system
+survey_review,A Survey of Learning-based Automated Program Repair,explicit survey paper rather than a primary repair system
+survey_review,A Survey on Automated Program Repair Techniques,explicit survey paper rather than a primary repair system
+survey_review,A Systematic Literature Review on Large Language Models for Automated Program Repair,explicit systematic review rather than a primary repair system
+survey_review,SoK: Automated Vulnerability Repair: Methods, Tools, and Assessments,explicit SoK paper rather than a primary repair system
+survey_review,SoK: Towards Effective Automated Vulnerability Repair,explicit SoK paper rather than a primary repair system
+detection_localization_only,Issue Localization via LLM-Driven Iterative Code Graph Searching,focuses on issue localization rather than patch generation
+detection_localization_only,LLM-Enhanced Software Patch Localization,focuses on patch localization rather than end-to-end repair
+detection_localization_only,Empirical Study of Code Large Language Models for Binary Security Patch Detection,focuses on patch detection rather than patch generation
+detection_localization_only,From LLMs to Agents: A Comparative Evaluation of LLMs and LLM-based Agents in Security Patch Detection,focuses on security patch detection rather than repair
+benchmark_evaluation_only,UTBoost: Rigorous Evaluation of Coding Agents on SWE-Bench,focuses on benchmark correction and evaluation rather than proposing a repair pipeline
+benchmark_evaluation_only,Evaluating Software Development Agents: Patch Patterns, Code Quality, and Issue Complexity in Real-World GitHub Scenarios,focuses on evaluation of agents rather than a new repair method
+benchmark_evaluation_only,Invalidator: Automated Patch Correctness Assessment via Semantic and Syntactic Reasoning,focuses on patch assessment rather than full repair generation
+benchmark_evaluation_only,Towards Reliable Evaluation of Neural Program Repair with Natural Robustness Testing,focuses on evaluation methodology rather than a primary repair pipeline
+non_code_or_non_software,A 1Mb mixed-precision quantized encoder for image classification and patch-based compression,computer-vision patch compression paper rather than software repair
+non_code_or_non_software,A Global and Patch-wise Contrastive Loss for Accurate Automated Exudate Detection,medical-image detection paper rather than software repair
+non_code_or_non_software,AdaRevD: Adaptive Patch Exiting Reversible Decoder Pushes the Limit of Image Deblurring,image deblurring paper rather than software repair
+non_code_or_non_software,Coconut Palm Tree Counting on Drone Images with Deep Object Detection and Synthetic Training Data,agricultural imaging paper rather than software repair
+non_code_or_non_software,Detection of Adulteration in Coconut Milk using Infrared Spectroscopy and Machine Learning,food-quality detection paper rather than software repair
+non_code_or_non_software,Early Diagnosis and Severity Assessment of Weligama Coconut Leaf Wilt Disease and Coconut Caterpillar Infestation using Deep Learning-based Image Processing Techniques,plant-disease imaging paper rather than software repair
+non_code_or_non_software,PAEDID: Patch Autoencoder Based Deep Image Decomposition For Pixel-level Defective Region Segmentation,image segmentation paper rather than software repair
+non_code_or_non_software,Patch-enhanced Mask Encoder Prompt Image Generation,image generation paper rather than software repair
+non_code_or_non_software,Patch-Level Glioblastoma Subregion Classification with a Contrastive Learning-Based Encoder,medical-image classification paper rather than software repair
+non_code_or_non_software,Patch Progression Masked Autoencoder with Fusion CNN Network for Classifying Evolution Between Two Pairs of 2D OCT Slices,medical OCT imaging paper rather than software repair
+non_code_or_non_software,Quantum Patch-Based Autoencoder for Anomaly Segmentation,image anomaly segmentation paper rather than software repair
+non_code_or_non_software,REN: Fast and Efficient Region Encodings from Patch-Based Image Encoders,vision encoder paper rather than software repair
+non_code_or_non_software,Spectrogram Patch Codec: A 2D Block-Quantized VQ-VAE and HiFi-GAN for Neural Speech Coding,speech codec paper rather than software repair
+non_code_or_non_software,Towards Patient-Specific Surgical Planning for Bicuspid Aortic Valve Repair: Fully Automated Segmentation of the Aortic Valve in 4D CT,medical surgical-planning paper rather than software repair
+non_code_or_non_software,WISE-FUSE: Efficient Whole Slide Image Encoding via Coarse-to-Fine Patch Selection with VLM and LLM Knowledge Fusion,whole-slide pathology imaging paper rather than software repair

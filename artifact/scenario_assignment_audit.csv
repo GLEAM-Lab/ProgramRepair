@@ -1,0 +1,67 @@
+system,primary_paradigm,benchmark_family,benchmark,primary_scenario,rationale
+Huang et al.,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+Jiang et al.,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+VulMaster,Fine-Tuning,Vulnerability repair datasets,CVEFixes,Vulnerability repair,security patching benchmark
+RepairCAT,Fine-Tuning,Other,APR Competition 2024,Localized benchmark repair,competition-style localized repair task
+RepairLLaMA,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+MORepair,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+Luo et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+Li et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+Ruiz et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+KNOD,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+DistiLRR,Fine-Tuning,Other,HumanEval-Perl,Localized benchmark repair,localized benchmarked code repair
+NARRepair,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+RePair,Fine-Tuning,Other,CodeNet4Repair,Localized benchmark repair,localized benchmarked code repair
+SecRepair,Fine-Tuning,Other,InstructVul,Vulnerability repair,security repair benchmark
+SWE-RL,Fine-Tuning,SWE-bench Verified,SWE-bench Verified,Repository-level issue resolution,repository issue benchmark
+AdaPatcher,Fine-Tuning,Other,ACPR,Localized benchmark repair,localized benchmarked code repair
+Vul-R2,Fine-Tuning,Vulnerability repair datasets,PrimeVul,Vulnerability repair,security repair benchmark
+TraceFixer,Fine-Tuning,Other,CodeNet,Localized benchmark repair,localized benchmarked code repair
+InferFix,Fine-Tuning,Other,InferredBugs,Localized benchmark repair,localized benchmarked code repair
+PyTy,Fine-Tuning,Other,PyTyDefects,Localized benchmark repair,localized benchmarked code repair
+NTR,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+AlphaRepair,Prompting,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+Prenner et al.,Prompting,Other,Quixbugs,Localized benchmark repair,localized benchmarked code repair
+Fan et al.,Prompting,Other,LMDefects,Localized benchmark repair,localized benchmarked code repair
+Tian et al.,Prompting,Other,LeetCode,Localized benchmark repair,localized benchmarked code repair
+Xia et al.,Prompting,Defects4J,Defects4J v1.2,Localized benchmark repair,localized Java APR benchmark
+Gao et al.,Prompting,Other,B2F small,Localized benchmark repair,localized benchmarked code repair
+Ahmed et al.,Prompting,Other,MODIT,Localized benchmark repair,localized benchmarked code repair
+CEDAR,Prompting,Other,ATLAS,Localized benchmark repair,localized benchmarked code repair
+Ehsani et al.,Prompting,Other,BugsInPy,Localized benchmark repair,localized benchmarked code repair
+RLCE,Prompting,Other,RepoBugs,Repository-level issue resolution,repository issue benchmark
+DsRepair,Prompting,Other,DS-1000,Localized benchmark repair,localized benchmarked code repair
+D4C,Prompting,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+Appatch,Prompting,Vulnerability repair datasets,Zero-Day,Vulnerability repair,security patching benchmark
+TracePrompt,Prompting,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+ChatRepair,Procedural,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+ThinkRepair,Procedural,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+REx,Procedural,Other,LoopInv,Localized benchmark repair,localized benchmarked code repair
+ContrastRepair,Procedural,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+CREF,Procedural,Other,TutorCode,Educational tutoring,tutoring workflow benchmark
+HULA,Procedural,Other,Atlassian Jira issues,Industrial / practitioner workflow,real issue-tracker workflow
+DRCodePilot,Procedural,Other,Flink,Industrial / practitioner workflow,developer-review workflow on industrial-style issues
+Agentless,Procedural,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+PATCH,Procedural,Other,BFP,Repository-level issue resolution,repository-aware patching workflow
+KGCompass,Procedural,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+Repilot,Procedural,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+SAN2PATCH,Procedural,Vulnerability repair datasets,VulnLoc,Vulnerability repair,security patching benchmark
+PredicateFix,Procedural,Vulnerability repair datasets,CVE,Vulnerability repair,security patching benchmark
+LLM4CVE,Procedural,Vulnerability repair datasets,CVEFixes,Vulnerability repair,security patching benchmark
+SWE-Agent,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+SWE-Agent M,Agentic,SWE-bench Other,SWE-bench Multimodal,Repository-level issue resolution,repository issue benchmark
+OpenHands,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+AutoCodeRover,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+RepairAgent,Agentic,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+LANTERN,Agentic,Other,Rust subset of xCodeEval,Localized benchmark repair,localized benchmarked code repair
+VulDebugger,Agentic,Vulnerability repair datasets,50 of ExtractFix and ARVO,Vulnerability repair,security patching benchmark
+Abstain and Validate,Agentic,Other,Google,Industrial / practitioner workflow,industrial patch-validation workflow
+TSAPR,Agentic,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
+SpecRover,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+MAGIS,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+SWE-Search,Agentic,SWE-bench Lite,SWE-bench Lite,Repository-level issue resolution,repository issue benchmark
+Learn-by-Interact,Agentic,SWE-bench Other,SWE-bench,Repository-level issue resolution,repository issue benchmark
+PailGen,Prompting,Vulnerability repair datasets,Big-Vul_CVEfixes,Vulnerability repair,fix-pattern-aware vulnerability patch generation
+ACFix,Prompting,Vulnerability repair datasets,118 real-world AC vulnerabilities,Vulnerability repair,smart-contract access-control repair
+Dr.Fix,Prompting,API misuse repair,Java-Method API-misuse repair,Localized benchmark repair,API-element repair benchmark
+IntDiagSolver,Procedural,Crash bug repair,30 environment-related crash bugs,Localized benchmark repair,crash-bug repair benchmark

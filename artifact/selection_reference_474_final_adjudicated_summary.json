@@ -1,0 +1,145 @@
+{
+  "counts": {
+    "current": {
+      "exclude": 408,
+      "include": 66
+    },
+    "coder1": {
+      "exclude": 408,
+      "include": 66
+    },
+    "coder2": {
+      "exclude": 408,
+      "include": 66
+    },
+    "coder12_adjudicated": {
+      "exclude": 408,
+      "include": 66
+    },
+    "third_raw": {
+      "exclude": 411,
+      "include": 63
+    },
+    "third_after_adjudication": {
+      "exclude": 408,
+      "include": 66
+    }
+  },
+  "metrics": {
+    "coder1_vs_coder2": {
+      "agreement": "474/474",
+      "po": "1.0000",
+      "kappa": "1.0000",
+      "confusion": {
+        "include_include": 66,
+        "include_exclude": 0,
+        "exclude_include": 0,
+        "exclude_exclude": 408,
+        "other": 0
+      }
+    },
+    "coder12_adjudicated_vs_current": {
+      "agreement": "474/474",
+      "po": "1.0000",
+      "kappa": "1.0000",
+      "confusion": {
+        "include_include": 66,
+        "include_exclude": 0,
+        "exclude_include": 0,
+        "exclude_exclude": 408,
+        "other": 0
+      }
+    },
+    "third_raw_vs_current": {
+      "agreement": "467/474",
+      "po": "0.9852",
+      "kappa": "0.9372",
+      "confusion": {
+        "include_include": 61,
+        "include_exclude": 2,
+        "exclude_include": 5,
+        "exclude_exclude": 406,
+        "other": 0
+      }
+    },
+    "third_after_adjudication_vs_current": {
+      "agreement": "474/474",
+      "po": "1.0000",
+      "kappa": "1.0000",
+      "confusion": {
+        "include_include": 66,
+        "include_exclude": 0,
+        "exclude_include": 0,
+        "exclude_exclude": 408,
+        "other": 0
+      }
+    },
+    "third_after_adjudication_vs_coder12": {
+      "agreement": "474/474",
+      "po": "1.0000",
+      "kappa": "1.0000",
+      "confusion": {
+        "include_include": 66,
+        "include_exclude": 0,
+        "exclude_include": 0,
+        "exclude_exclude": 408,
+        "other": 0
+      }
+    },
+    "exclusion_reason_coder1_vs_coder2": {
+      "n": 408,
+      "agreement": "391/408",
+      "po": "0.9583",
+      "kappa": "0.8321"
+    }
+  },
+  "include_set_diffs": {
+    "third_raw_only_vs_current": [
+      "S5-021",
+      "S5-097"
+    ],
+    "current_only_vs_third_raw": [
+      "S5-035",
+      "S5-204",
+      "S5-443",
+      "S5-449",
+      "S5-456"
+    ],
+    "third_after_adjudication_only_vs_current": [],
+    "current_only_vs_third_after_adjudication": []
+  },
+  "adjudication_notes": [
+    {
+      "id": "S5-021",
+      "note": "duplicate of U-001 ACFix; final corpus keeps the published-update record"
+    },
+    {
+      "id": "S5-035",
+      "note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-097",
+      "note": "third-only inclusion; adjudicated as not retained in the core corpus"
+    },
+    {
+      "id": "S5-204",
+      "note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-443",
+      "note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-449",
+      "note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-456",
+      "note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "U-001",
+      "note": "matched to third-coder ACFix include at S5-021"
+    }
+  ]
+}
