@@ -1,36 +1,6 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>LLM-based Software Repair Taxonomy</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #ffffff;
-      font-family: "DejaVu Sans", "Noto Sans", Arial, sans-serif;
-    }
-    main {
-      width: min(96vw, 1200px);
-      padding: 16px;
-    }
-    .frame {
-      background: #ffffff;
-      overflow: hidden;
-    }
-    svg {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-  </style>
-</head>
-<body>
-  <main>
-    <div class="frame">
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg xmlns:xlink="http://www.w3.org/1999/xlink" width="886.752pt" height="315.5616pt" viewBox="0 0 886.752 315.5616" xmlns="http://www.w3.org/2000/svg" version="1.1">
  <metadata>
   <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
@@ -444,8 +414,3 @@ z
   </clipPath>
  </defs>
 </svg>
-
-    </div>
-  </main>
-</body>
-</html>
