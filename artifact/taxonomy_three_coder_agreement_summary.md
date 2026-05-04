@@ -36,4 +36,4 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 
 ## Scope Note
 
-This audit validates taxonomy coding stability for the 62-system pre-update core set. It is not a reconstruction of the original full-text screening ledger and should not be read as an agreement statistic for all 474 current full-text candidates or all 66 retained systems. The four published-update additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.
+This audit assesses taxonomy coding stability for the 62-system pre-update core set. It is not a reconstruction of the original full-text screening ledger and should not be read as an agreement statistic for all 474 current full-text candidates or all 66 retained systems. The four published-update additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.
