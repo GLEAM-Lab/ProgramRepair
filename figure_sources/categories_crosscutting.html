@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM-based Software Repair Taxonomy</title>
+  <style>
+    :root {
+      --ink: #17202a;
+      --muted: #5c6672;
+      --paper: #f7f3ea;
+      --line: #44505c;
+      --blue-1: #e7f4fb;
+      --blue-2: #cce8f5;
+      --blue-3: #79aeca;
+      --green-1: #eaf6df;
+      --green-2: #c8e9bf;
+      --green-3: #6ead6f;
+      --gold: #d49a33;
+      --rose: #cc6b7a;
+      --violet: #7465b9;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(212, 154, 51, 0.12), transparent 28rem),
+        radial-gradient(circle at 85% 20%, rgba(116, 101, 185, 0.10), transparent 26rem),
+        #f4f1ea;
+      color: var(--ink);
+      font-family: "Aptos", "Source Sans 3", "Avenir Next", "Helvetica Neue", sans-serif;
+    }
+
+    main {
+      width: min(96vw, 1560px);
+      padding: 22px;
+    }
+
+    .toolbar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    button {
+      border: 1px solid rgba(23, 32, 42, 0.18);
+      background: #ffffff;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font: 650 14px/1 "Aptos", "Source Sans 3", sans-serif;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(23, 32, 42, 0.08);
+    }
+
+    .frame {
+      background: #fffdf8;
+      border-radius: 28px;
+      box-shadow: 0 24px 70px rgba(39, 46, 55, 0.16);
+      overflow: hidden;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="toolbar" aria-hidden="true">
+      <button onclick="downloadSvg()">Download SVG</button>
+      <button onclick="downloadPng(2)">Download PNG 2x</button>
+      <button onclick="downloadPng(3)">Download PNG 3x</button>
+    </div>
+    <div class="frame">
+      <svg id="taxonomy" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1040" role="img" aria-labelledby="title desc">
+        <title id="title">LLM-based Software Repair Taxonomy</title>
+        <desc id="desc">Four primary repair paradigms arranged by backbone adaptation and control authority, with auxiliary evidence sources shown as cross-cutting layers.</desc>
+        <defs>
+          <linearGradient id="paperBg" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#fffdf8"/>
+            <stop offset="1" stop-color="#f4f0e6"/>
+          </linearGradient>
+          <linearGradient id="cardBlue" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0" stop-color="#ecf8ff"/>
+            <stop offset="1" stop-color="#cfeaf7"/>
+          </linearGradient>
+          <linearGradient id="cardGreen" x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0" stop-color="#edf9e8"/>
+            <stop offset="1" stop-color="#ccefc7"/>
+          </linearGradient>
+          <linearGradient id="axisLine" x1="0" x2="1">
+            <stop offset="0" stop-color="#2f3a45"/>
+            <stop offset="1" stop-color="#6e7780"/>
+          </linearGradient>
+          <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+            <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#23303b" flood-opacity="0.16"/>
+          </filter>
+          <filter id="lightShadow" x="-20%" y="-20%" width="140%" height="150%">
+            <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#29485b" flood-opacity="0.12"/>
+          </filter>
+          <style>
+            .title { font: 800 46px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #17202a; }
+            .subtitle { font: 500 23px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #59646f; }
+            .axis { font: 800 30px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #1d2731; letter-spacing: .2px; }
+            .axisNote { font: 600 17px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #68737e; letter-spacing: 1.6px; text-transform: uppercase; }
+            .cardTitle { font: 850 40px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #17202a; }
+            .cardText { font: 500 24px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #25303b; }
+            .micro { font: 750 16px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #5b6976; letter-spacing: 1.4px; text-transform: uppercase; }
+            .chip { font: 700 17px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #26313c; }
+            .layerTitle { font: 850 38px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #17202a; }
+            .layerText { font: 500 23px "Aptos", "Source Sans 3", "Avenir Next", sans-serif; fill: #2e3a44; }
+          </style>
+        </defs>
+
+        <rect width="1800" height="1040" fill="url(#paperBg)"/>
+        <circle cx="145" cy="120" r="210" fill="#e4f4fb" opacity="0.52"/>
+        <circle cx="1635" cy="95" r="230" fill="#f6ead4" opacity="0.56"/>
+        <circle cx="1630" cy="845" r="260" fill="#e7f2df" opacity="0.45"/>
+
+        <text x="110" y="90" class="title">LLM-based Software Repair Taxonomy</text>
+        <text x="110" y="128" class="subtitle">Primary paradigms are defined by parameter adaptation and control authority; evidence sources remain orthogonal.</text>
+
+        <g transform="translate(110 180)">
+          <text x="0" y="0" class="axis">Adapted Backbone</text>
+          <text x="498" y="0" class="axis">Frozen Backbone</text>
+          <line x1="0" y1="30" x2="370" y2="30" stroke="url(#axisLine)" stroke-width="5" stroke-linecap="round"/>
+          <line x1="435" y1="30" x2="1580" y2="30" stroke="url(#axisLine)" stroke-width="5" stroke-linecap="round"/>
+          <text x="0" y="74" class="axisNote">model parameters changed</text>
+          <text x="435" y="74" class="axisNote">base model kept fixed at runtime</text>
+        </g>
+
+        <g transform="translate(116 268)">
+          <text x="0" y="0" class="axisNote">control authority over repair loop</text>
+          <line x1="0" y1="21" x2="1568" y2="21" stroke="#d0d8dd" stroke-width="2"/>
+          <circle cx="176" cy="21" r="7" fill="#d49a33"/>
+          <circle cx="580" cy="21" r="7" fill="#5fa3c7"/>
+          <circle cx="984" cy="21" r="7" fill="#5fa3c7"/>
+          <circle cx="1388" cy="21" r="7" fill="#7465b9"/>
+        </g>
+
+        <g id="cards" filter="url(#softShadow)">
+          <g transform="translate(110 330)">
+            <rect x="0" y="0" width="350" height="260" rx="32" fill="url(#cardBlue)" stroke="#76abc5" stroke-width="4"/>
+            <rect x="28" y="28" width="120" height="34" rx="17" fill="#fff7e8" stroke="#d49a33" stroke-width="1.5"/>
+            <text x="48" y="51" class="micro" fill="#8a5f12">Adapt</text>
+            <text x="34" y="112" class="cardTitle">Fine-Tuning</text>
+            <text x="34" y="151" class="cardText">Backbone updated</text>
+            <text x="34" y="184" class="cardText">on repair data</text>
+            <text x="34" y="224" class="micro">control: training objective</text>
+          </g>
+
+          <g transform="translate(515 330)">
+            <rect x="0" y="0" width="350" height="260" rx="32" fill="url(#cardBlue)" stroke="#76abc5" stroke-width="4"/>
+            <rect x="28" y="28" width="123" height="34" rx="17" fill="#eef8fd" stroke="#76abc5" stroke-width="1.5"/>
+            <text x="48" y="51" class="micro">Human</text>
+            <text x="34" y="112" class="cardTitle">Prompting</text>
+            <text x="34" y="151" class="cardText">One-shot or few-shot</text>
+            <text x="34" y="184" class="cardText">human-scripted repair</text>
+            <text x="34" y="224" class="micro">control: prompt author</text>
+          </g>
+
+          <g transform="translate(920 330)">
+            <rect x="0" y="0" width="350" height="260" rx="32" fill="url(#cardBlue)" stroke="#76abc5" stroke-width="4"/>
+            <rect x="28" y="28" width="118" height="34" rx="17" fill="#eef8fd" stroke="#76abc5" stroke-width="1.5"/>
+            <text x="48" y="51" class="micro">Script</text>
+            <text x="34" y="112" class="cardTitle">Procedural</text>
+            <text x="34" y="151" class="cardText">Fixed multi-step</text>
+            <text x="34" y="184" class="cardText">workflow controller</text>
+            <text x="34" y="224" class="micro">control: external program</text>
+          </g>
+
+          <g transform="translate(1325 330)">
+            <rect x="0" y="0" width="350" height="260" rx="32" fill="url(#cardBlue)" stroke="#76abc5" stroke-width="4"/>
+            <rect x="28" y="28" width="101" height="34" rx="17" fill="#f0edff" stroke="#7465b9" stroke-width="1.5"/>
+            <text x="48" y="51" class="micro">LLM</text>
+            <text x="34" y="112" class="cardTitle">Agentic</text>
+            <text x="34" y="151" class="cardText">LLM selects actions,</text>
+            <text x="34" y="184" class="cardText">tools, or branches</text>
+            <text x="34" y="224" class="micro">control: autonomous policy</text>
+          </g>
+        </g>
+
+        <g id="chips" filter="url(#lightShadow)">
+          <g transform="translate(116 625)">
+            <rect x="0" y="0" width="83" height="34" rx="17" fill="#fff7e8" stroke="#e6c78d"/>
+            <text x="20" y="23" class="chip">Full FT</text>
+            <rect x="94" y="0" width="64" height="34" rx="17" fill="#fff7e8" stroke="#e6c78d"/>
+            <text x="113" y="23" class="chip">PEFT</text>
+            <rect x="169" y="0" width="51" height="34" rx="17" fill="#fff7e8" stroke="#e6c78d"/>
+            <text x="187" y="23" class="chip">KD</text>
+            <rect x="231" y="0" width="65" height="34" rx="17" fill="#fff7e8" stroke="#e6c78d"/>
+            <text x="249" y="23" class="chip">RLFT</text>
+          </g>
+
+          <g transform="translate(521 625)">
+            <rect x="0" y="0" width="106" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="20" y="23" class="chip">Zero-shot</text>
+            <rect x="117" y="0" width="99" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="137" y="23" class="chip">Few-shot</text>
+            <rect x="227" y="0" width="98" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="247" y="23" class="chip">Template</text>
+          </g>
+
+          <g transform="translate(926 625)">
+            <rect x="0" y="0" width="102" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="21" y="23" class="chip">Test loop</text>
+            <rect x="113" y="0" width="123" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="132" y="23" class="chip">Scripted RAG</text>
+            <rect x="247" y="0" width="99" height="34" rx="17" fill="#eef8fd" stroke="#bddcea"/>
+            <text x="267" y="23" class="chip">Tool loop</text>
+          </g>
+
+          <g transform="translate(1331 625)">
+            <rect x="0" y="0" width="91" height="34" rx="17" fill="#f0edff" stroke="#c7c0ef"/>
+            <text x="21" y="23" class="chip">Planner</text>
+            <rect x="102" y="0" width="83" height="34" rx="17" fill="#f0edff" stroke="#c7c0ef"/>
+            <text x="123" y="23" class="chip">Search</text>
+            <rect x="196" y="0" width="77" height="34" rx="17" fill="#f0edff" stroke="#c7c0ef"/>
+            <text x="216" y="23" class="chip">Judge</text>
+          </g>
+        </g>
+
+        <g id="connectors" opacity="0.75">
+          <path d="M285 684 L285 740" stroke="#7fa77d" stroke-width="4" stroke-linecap="round"/>
+          <path d="M690 684 L690 740" stroke="#7fa77d" stroke-width="4" stroke-linecap="round"/>
+          <path d="M1095 684 L1095 740" stroke="#7fa77d" stroke-width="4" stroke-linecap="round"/>
+          <path d="M1500 684 L1500 740" stroke="#7fa77d" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <g id="augmentation" transform="translate(110 735)" filter="url(#softShadow)">
+          <rect x="0" y="0" width="1565" height="225" rx="36" fill="url(#cardGreen)" stroke="#6ead6f" stroke-width="4"/>
+          <text x="782.5" y="58" text-anchor="middle" class="layerTitle">Cross-cutting Evidence and Augmentation</text>
+          <text x="782.5" y="94" text-anchor="middle" class="layerText">These sources can support any paradigm without changing its primary control label.</text>
+
+          <g transform="translate(95 128)">
+            <rect x="0" y="0" width="236" height="56" rx="28" fill="#ffffff" stroke="#b9dba9" stroke-width="2"/>
+            <circle cx="34" cy="28" r="12" fill="#6ead6f"/>
+            <text x="58" y="36" class="chip">Retrieval (RAG)</text>
+
+            <rect x="266" y="0" width="277" height="56" rx="28" fill="#ffffff" stroke="#b9dba9" stroke-width="2"/>
+            <circle cx="300" cy="28" r="12" fill="#5d9ac0"/>
+            <text x="324" y="36" class="chip">Program Analysis (AAG)</text>
+
+            <rect x="573" y="0" width="211" height="56" rx="28" fill="#ffffff" stroke="#b9dba9" stroke-width="2"/>
+            <circle cx="607" cy="28" r="12" fill="#d49a33"/>
+            <text x="631" y="36" class="chip">Test Feedback</text>
+
+            <rect x="814" y="0" width="234" height="56" rx="28" fill="#ffffff" stroke="#b9dba9" stroke-width="2"/>
+            <circle cx="848" cy="28" r="12" fill="#cc6b7a"/>
+            <text x="872" y="36" class="chip">Human Feedback</text>
+
+            <rect x="1078" y="0" width="272" height="56" rx="28" fill="#ffffff" stroke="#b9dba9" stroke-width="2"/>
+            <circle cx="1112" cy="28" r="12" fill="#7465b9"/>
+            <text x="1136" y="36" class="chip">Domain Knowledge</text>
+          </g>
+        </g>
+
+        <text x="110" y="1002" class="axisNote">Projection for corpus-level counts: primary paradigm + auxiliary evidence tags + deployment scenario</text>
+      </svg>
+    </div>
+  </main>
+
+  <script>
+    function serializedSvg() {
+      const svg = document.getElementById('taxonomy').cloneNode(true);
+      svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      return new XMLSerializer().serializeToString(svg);
+    }
+
+    function downloadBlob(blob, filename) {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function downloadSvg() {
+      const blob = new Blob([serializedSvg()], { type: 'image/svg+xml;charset=utf-8' });
+      downloadBlob(blob, 'categories_crosscutting.svg');
+    }
+
+    function downloadPng(scale) {
+      const svgText = serializedSvg();
+      const svgBlob = new Blob([svgText], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = 1800 * scale;
+        canvas.height = 1040 * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        ctx.fillStyle = '#fffdf8';
+        ctx.fillRect(0, 0, 1800, 1040);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((blob) => downloadBlob(blob, `categories_crosscutting_${scale}x.png`), 'image/png');
+      };
+      img.src = url;
+    }
+  </script>
+</body>
+</html>
