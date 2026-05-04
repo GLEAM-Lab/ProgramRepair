@@ -1,41 +1,42 @@
 # Taxonomy Sensitivity Audit
 
-This file records a post-hoc sensitivity check for the taxonomy coding rules.
+This file records the current human coding audit for the taxonomy coding rules.
 
 Purpose:
 
-- test whether the released coding guide yields stable primary-paradigm assignments for the 62-system audit subset
+- test whether the released coding guide yields stable primary-paradigm and control-subparadigm assignments for the 62-system audit subset
 - make the remaining hybrid edge cases explicit
 
 This audit is a taxonomy robustness check. It is separate from the 474-record screening-agreement audit documented in `screening_transparency.md`.
 
 ## Procedure
 
-1. Mask the published primary-paradigm labels in `taxonomy_assignment_audit.csv`.
-2. Re-apply `taxonomy_coding_guide.md` to the same 62-system audit subset.
-3. Use a deliberately stricter control-first reading for hybrid cases:
-   - if a system exposes a fixed outer controller, prefer `Procedural` unless the LLM clearly selects the next action or branch
-   - if a system combines adaptation and autonomous control, explicitly test whether the paper's empirical emphasis is on model adaptation or on runtime control
-4. Compare the recoding pass against the released primary-paradigm labels.
+1. Give two external coders the same 62-system audit subset and the same `taxonomy_coding_guide.md`.
+2. Ask each coder to assign the primary paradigm, control sub-paradigm, retrieval tag, analysis tag, and primary deployment scenario.
+3. Compute agreement before adjudication with `compute_annotation_agreement.py`.
+4. Adjudicate the remaining boundary cases against the full texts before merging the labels into the current 66-system coding sheet.
 
 ## Result
 
-- Exact agreement: `58 / 62 = 93.5%`
-- Cohen's kappa on the four-way primary-paradigm label: `0.91`
-- Number of disagreements: `4`
+- Primary-paradigm agreement: `61 / 62 = 98.4%`
+- Cohen's kappa on the four-way primary-paradigm label: `0.978`
+- Control-subparadigm agreement: `60 / 62 = 96.8%`
+- Cohen's kappa on the control-subparadigm label: `0.965`
+- Retrieval-tag agreement: `62 / 62 = 100.0%`
+- Analysis-tag agreement: `62 / 62 = 100.0%`
+- Primary-scenario agreement: `62 / 62 = 100.0%`
+- Rows with at least one disagreement: `2`
 
 ## Borderline cases
 
-| System | Released label | Sensitivity-pass label | Why this case is borderline |
-|---|---|---|---|
-| `HULA` | `Procedural` | `Agentic` | The planner/coder-agent framing can look agentic, but the released guide keeps it procedural because the overall human-in-the-loop workflow remains scripted. |
-| `RepairAgent` | `Agentic` | `Procedural` | The outer controller is a finite-state scaffold, but the released guide assigns agentic because the model chooses actions at runtime. |
-| `TSAPR` | `Agentic` | `Procedural` | Monte Carlo tree search supplies strong outer control, but the released guide treats the LLM judge as runtime branch control. |
-| `Learn-by-Interact` | `Agentic` | `Fine-Tuning` | The paper includes both trajectory-driven adaptation and self-controlled runtime behavior; the released guide prioritizes runtime control for the reported system behavior. |
+| System | Disagreed fields | Coder 1 label | Coder 2 label | Why this case is borderline |
+|---|---|---|---|---|
+| `PATCH` | primary paradigm and control sub-paradigm | `Agentic` / `Self-Controlled System` | `Procedural` / `Context-Enriched Scripted Loop` | The paper studies patch-assessment and overfitting workflows; the boundary is whether its model-guided decision process should be treated as runtime self-control or as a scripted assessment loop. |
+| `TSAPR` | control sub-paradigm | `Self-Controlled System` | `LLM-as-Judges` | The tree-search framework combines search control with an LLM judge, making the finer control-subparadigm label less obvious even though both coders agree on the top-level Agentic paradigm. |
 
 ## Interpretation
 
-The main consequence of this audit is that the taxonomy is reasonably stable at the top level, but hybrid systems are exactly where disagreements concentrate. This supports the current manuscript's decision to:
+The main consequence of this audit is that the taxonomy is stable at the top level, while hybrid and assessment-oriented systems are exactly where disagreements concentrate. This supports the current manuscript's decision to:
 
 - keep one primary paradigm for corpus-level aggregation
 - record retrieval, analysis, and deployment scenario separately
@@ -43,4 +44,4 @@ The main consequence of this audit is that the taxonomy is reasonably stable at 
 
 ## Follow-up path
 
-If later human double-coding is collected, this file can be superseded by a true inter-rater audit without changing the paper structure. The companion template is `human_taxonomy_annotation_template.csv`.
+The source annotation file is `human_taxonomy_annotation_external_pair.csv`, and the agreement numbers above are reproduced by `compute_annotation_agreement.py`.
