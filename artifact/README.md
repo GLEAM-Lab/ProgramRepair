@@ -12,9 +12,9 @@ Included files:
 - `screening_annotation_template_474.csv`: blank two-coder annotation sheet for screening the 474 full-text candidates in the current manuscript screening flow.
 - `screening_reference_labels_474.csv`: current final include/exclude reference labels for the same 474 candidates, derived from the retained studies, archival-status decisions, and the conservative exclusion audit.
 - `selection_reference_474_final_adjudicated.csv`: final adjudicated 474-record selection sheet used for the screening-agreement audit reported in the manuscript.
-- `selection_reference_474_final_adjudicated_summary.json`: machine-readable agreement summary for the final 474-record screening audit, including second/third coder agreement and post-adjudication agreement with the final reference corpus.
+- `selection_reference_474_final_adjudicated_summary.json`: machine-readable agreement summary for the final 474-record screening audit, including second/third coder agreement and a post-adjudication consistency check with the final reference corpus.
 - `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
-- `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and post-adjudication agreement from `screening_agreement_labels_474.csv`.
+- `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.

@@ -29,10 +29,9 @@
         "exclude_exclude": 406
       }
     },
-    "third_after_adjudication_vs_final_reference": {
+    "post_adjudication_consistency_check": {
       "agreement": "474/474",
-      "po": "1.0000",
-      "kappa": "1.0000"
+      "note": "Consistency check against the final reference after adjudication; not an independent agreement statistic."
     }
   },
   "raw_disagreements": [

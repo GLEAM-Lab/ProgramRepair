@@ -42,6 +42,12 @@ def print_pair(name: str, left: list[str], right: list[str]) -> None:
     print(f"- {name}: {matches}/{total} agreement ({rate:.2%}), Cohen's kappa = {cohens_kappa(left, right):.4f}")
 
 
+def print_consistency(name: str, left: list[str], right: list[str]) -> None:
+    matches = sum(a == b for a, b in zip(left, right))
+    total = len(left)
+    print(f"- {name}: {matches}/{total} rows match after adjudication; reported as a consistency check, not an independent agreement statistic")
+
+
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
         print("Usage: python3 artifact/compute_screening_agreement.py <screening_agreement_labels_csv>", file=sys.stderr)
@@ -56,7 +62,7 @@ def main(argv: list[str]) -> int:
     print("Screening agreement summary")
     print("===========================")
     print_pair("second coder vs third coder raw include/exclude", second_decisions, third_raw_decisions)
-    print_pair("third coder after adjudication vs final reference", third_after_decisions, final_decisions)
+    print_consistency("third coder after adjudication vs final reference", third_after_decisions, final_decisions)
 
     print()
     disagreements = [

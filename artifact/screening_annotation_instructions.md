@@ -32,4 +32,4 @@ For excluded records, use the closest exclusion reason from the released protoco
 
 ## Adjudication
 
-Disagreements are resolved against the paper title, abstract, venue record, DOI/arXiv metadata, and full text when available. The final adjudicated sheet preserves the 66-system corpus used by the manuscript.
+Disagreements are resolved against the paper title, abstract, venue record, DOI/arXiv metadata, and full text when available. The final adjudicated sheet yields the 66-system corpus used by the manuscript.

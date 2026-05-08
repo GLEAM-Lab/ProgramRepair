@@ -40,7 +40,7 @@ The deployment-scenario number above reports agreement between the two external 
 
 ## Interpretation
 
-The main consequence of this audit is that the taxonomy is stable at the top level, while hybrid and assessment-oriented systems are exactly where disagreements concentrate. This supports the current manuscript's decision to:
+The main consequence of this audit is that the taxonomy is stable at the display-paradigm level, while hybrid and assessment-oriented systems are exactly where disagreements concentrate. This supports the current manuscript's decision to:
 
 - keep one display paradigm for corpus-level aggregation
 - record retrieval, analysis, and deployment scenario separately
