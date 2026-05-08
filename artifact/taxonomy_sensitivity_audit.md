@@ -21,7 +21,7 @@ This audit is a taxonomy robustness check. It is separate from the 474-record sc
 - Primary-paradigm agreement: `61 / 62 = 98.4%`
 - Cohen's kappa on the four-way primary-paradigm label: `0.978`
 - Core-subtype agreement: `60 / 62 = 96.8%`
-- Cohen's kappa on the core-subtype label: `0.965`
+- Cohen's kappa on the core-subtype label: `0.964`
 - Retrieval-tag agreement: `62 / 62 = 100.0%`
 - Analysis-tag agreement: `62 / 62 = 100.0%`
 - Primary-scenario agreement between the two external recodings: `62 / 62 = 100.0%`

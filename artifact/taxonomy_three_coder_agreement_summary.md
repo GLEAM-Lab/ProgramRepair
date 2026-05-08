@@ -6,7 +6,7 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 
 - `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`: released final coding tables. The agreement calculation uses the overlapping 62 systems for which external recodings were collected.
 - `human_taxonomy_annotation_external_pair.csv`: normalized paired two-external-coder sheet compatible with `compute_annotation_agreement.py`; the missing `RepairCAT` row in one raw handoff sheet was filled using the same labels as the other external coder before this normalized public export was produced.
-- `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both external recodings.
+- `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both external recodings; running `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_three_coder_audit.csv` recomputes the pairwise Cohen-kappa and Fleiss-kappa values below.
 
 ## Pairwise Agreement
 
@@ -15,9 +15,9 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 | primary_paradigm | existing vs external coder 1 | 61/62 (98.4%) | 0.978 | 1 |
 | primary_paradigm | existing vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
 | primary_paradigm | external coder 1 vs external coder 2 | 61/62 (98.4%) | 0.978 | 1 |
-| control_subparadigm | existing vs external coder 1 | 53/62 (85.5%) | 0.843 | 9 |
-| control_subparadigm | existing vs external coder 2 | 55/62 (88.7%) | 0.878 | 7 |
-| control_subparadigm | external coder 1 vs external coder 2 | 60/62 (96.8%) | 0.965 | 2 |
+| control_subparadigm | existing vs external coder 1 | 53/62 (85.5%) | 0.841 | 9 |
+| control_subparadigm | existing vs external coder 2 | 55/62 (88.7%) | 0.876 | 7 |
+| control_subparadigm | external coder 1 vs external coder 2 | 60/62 (96.8%) | 0.964 | 2 |
 | primary_scenario | existing vs external coder 1 | 52/62 (83.9%) | 0.726 | 10 |
 | primary_scenario | existing vs external coder 2 | 52/62 (83.9%) | 0.726 | 10 |
 | primary_scenario | external coder 1 vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
@@ -27,7 +27,7 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 | Field | Subjects | Fleiss kappa | Mean observed agreement |
 |---|---:|---:|---:|
 | primary_paradigm | 62 | 0.985 | 98.9% |
-| control_subparadigm | 62 | 0.895 | 90.3% |
+| control_subparadigm | 62 | 0.894 | 90.3% |
 | primary_scenario | 62 | 0.818 | 89.2% |
 
 ## Primary-Paradigm Disagreements

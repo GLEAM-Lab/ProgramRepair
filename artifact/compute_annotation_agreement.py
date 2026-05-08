@@ -18,6 +18,12 @@ TRACKED_FIELDS = [
     ("primary_scenario", "raw"),
 ]
 
+THREE_CODER_FIELDS = [
+    "primary_paradigm",
+    "control_subparadigm",
+    "primary_scenario",
+]
+
 
 def normalize(value: str) -> str:
     return value.strip()
@@ -57,6 +63,34 @@ def cohens_kappa(pairs: list[tuple[str, str, str]]) -> float:
     if math.isclose(1.0, expected):
         return 1.0 if math.isclose(observed, 1.0) else math.nan
     return (observed - expected) / (1 - expected)
+
+
+def fleiss_kappa(label_sets: list[list[str]]) -> tuple[float, float]:
+    """Return Fleiss' kappa and mean observed agreement."""
+    complete = [labels for labels in label_sets if all(labels)]
+    if not complete:
+        return math.nan, math.nan
+
+    n_raters = len(complete[0])
+    if n_raters < 2:
+        return math.nan, math.nan
+
+    categories = sorted({label for labels in complete for label in labels})
+    total_subjects = len(complete)
+    category_totals = Counter()
+    observed_per_subject: list[float] = []
+
+    for labels in complete:
+        counts = Counter(labels)
+        category_totals.update(counts)
+        observed = sum(count * (count - 1) for count in counts.values()) / (n_raters * (n_raters - 1))
+        observed_per_subject.append(observed)
+
+    p_bar = sum(observed_per_subject) / total_subjects
+    p_expected = sum((category_totals[category] / (total_subjects * n_raters)) ** 2 for category in categories)
+    if math.isclose(1.0, p_expected):
+        return (1.0 if math.isclose(1.0, p_bar) else math.nan), p_bar
+    return (p_bar - p_expected) / (1 - p_expected), p_bar
 
 
 def disagreement_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
@@ -117,13 +151,73 @@ def print_summary(rows: list[dict[str, str]]) -> None:
         )
 
 
+def three_coder_rows_available(rows: list[dict[str, str]]) -> bool:
+    if not rows:
+        return False
+    fields = rows[0].keys()
+    return all(
+        f"{prefix}_{field}" in fields
+        for field in THREE_CODER_FIELDS
+        for prefix in ("original", "coder_2", "coder_3")
+    )
+
+
+def three_coder_pair(rows: list[dict[str, str]], field: str, left_prefix: str, right_prefix: str) -> list[tuple[str, str, str]]:
+    pairs = []
+    for row in rows:
+        left = normalize(row.get(f"{left_prefix}_{field}", ""))
+        right = normalize(row.get(f"{right_prefix}_{field}", ""))
+        if left and right:
+            pairs.append((row["system"], left, right))
+    return pairs
+
+
+def print_three_coder_summary(rows: list[dict[str, str]]) -> None:
+    pair_names = [
+        ("existing vs external coder 1", "original", "coder_2"),
+        ("existing vs external coder 2", "original", "coder_3"),
+        ("external coder 1 vs external coder 2", "coder_2", "coder_3"),
+    ]
+
+    print("Three-coder taxonomy agreement summary")
+    print("======================================")
+    print()
+    print("Pairwise agreement")
+    print("------------------")
+    for field in THREE_CODER_FIELDS:
+        for label, left_prefix, right_prefix in pair_names:
+            pairs = three_coder_pair(rows, field, left_prefix, right_prefix)
+            matches, total, rate = raw_agreement(pairs)
+            kappa = cohens_kappa(pairs)
+            print(f"- {field}, {label}: {matches}/{total} agreement ({rate:.1%}), Cohen's kappa = {kappa:.3f}")
+        print()
+
+    print("Fleiss kappa")
+    print("------------")
+    for field in THREE_CODER_FIELDS:
+        label_sets = [
+            [
+                normalize(row.get(f"original_{field}", "")),
+                normalize(row.get(f"coder_2_{field}", "")),
+                normalize(row.get(f"coder_3_{field}", "")),
+            ]
+            for row in rows
+        ]
+        kappa, observed = fleiss_kappa(label_sets)
+        total = sum(1 for labels in label_sets if all(labels))
+        print(f"- {field}: {total} subjects, Fleiss' kappa = {kappa:.3f}, mean observed agreement = {observed:.1%}")
+
+
 def main(argv: list[str]) -> int:
     if len(argv) != 2:
         print("Usage: python3 artifact/compute_annotation_agreement.py <annotation_csv>", file=sys.stderr)
         return 2
     path = Path(argv[1])
     rows = load_rows(path)
-    print_summary(rows)
+    if three_coder_rows_available(rows):
+        print_three_coder_summary(rows)
+    else:
+        print_summary(rows)
     return 0
 
 
