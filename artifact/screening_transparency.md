@@ -21,15 +21,15 @@ The current manuscript reports the following screening flow:
 
 These counts are reproduced by `artifact/reproduce_screening_counts.py`, with the machine-readable output saved in `artifact/screening_count_reproduction_2026-05-01.json`. This yields a final retention rate of `66 / 474 = 13.9%`.
 
-## Released stage-file counts
+## Legacy released stage-file counts
 
-The released stage files provide the base flow before the current archival-status supplements:
+The released stage files provide the base flow before the current archival-status supplements. They are retained as an audit trail and are not the current manuscript totals:
 
 - `stage4.jsonl`: 449 candidate records after the automatic benchmark-oriented filter.
 - `stage5.jsonl`: 462 candidate records before final full-text screening.
 - `stage6.jsonl`: 62 retained representative studies before the current archival-status supplements.
 
-The current archival-status supplements add 12 full-text candidates and 4 retained core systems under the same eligibility criteria, producing the current 461, 474, and 66 manuscript counts above.
+The current archival-status supplements add 12 full-text candidates and 4 retained core systems under the same eligibility criteria, producing the current 461, 474, and 66 manuscript counts above. The current totals are therefore the counts reproduced by `artifact/reproduce_screening_counts.py`, not the legacy `stage6.jsonl` count alone.
 
 ## Released stage delta: `stage4 -> stage5`
 
