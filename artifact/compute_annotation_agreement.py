@@ -11,17 +11,17 @@ from pathlib import Path
 
 
 TRACKED_FIELDS = [
-    ("primary_paradigm", "kappa"),
-    ("control_subparadigm", "kappa"),
+    ("display_paradigm", "kappa"),
+    ("control_subtype", "kappa"),
     ("retrieval_tag", "kappa"),
     ("analysis_tag", "kappa"),
-    ("primary_scenario", "raw"),
+    ("deployment_scenario", "raw"),
 ]
 
 THREE_CODER_FIELDS = [
-    "primary_paradigm",
-    "control_subparadigm",
-    "primary_scenario",
+    "display_paradigm",
+    "control_subtype",
+    "deployment_scenario",
 ]
 
 
@@ -107,12 +107,12 @@ def disagreement_rows(rows: list[dict[str, str]]) -> list[dict[str, str]]:
                 {
                     "system": row["system"],
                     "fields": ", ".join(disagreements),
-                    "coder_1_primary_paradigm": row.get("coder_1_primary_paradigm", ""),
-                    "coder_2_primary_paradigm": row.get("coder_2_primary_paradigm", ""),
-                    "coder_1_control_subparadigm": row.get("coder_1_control_subparadigm", ""),
-                    "coder_2_control_subparadigm": row.get("coder_2_control_subparadigm", ""),
-                    "coder_1_primary_scenario": row.get("coder_1_primary_scenario", ""),
-                    "coder_2_primary_scenario": row.get("coder_2_primary_scenario", ""),
+                    "coder_1_display_paradigm": row.get("coder_1_display_paradigm", ""),
+                    "coder_2_display_paradigm": row.get("coder_2_display_paradigm", ""),
+                    "coder_1_control_subtype": row.get("coder_1_control_subtype", ""),
+                    "coder_2_control_subtype": row.get("coder_2_control_subtype", ""),
+                    "coder_1_deployment_scenario": row.get("coder_1_deployment_scenario", ""),
+                    "coder_2_deployment_scenario": row.get("coder_2_deployment_scenario", ""),
                 }
             )
     return flagged
@@ -145,9 +145,9 @@ def print_summary(rows: list[dict[str, str]]) -> None:
     for row in flagged:
         print(
             f"- {row['system']}: {row['fields']} | "
-            f"paradigm [{row['coder_1_primary_paradigm']}] vs [{row['coder_2_primary_paradigm']}] | "
-            f"control [{row['coder_1_control_subparadigm']}] vs [{row['coder_2_control_subparadigm']}] | "
-            f"scenario [{row['coder_1_primary_scenario']}] vs [{row['coder_2_primary_scenario']}]"
+            f"paradigm [{row['coder_1_display_paradigm']}] vs [{row['coder_2_display_paradigm']}] | "
+            f"control [{row['coder_1_control_subtype']}] vs [{row['coder_2_control_subtype']}] | "
+            f"scenario [{row['coder_1_deployment_scenario']}] vs [{row['coder_2_deployment_scenario']}]"
         )
 
 

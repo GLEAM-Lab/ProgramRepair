@@ -203,7 +203,7 @@ z
     <text style="font-weight: 700; font-size: 20.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="59.04" y="58.776797" transform="rotate(-0 59.04 58.776797)">LLM-based Software Repair Taxonomy</text>
    </g>
    <g id="text_2">
-    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="60.48" y="77.286469" transform="rotate(-0 60.48 77.286469)">Primary paradigm = parameter adaptation + control authority; auxiliary evidence remains orthogonal.  n = 66.</text>
+    <text style="font-size: 9.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="60.48" y="77.286469" transform="rotate(-0 60.48 77.286469)">Display paradigm = parameter adaptation + control authority; auxiliary evidence remains orthogonal.  n = 66.</text>
    </g>
    <g id="text_3">
     <text style="font-weight: 700; font-size: 10.4px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="66.24" y="119.469125" transform="rotate(-0 66.24 119.469125)">Primary decision axes</text>
@@ -254,7 +254,7 @@ L 326.88 364.32
 " clip-path="url(#p013d202a5e)" style="fill: none; stroke: #cbd4dc; stroke-width: 0.9; stroke-linecap: square"/>
    </g>
    <g id="text_13">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="86.4" y="380.841844" transform="rotate(-0 86.4 380.841844)">Core subtypes</text>
+    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="86.4" y="380.841844" transform="rotate(-0 86.4 380.841844)">Control subtypes</text>
    </g>
    <g id="patch_15">
     <path d="M 96.48 413.28
@@ -339,7 +339,7 @@ L 619.2 364.32
 " clip-path="url(#p013d202a5e)" style="fill: none; stroke: #cbd4dc; stroke-width: 0.9; stroke-linecap: square"/>
    </g>
    <g id="text_18">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="378.72" y="380.841844" transform="rotate(-0 378.72 380.841844)">Core subtypes</text>
+    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="378.72" y="380.841844" transform="rotate(-0 378.72 380.841844)">Control subtypes</text>
    </g>
    <g id="patch_20">
     <path d="M 388.8 413.28
@@ -395,7 +395,7 @@ L 911.52 364.32
 " clip-path="url(#p013d202a5e)" style="fill: none; stroke: #cbd4dc; stroke-width: 0.9; stroke-linecap: square"/>
    </g>
    <g id="text_22">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="671.04" y="380.841844" transform="rotate(-0 671.04 380.841844)">Core subtypes</text>
+    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="671.04" y="380.841844" transform="rotate(-0 671.04 380.841844)">Control subtypes</text>
    </g>
    <g id="patch_23">
     <path d="M 681.12 413.28
@@ -467,7 +467,7 @@ L 1203.84 364.32
 " clip-path="url(#p013d202a5e)" style="fill: none; stroke: #cbd4dc; stroke-width: 0.9; stroke-linecap: square"/>
    </g>
    <g id="text_27">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="963.36" y="380.841844" transform="rotate(-0 963.36 380.841844)">Core subtypes</text>
+    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="963.36" y="380.841844" transform="rotate(-0 963.36 380.841844)">Control subtypes</text>
    </g>
    <g id="patch_27">
     <path d="M 973.44 413.28
@@ -576,7 +576,7 @@ z
     <text style="font-weight: 700; font-size: 15.4px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="649.44" y="566.509281" transform="rotate(-0 649.44 566.509281)">Cross-cutting auxiliary evidence tags</text>
    </g>
    <g id="text_33">
-    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #5b6673" x="649.44" y="588.563437" transform="rotate(-0 649.44 588.563437)">These sources can support any primary paradigm without becoming separate top-level buckets.</text>
+    <text style="font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #5b6673" x="649.44" y="588.563437" transform="rotate(-0 649.44 588.563437)">These sources can support any display paradigm without becoming separate top-level buckets.</text>
    </g>
    <g id="patch_34">
     <path d="M 158.4 641.52
@@ -644,7 +644,7 @@ z
 " clip-path="url(#p013d202a5e)" style="fill: #ffffff; stroke: #c7dccb; stroke-width: 0.9; stroke-linejoin: miter"/>
    </g>
    <g id="text_34">
-    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #7a8592" x="649.44" y="693.573062" transform="rotate(-0 649.44 693.573062)">Coding projection used in the paper: one primary paradigm + auxiliary evidence tags + defect scope/deployment scenario.</text>
+    <text style="font-size: 8.6px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #7a8592" x="649.44" y="693.573062" transform="rotate(-0 649.44 693.573062)">Paper tables use display paradigms for aggregation while preserving auxiliary evidence tags and deployment scenarios.</text>
    </g>
    <g id="text_35">
     <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #c88631" x="128.88" y="243.352312" transform="rotate(-0 128.88 243.352312)">Adapted</text>

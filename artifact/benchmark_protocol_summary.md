@@ -67,7 +67,7 @@ The open-challenge sub-challenge table in the manuscript uses the following aggr
 - 28/66 systems are procedural or agentic, meaning the repair process is explicitly organized as a multi-step scripted or model-controlled loop.
 - Within these loop-oriented systems, the taxonomy records 8 scripted tool loops, 7 tool-augmented agent systems, 4 test-in-the-loop workflows, and 3 self-controlled systems.
 - The manuscript taxonomy table records explicit RAG-tagged prompting/procedural rows for 7 systems, explicit AAG-tagged prompting/procedural rows for 10 systems, 4 test-feedback loops, and 3 human-feedback loops.
-- 10/66 systems make test feedback, human feedback, or LLM-as-judge review the primary control subtype; the complementary 56/66 do not expose such an acceptance gate as their primary repair-control mechanism.
+- 10/66 systems use test feedback, human feedback, or LLM-as-judge review as the recorded control subtype; the complementary 56/66 do not expose such an acceptance gate as their main repair-control mechanism.
 - Security/API/crash repair covers 11 systems, and repository-level issue resolution covers 13 systems.
 
 The row-level source table for these Section 10 challenge and sub-challenge signals is `challenge_evidence_profile.csv`.
@@ -80,7 +80,7 @@ For the model-dependency count, the grouping is derived from the recorded `base_
 - 3 systems explicitly narrow the task to `single-function` repair
 - 1 system explicitly narrows the task to `single-hunk` repair
 - 1 system explicitly reports a function-level vulnerability-patch setting
-- 10 systems make test feedback, human feedback, or LLM-as-judge review the primary control subtype
+- 10 systems use test feedback, human feedback, or LLM-as-judge review as the recorded control subtype
 - 8 systems explicitly frame evaluation around a train/test split
 
 The first four assumption rows indicate that at least 16 systems use a narrowed setup that is weaker than fully end-to-end repair, even before considering differences in sampling budget, benchmark version, or oracle strength. The acceptance-gate row is used separately for the Section 10 trust analysis.

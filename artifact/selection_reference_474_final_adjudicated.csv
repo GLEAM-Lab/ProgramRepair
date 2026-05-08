@@ -19,7 +19,7 @@ S5-017,"A Systematic Review on Detection, Repair, and Explanation of Vulnerabili
 S5-018,Abstain and Validate: A Dual-LLM Policy for Reducing Noise in Agentic Program Repair,2026,ICSE-SEIP 2026,https://arxiv.org/abs/2510.03217,include,include,include,include,true,true,
 S5-019,Accelerating Automatic Program Repair with Dual Retrieval-Augmented Fine-Tuning and Patch Generation on Large Language Models,2025,arXiv,,exclude,exclude,exclude,exclude,true,true,
 S5-020,Accelerating Patch Validation for Program Repair With Interception-Based Execution Scheduling,2024,TSE,10.1109/tse.2024.3359969,exclude,exclude,exclude,exclude,true,true,
-S5-021,ACFix: Guiding LLMs With Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts,2025,TSE,10.1109/tse.2025.3590108,exclude,exclude,include,exclude,false,true,duplicate of U-001 ACFix; final corpus keeps the published-update record
+S5-021,ACFix: Guiding LLMs With Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts,2025,TSE,10.1109/tse.2025.3590108,exclude,exclude,include,exclude,false,true,duplicate of U-001 ACFix; final corpus keeps the archival-status record
 S5-022,Adapting Knowledge Prompt Tuning for Enhanced Automated Program Repair,2025,arXiv,,exclude,exclude,exclude,exclude,true,true,
 S5-023,Adaptive patch foraging in deep reinforcement learning agents,2022,arXiv,,exclude,exclude,exclude,exclude,true,true,
 S5-024,AdaRevD: Adaptive Patch Exiting Reversible Decoder Pushes the Limit of Image Deblurring,2024,arXiv,,exclude,exclude,exclude,exclude,true,true,

@@ -1,4 +1,4 @@
-primary_paradigm,core_subtype,system,training_dataset,base_model,benchmark,benchmark_family,metric,result,assumption
+display_paradigm,control_subtype,system,training_dataset,base_model,benchmark,benchmark_family,metric,result,assumption
 Fine-Tuning,Full Fine-Tuning,Huang et al.,Recoder dataset,CodeT5,Defects4J v1.2/2.0,Defects4J,pass@5,82/107,Perfect Fault Localization
 Fine-Tuning,Full Fine-Tuning,Jiang et al.,Recoder dataset,Incoder 7B,Defects4J v1.2/2.0,Defects4J,pass@10,31/138,Perfect Fault Localization
 Fine-Tuning,Full Fine-Tuning,VulMaster,"CVEFixes, Big-Vul",CodeT5,CVEFixes,Vulnerability repair datasets,full match,20%,"train/test split, requires CVE type"

@@ -4,7 +4,7 @@ This package is for collecting human double-coding evidence for the current manu
 
 Primary files:
 
-- `taxonomy_coding_guide.md`: operational definitions for the primary paradigm, core subtype, and auxiliary tags
+- `taxonomy_coding_guide.md`: operational definitions for the display paradigm, control subtype, and auxiliary tags
 - `scenario_assignment_audit.csv`: the deployment-scenario scheme used in the current manuscript
 - `human_taxonomy_annotation_template.csv`: the blank sheet to fill independently and then adjudicate
 - `compute_annotation_agreement.py`: agreement script to run after both coders finish
@@ -18,11 +18,11 @@ Each coder should work independently and fill only their own columns:
 
 Required fields per system:
 
-- `primary_paradigm`: one of `Fine-Tuning`, `Prompting`, `Procedural`, `Agentic`
-- `control_subparadigm`: use the current survey's control labels where possible
+- `display_paradigm`: the compact display-paradigm label used in the public CSV files; one of `Fine-Tuning`, `Prompting`, `Procedural`, `Agentic`
+- `control_subtype`: use the current survey's control labels where possible
 - `retrieval_tag`: `yes` or `no`
 - `analysis_tag`: `yes` or `no`
-- `primary_scenario`: one of
+- `deployment_scenario`: one of
   - `Localized benchmark repair`
   - `Repository-level issue resolution`
   - `Vulnerability repair`
@@ -62,13 +62,13 @@ To accelerate coding without losing consistency:
 
 The script reports:
 
-- Cohen's kappa for `primary_paradigm`
+- Cohen's kappa for the display-paradigm field `display_paradigm`
 - Cohen's kappa for `retrieval_tag`
 - Cohen's kappa for `analysis_tag`
-- raw agreement and disagreement counts for `primary_scenario`
+- raw agreement and disagreement counts for `deployment_scenario`
 - the list of systems where the two coders disagree on at least one tracked field
 
 ## Scope note
 
-- This package supports a human validation pass for the current taxonomy.
+- This package supports an independent human reliability audit for the current taxonomy.
 - Screening-agreement evidence is reported separately in `selection_reference_474_final_adjudicated.csv` and `selection_reference_474_final_adjudicated_summary.json`.

@@ -41,7 +41,7 @@
       "title": "ACFix: Guiding LLMs With Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
       "second": "exclude",
       "third_raw": "include",
-      "adjudication_note": "duplicate of U-001 ACFix; final corpus keeps the published-update record"
+      "adjudication_note": "duplicate of U-001 ACFix; final corpus keeps the archival-status record"
     },
     {
       "id": "S5-035",

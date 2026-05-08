@@ -317,8 +317,8 @@ def main() -> None:
         [
             "system",
             "year",
-            "primary_paradigm",
-            "core_subtype",
+            "display_paradigm",
+            "control_subtype",
             "benchmark_family",
             "benchmark",
             "metric",

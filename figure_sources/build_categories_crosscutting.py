@@ -160,7 +160,7 @@ def draw_card(ax, x, y, w, h, spec):
     draw_wrapped(ax, x + 0.31, y + h - 1.34, spec["definition"], 36, 8.9, COLORS["muted"], line_height=1.16)
 
     ax.add_line(Line2D([x + 0.28, x + w - 0.28], [y + 1.18, y + 1.18], lw=0.9, color="#CBD4DC", zorder=3))
-    ax.text(x + 0.30, y + 0.98, "Core subtypes", fontsize=7.8, color=COLORS["soft_muted"], fontweight="semibold", va="center")
+    ax.text(x + 0.30, y + 0.98, "Control subtypes", fontsize=7.8, color=COLORS["soft_muted"], fontweight="semibold", va="center")
     cx = x + 0.30
     cy = y + 0.52
     for label in spec["sub"]:
@@ -197,7 +197,7 @@ def build_figure():
     ax.text(
         0.82,
         9.05,
-        "Primary paradigm = parameter adaptation + control authority; auxiliary evidence remains orthogonal.  n = 66.",
+        "Display paradigm = parameter adaptation + control authority; auxiliary evidence remains orthogonal.  n = 66.",
         fontsize=9.8,
         color=COLORS["muted"],
         va="top",
@@ -241,7 +241,7 @@ def build_figure():
     ax.text(
         9.0,
         1.88,
-        "These sources can support any primary paradigm without becoming separate top-level buckets.",
+        "These sources can support any display paradigm without becoming separate top-level buckets.",
         fontsize=9.0,
         color=COLORS["muted"],
         ha="center",
@@ -259,7 +259,7 @@ def build_figure():
     ax.text(
         9.0,
         0.42,
-        "Coding projection used in the paper: one primary paradigm + auxiliary evidence tags + defect scope/deployment scenario.",
+        "Paper tables use display paradigms for aggregation while preserving auxiliary evidence tags and deployment scenarios.",
         fontsize=8.6,
         color=COLORS["soft_muted"],
         ha="center",

@@ -12,15 +12,15 @@ The form is designed to make the taxonomy, benchmark, and methodology claims aud
   The version cited in the current bibliography, for example the archival venue or retained preprint version.
 - `venue_year`
   The year associated with the cited version used in the survey.
-- `primary_paradigm`
-  One of `Fine-Tuning`, `Prompting`, `Procedural`, `Agentic`.
-- `control_subparadigm`
-  The finer-grained label within the primary paradigm.
+- `display_paradigm`
+  The compact display-paradigm label used in the public CSV files; one of `Fine-Tuning`, `Prompting`, `Procedural`, `Agentic`.
+- `control_subtype`
+  The finer-grained control subtype within the display paradigm.
 - `retrieval_tag`
   `yes` if explicit retrieval is a salient augmentation in the repair loop, otherwise `no`.
 - `analysis_tag`
   `yes` if explicit analysis artifacts are a salient augmentation in the repair loop, otherwise `no`.
-- `primary_scenario`
+- `deployment_scenario`
   One of `Localized benchmark repair`, `Repository-level issue resolution`, `Vulnerability repair`, `Educational tutoring`, `Industrial / practitioner workflow`.
 - `defect_scope`
   Broad scope such as general program repair, vulnerability repair, or both.

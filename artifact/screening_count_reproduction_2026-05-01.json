@@ -10,7 +10,7 @@
   "update_increments": {
     "query_hits": 736,
     "title_screen_candidates": 26,
-    "published_full_text_candidates": 12,
+    "archival_full_text_candidates": 12,
     "retained_additions": 4
   }
 }

@@ -1,6 +1,6 @@
-# Screening Verification Annotation Instructions
+# Screening Annotation Instructions
 
-This file describes the independent screening verification protocol for the 474 candidate records used in the current manuscript.
+This file describes the independent screening protocol for the 474 candidate records used in the current manuscript.
 
 ## Goal
 

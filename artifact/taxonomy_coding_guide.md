@@ -1,8 +1,8 @@
 # Taxonomy Coding Guide
 
-This guide records the operational rules used to assign one primary paradigm and one core subtype to each retained study while preserving hybrid features as auxiliary evidence tags.
+This guide records the operational rules used to code each retained study along multiple dimensions: parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and deployment scenario. The manuscript derives a compact display paradigm from parameter adaptation and runtime control for corpus-level aggregation while preserving hybrid features as auxiliary evidence tags.
 
-## Primary-paradigm decision rules
+## Display-paradigm derivation rules
 
 Apply the following questions in order:
 
@@ -14,7 +14,7 @@ Apply the following questions in order:
    If yes, assign `Procedural`.
 4. Otherwise, if at least one LLM chooses actions, search branches, or stopping decisions at runtime, assign `Agentic`.
 
-Top-level counts in the retained 66-system corpus:
+Display-group counts in the retained 66-system corpus:
 
 - `Fine-Tuning`: 21
 - `Prompting`: 17
@@ -23,12 +23,12 @@ Top-level counts in the retained 66-system corpus:
 
 ## Hybrid-handling rules
 
-- A paper is not assigned to `Fine-Tuning` merely because it uses an already fine-tuned model inside a larger scripted or agentic workflow. Fine-tuning is the primary paradigm only when the paper's main empirical contribution is the adaptation itself.
+- A paper is not assigned to the `Fine-Tuning` display group merely because it uses an already fine-tuned model inside a larger scripted or agentic workflow. Fine-tuning is used as the display group only when the paper's main empirical contribution is the adaptation itself.
 - Retrieval, analysis, tests, human feedback, and domain knowledge are treated as auxiliary evidence tags, not as mutually exclusive top-level paradigms or sub-paradigms.
-- A paper may therefore have one primary paradigm, one core subtype, and auxiliary tags such as `RAG`, `AAG`, `test feedback`, `human feedback`, or `domain knowledge`.
-- Deployment scenarios are recorded separately from the primary paradigm. The paper uses five recurring scenario labels: `Localized benchmark repair`, `Repository-level issue resolution`, `Vulnerability repair`, `Educational tutoring`, and `Industrial / practitioner workflow`.
+- A paper may therefore have one display paradigm, one control subtype, and auxiliary tags such as `RAG`, `AAG`, `test feedback`, `human feedback`, or `domain knowledge`.
+- Deployment scenarios are recorded separately from the display paradigm. The paper uses five recurring scenario labels: `Localized benchmark repair`, `Repository-level issue resolution`, `Vulnerability repair`, `Educational tutoring`, and `Industrial / practitioner workflow`.
 
-## Core-subtype rules
+## Control-subtype rules
 
 ### Fine-Tuning
 
@@ -36,13 +36,13 @@ Top-level counts in the retained 66-system corpus:
 - `PEFT`: updates a limited adapter subset.
 - `Knowledge Distillation`: transfers repair behavior from a teacher model or rule system.
 - `RLFT`: optimizes repair with reinforcement-learning-style reward signals.
-If a fine-tuned system injects traces, static-analysis artifacts, retrieved repair context, templates, or domain hints into training, keep the core subtype above and record the evidence source as an auxiliary tag.
+If a fine-tuned system injects traces, static-analysis artifacts, retrieved repair context, templates, or domain hints into training, keep the control subtype above and record the evidence source as an auxiliary tag.
 
 ### Prompting
 
 - `Zero-shot`: no demonstration examples in the repair prompt.
 - `Few-shot`: prompt includes exemplar bug-fix pairs.
-Keep the core subtype as `Zero-shot` or `Few-shot` even when the prompt includes additional evidence. Use the auxiliary tag `RAG` when the added evidence comes primarily from retrieved project, API, documentation, or historical-fix context. Use the auxiliary tag `AAG` when the added evidence comes primarily from analysis artifacts such as failing-test evidence, slices, traces, diagnostics, or mined program facts.
+Keep the control subtype as `Zero-shot` or `Few-shot` even when the prompt includes additional evidence. Use the auxiliary tag `RAG` when the added evidence comes primarily from retrieved project, API, documentation, or historical-fix context. Use the auxiliary tag `AAG` when the added evidence comes primarily from analysis artifacts such as failing-test evidence, slices, traces, diagnostics, or mined program facts.
 
 ### Procedural
 

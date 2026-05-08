@@ -1,6 +1,6 @@
 # Human Taxonomy Annotation Agreement Summary
 
-This file summarizes the normalized taxonomy recoding audit for the pre-update core set. The current manuscript-level taxonomy assignment covers 66 retained systems in `taxonomy_assignment_audit.csv`; the pairwise and Fleiss-kappa statistics below are limited to the 62-system recoding sheet for which two external annotation files are available.
+This file summarizes the normalized taxonomy recoding audit for the 62-system core set. The current manuscript-level taxonomy assignment covers 66 retained systems in `taxonomy_assignment_audit.csv`; the pairwise and Fleiss-kappa statistics below are limited to the 62-system recoding sheet for which two external annotation files are available. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
 
 ## Inputs
 
@@ -12,31 +12,31 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 
 | Field | Pair | Agreement | Cohen kappa | Disagreements |
 |---|---:|---:|---:|---:|
-| primary_paradigm | existing vs external coder 1 | 61/62 (98.4%) | 0.978 | 1 |
-| primary_paradigm | existing vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
-| primary_paradigm | external coder 1 vs external coder 2 | 61/62 (98.4%) | 0.978 | 1 |
-| control_subparadigm | existing vs external coder 1 | 53/62 (85.5%) | 0.841 | 9 |
-| control_subparadigm | existing vs external coder 2 | 55/62 (88.7%) | 0.876 | 7 |
-| control_subparadigm | external coder 1 vs external coder 2 | 60/62 (96.8%) | 0.964 | 2 |
-| primary_scenario | existing vs external coder 1 | 52/62 (83.9%) | 0.726 | 10 |
-| primary_scenario | existing vs external coder 2 | 52/62 (83.9%) | 0.726 | 10 |
-| primary_scenario | external coder 1 vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
+| display_paradigm | existing vs external coder 1 | 61/62 (98.4%) | 0.978 | 1 |
+| display_paradigm | existing vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
+| display_paradigm | external coder 1 vs external coder 2 | 61/62 (98.4%) | 0.978 | 1 |
+| control_subtype | existing vs external coder 1 | 53/62 (85.5%) | 0.841 | 9 |
+| control_subtype | existing vs external coder 2 | 55/62 (88.7%) | 0.876 | 7 |
+| control_subtype | external coder 1 vs external coder 2 | 60/62 (96.8%) | 0.964 | 2 |
+| deployment_scenario | existing vs external coder 1 | 52/62 (83.9%) | 0.726 | 10 |
+| deployment_scenario | existing vs external coder 2 | 52/62 (83.9%) | 0.726 | 10 |
+| deployment_scenario | external coder 1 vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
 
 ## Three-Coder Fleiss Kappa
 
 | Field | Subjects | Fleiss kappa | Mean observed agreement |
 |---|---:|---:|---:|
-| primary_paradigm | 62 | 0.985 | 98.9% |
-| control_subparadigm | 62 | 0.894 | 90.3% |
-| primary_scenario | 62 | 0.818 | 89.2% |
+| display_paradigm | 62 | 0.985 | 98.9% |
+| control_subtype | 62 | 0.894 | 90.3% |
+| deployment_scenario | 62 | 0.818 | 89.2% |
 
-## Primary-Paradigm Disagreements
+## Display-Paradigm Disagreements
 
 - PATCH: existing=Procedural; external1=Agentic; external2=Procedural
 
 ## Scenario-Label Adjudication Note
 
-Primary-scenario labels are descriptive deployment-scope projections. They are used for the manuscript's scenario-count table, but they do not define the taxonomy itself. The two external coders agreed with each other on all 62 scenario labels; however, the pre-existing scenario sheet differed from the two external recodings for 10 systems, producing the lower three-coder Fleiss kappa reported above.
+Deployment-scenario labels are descriptive deployment-scope labels. They are used for the manuscript's scenario-count table, but they do not define the display paradigm itself. The two external coders agreed with each other on all 62 scenario labels; however, the existing scenario sheet differed from the two external recodings for 10 systems, producing the lower three-coder Fleiss kappa reported above.
 
 The 10 scenario-boundary cases were adjudicated against benchmark scope and full-text evidence before finalizing `scenario_assignment_audit.csv`. The final adjudicated sheet keeps scenario labels tied to the dominant benchmark/deployment scope:
 
@@ -55,4 +55,4 @@ The 10 scenario-boundary cases were adjudicated against benchmark scope and full
 
 ## Scope Note
 
-This audit assesses taxonomy coding stability for the 62-system pre-update core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as a new three-coder taxonomy-agreement calculation over all 66 retained systems. The four published-update additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.
+This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as a new three-coder taxonomy-agreement calculation over all 66 retained systems. The four later corpus additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.

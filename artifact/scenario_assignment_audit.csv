@@ -1,4 +1,4 @@
-system,primary_paradigm,benchmark_family,benchmark,primary_scenario,rationale
+system,display_paradigm,benchmark_family,benchmark,deployment_scenario,rationale
 Huang et al.,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
 Jiang et al.,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
 VulMaster,Fine-Tuning,Vulnerability repair datasets,CVEFixes,Vulnerability repair,security patching benchmark
