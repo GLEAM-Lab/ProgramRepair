@@ -4,448 +4,319 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>LLM-based Software Repair Taxonomy</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/svg2pdf.js@2.2.3/dist/svg2pdf.umd.min.js"></script>
   <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: #ffffff;
-      font-family: "DejaVu Sans", "Noto Sans", Arial, sans-serif;
+    :root{
+      --bg:#efece5;
+      --frame:#ffffff;
+      --text:#1b2430;
+      --muted:#6b7280;
+      --border:rgba(27,36,48,.10);
+      --border-strong:rgba(27,36,48,.22);
+      --shadow-sm:0 1px 2px rgba(27,36,48,.06);
+      --shadow-md:0 14px 36px rgba(27,36,48,.10);
     }
-    main {
-      width: min(96vw, 1200px);
-      padding: 16px;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;display:grid;place-items:center;
+      background:var(--bg);color:var(--text);
+      padding:32px 16px;
+      font-family:system-ui,-apple-system,"Segoe UI","Inter","Helvetica Neue","DejaVu Sans",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
     }
-    .frame {
-      background: #ffffff;
-      overflow: hidden;
+    main{width:min(96vw,1600px)}
+    .toolbar{
+      display:flex;justify-content:flex-end;flex-wrap:wrap;
+      gap:10px;margin-bottom:14px;align-items:center;
     }
-    svg {
-      display: block;
-      width: 100%;
-      height: auto;
+    .group{
+      display:flex;gap:6px;padding:4px;
+      background:rgba(255,255,255,.55);
+      border:1px solid var(--border);border-radius:10px;
+      backdrop-filter:blur(6px);
     }
+    button{
+      border:1px solid var(--border);background:#fff;color:var(--text);
+      border-radius:7px;padding:7px 13px;
+      font:600 13px/1 inherit;cursor:pointer;
+      box-shadow:var(--shadow-sm);
+      transition:transform 120ms ease,box-shadow 120ms ease,border-color 120ms ease,background 120ms ease;
+    }
+    button:hover{
+      border-color:var(--border-strong);
+      transform:translateY(-1px);
+      box-shadow:0 4px 10px rgba(27,36,48,.10);
+    }
+    button:active{transform:translateY(0)}
+    button.primary{background:#1b2430;color:#fff;border-color:#1b2430}
+    button.primary:hover{background:#2d3a4a;border-color:#2d3a4a}
+    button:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:var(--shadow-sm)}
+    .frame{
+      background:var(--frame);border-radius:14px;overflow:hidden;
+      border:1px solid var(--border);box-shadow:var(--shadow-md);
+    }
+    svg{display:block;width:100%;height:auto}
+    .toast{
+      position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);
+      background:#1b2430;color:#fff;padding:10px 16px;border-radius:999px;
+      font:600 13px/1 inherit;box-shadow:0 8px 22px rgba(27,36,48,.22);
+      opacity:0;pointer-events:none;transition:opacity 180ms ease,transform 180ms ease;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast.error{background:#a23a3a}
   </style>
 </head>
 <body>
   <main>
+    <div class="toolbar" aria-hidden="true">
+      <div class="group">
+        <button class="primary" id="btn-pdf" onclick="downloadPdf()">PDF (vector)</button>
+        <button class="primary" onclick="downloadSvg()">SVG</button>
+      </div>
+      <div class="group">
+        <button onclick="downloadPng(1)">PNG 1×</button>
+        <button onclick="downloadPng(2)">PNG 2×</button>
+        <button onclick="downloadPng(3)">PNG 3×</button>
+      </div>
+    </div>
+
     <div class="frame">
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" width="886.752pt" height="315.5616pt" viewBox="0 0 886.752 315.5616" xmlns="http://www.w3.org/2000/svg" version="1.1">
- <metadata>
-  <rdf:RDF xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-   <cc:Work>
-    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:format>image/svg+xml</dc:format>
-    <dc:creator>
-     <cc:Agent>
-      <dc:title>Matplotlib v3.10.8, https://matplotlib.org/</dc:title>
-     </cc:Agent>
-    </dc:creator>
-   </cc:Work>
-  </rdf:RDF>
- </metadata>
+<svg id="taxonomy" role="img" aria-label="LLM-based software repair taxonomy"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1298.88pt" height="420pt" viewBox="0 130 1298.88 420">
  <defs>
-  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+  <style>*{stroke-linejoin:round;stroke-linecap:butt}</style>
+  <clipPath id="clip"><rect x="1.44" y="1.44" width="1296" height="900"/></clipPath>
  </defs>
- <g id="figure_1">
-  <g id="patch_1">
-   <path d="M 0 315.5616 
-L 886.752 315.5616 
-L 886.752 0 
-L 0 0 
-z
-" style="fill: #ffffff"/>
+
+ <!-- Background -->
+ <path d="M0 900 L1298.88 900 L1298.88 0 L0 0 z" style="fill:#ffffff"/>
+
+ <!-- Top section dividers + group labels -->
+ <path d="M 70 163 L 340 163"   clip-path="url(#clip)" style="fill:none;stroke:#c88631;stroke-width:2.4;stroke-linecap:round"/>
+ <path d="M 360 163 L 1230 163" clip-path="url(#clip)" style="fill:none;stroke:#647282;stroke-width:2.4;stroke-linecap:round"/>
+ <text style="font-weight:700;font-size:17px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#b06f1c;letter-spacing:0.4px" x="205.92" y="158">Adapted backbone</text>
+ <text style="font-weight:700;font-size:17px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#3d4855;letter-spacing:0.4px" x="790.56" y="158">Frozen backbone at runtime</text>
+
+ <!-- Four category panels -->
+ <path d="M 78.36 359 L 333.48 359 Q 350.48 359 350.48 342.0 L 350.48 198.0 Q 350.48 181 333.48 181 L 78.36 181 Q 61.36 181 61.36 198.0 L 61.36 342.0 Q 61.36 359 78.36 359 z"      clip-path="url(#clip)" style="fill:#fff2da;stroke:#c88631;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 370.68 359 L 625.8 359 Q 642.8 359 642.8 342.0 L 642.8 198.0 Q 642.8 181 625.8 181 L 370.68 181 Q 353.68 181 353.68 198.0 L 353.68 342.0 Q 353.68 359 370.68 359 z"     clip-path="url(#clip)" style="fill:#e5f6f8;stroke:#278ea5;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 663.0 359 L 918.12 359 Q 935.12 359 935.12 342.0 L 935.12 198.0 Q 935.12 181 918.12 181 L 663.0 181 Q 646.0 181 646.0 198.0 L 646.0 342.0 Q 646.0 359 663.0 359 z"     clip-path="url(#clip)" style="fill:#eaf1fd;stroke:#3d6fb6;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 955.32 359 L 1210.44 359 Q 1227.44 359 1227.44 342.0 L 1227.44 198.0 Q 1227.44 181 1210.44 181 L 955.32 181 Q 938.32 181 938.32 198.0 L 938.32 342.0 Q 938.32 359 955.32 359 z" clip-path="url(#clip)" style="fill:#f0ecfa;stroke:#7657b8;stroke-width:1.8;stroke-linejoin:miter"/>
+
+ <!-- Icons -->
+ <g transform="translate(77.36 190.00)">
+  <g fill="none" stroke="#c88631" stroke-width="2.6" stroke-linecap="round">
+   <line x1="2" y1="6" x2="30" y2="6"/><line x1="2" y1="16" x2="30" y2="16"/><line x1="2" y1="26" x2="30" y2="26"/>
   </g>
-  <g id="axes_1">
-   <g id="line2d_1">
-    <path d="M 140.64984 226.570752 
-L 140.64984 189.04896 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b8d7c1; stroke-width: 0.9; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_2">
-    <path d="M 352.77912 226.570752 
-L 352.77912 189.04896 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b8d7c1; stroke-width: 0.9; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_3">
-    <path d="M 564.9084 226.570752 
-L 564.9084 189.04896 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b8d7c1; stroke-width: 0.9; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_4">
-    <path d="M 777.03768 226.570752 
-L 777.03768 189.04896 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b8d7c1; stroke-width: 0.9; stroke-linecap: square"/>
-   </g>
-   <g id="patch_2">
-    <path d="M 55.356192 192.801139 
-L 225.943488 192.801139 
-Q 241.853184 192.801139 241.853184 187.17287 
-L 241.853184 84.613306 
-Q 241.853184 78.985037 225.943488 78.985037 
-L 55.356192 78.985037 
-Q 39.446496 78.985037 39.446496 84.613306 
-L 39.446496 187.17287 
-Q 39.446496 192.801139 55.356192 192.801139 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #fff6e6; stroke: #b87522; stroke-width: 1.3; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_3">
-    <path d="M 267.485472 192.801139 
-L 438.072768 192.801139 
-Q 453.982464 192.801139 453.982464 187.17287 
-L 453.982464 84.613306 
-Q 453.982464 78.985037 438.072768 78.985037 
-L 267.485472 78.985037 
-Q 251.575776 78.985037 251.575776 84.613306 
-L 251.575776 187.17287 
-Q 251.575776 192.801139 267.485472 192.801139 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ecfafc; stroke: #197c8e; stroke-width: 1.3; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_4">
-    <path d="M 479.614752 192.801139 
-L 650.202048 192.801139 
-Q 666.111744 192.801139 666.111744 187.17287 
-L 666.111744 84.613306 
-Q 666.111744 78.985037 650.202048 78.985037 
-L 479.614752 78.985037 
-Q 463.705056 78.985037 463.705056 84.613306 
-L 463.705056 187.17287 
-Q 463.705056 192.801139 479.614752 192.801139 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #f0f6ff; stroke: #2f63aa; stroke-width: 1.3; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_5">
-    <path d="M 691.744032 192.801139 
-L 862.331328 192.801139 
-Q 878.241024 192.801139 878.241024 187.17287 
-L 878.241024 84.613306 
-Q 878.241024 78.985037 862.331328 78.985037 
-L 691.744032 78.985037 
-Q 675.834336 78.985037 675.834336 84.613306 
-L 675.834336 187.17287 
-Q 675.834336 192.801139 691.744032 192.801139 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #f6f2ff; stroke: #6c4db3; stroke-width: 1.3; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_6">
-    <path d="M 281.8561 70.229952 
-Q 564.907561 70.229952 846.840989 70.229952 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #87919d; stroke-linecap: round"/>
-    <path d="M 842.440989 68.029952 
-L 846.840989 70.229952 
-L 842.440989 72.429952 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #87919d; stroke: #87919d; stroke-linecap: round"/>
-   </g>
-   <g id="patch_7">
-    <path d="M 55.356192 283.478803 
-L 862.331328 283.478803 
-Q 878.241024 283.478803 878.241024 277.850534 
-L 878.241024 228.446842 
-Q 878.241024 222.818573 862.331328 222.818573 
-L 55.356192 222.818573 
-Q 39.446496 222.818573 39.446496 228.446842 
-L 39.446496 277.850534 
-Q 39.446496 283.478803 55.356192 283.478803 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #eff8f1; stroke: #3a7d53; stroke-width: 1.15; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_8">
-    <path d="M 232.130592 269.408131 
-L 280.743552 269.408131 
-Q 296.653248 269.408131 296.653248 263.779862 
-L 296.653248 250.334554 
-Q 296.653248 244.706285 280.743552 244.706285 
-L 232.130592 244.706285 
-Q 216.220896 244.706285 216.220896 250.334554 
-L 216.220896 263.779862 
-Q 216.220896 269.408131 232.130592 269.408131 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ffffff; stroke: #c8dccf; stroke-width: 0.8; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_9">
-    <path d="M 307.259712 269.408131 
-L 355.872672 269.408131 
-Q 371.782368 269.408131 371.782368 263.779862 
-L 371.782368 250.334554 
-Q 371.782368 244.706285 355.872672 244.706285 
-L 307.259712 244.706285 
-Q 291.350016 244.706285 291.350016 250.334554 
-L 291.350016 263.779862 
-Q 291.350016 269.408131 307.259712 269.408131 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ffffff; stroke: #c8dccf; stroke-width: 0.8; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_10">
-    <path d="M 382.388832 269.408131 
-L 440.724384 269.408131 
-Q 456.63408 269.408131 456.63408 263.779862 
-L 456.63408 250.334554 
-Q 456.63408 244.706285 440.724384 244.706285 
-L 382.388832 244.706285 
-Q 366.479136 244.706285 366.479136 250.334554 
-L 366.479136 263.779862 
-Q 366.479136 269.408131 382.388832 269.408131 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ffffff; stroke: #c8dccf; stroke-width: 0.8; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_11">
-    <path d="M 467.240544 269.408131 
-L 525.576096 269.408131 
-Q 541.485792 269.408131 541.485792 263.779862 
-L 541.485792 250.334554 
-Q 541.485792 244.706285 525.576096 244.706285 
-L 467.240544 244.706285 
-Q 451.330848 244.706285 451.330848 250.334554 
-L 451.330848 263.779862 
-Q 451.330848 269.408131 467.240544 269.408131 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ffffff; stroke: #c8dccf; stroke-width: 0.8; stroke-linejoin: miter"/>
-   </g>
-   <g id="patch_12">
-    <path d="M 552.092256 269.408131 
-L 610.427808 269.408131 
-Q 626.337504 269.408131 626.337504 263.779862 
-L 626.337504 250.334554 
-Q 626.337504 244.706285 610.427808 244.706285 
-L 552.092256 244.706285 
-Q 536.18256 244.706285 536.18256 250.334554 
-L 536.18256 263.779862 
-Q 536.18256 269.408131 552.092256 269.408131 
-z
-" clip-path="url(#p2a4fa54c19)" style="fill: #ffffff; stroke: #c8dccf; stroke-width: 0.8; stroke-linejoin: miter"/>
-   </g>
-   <g id="line2d_5">
-    <path d="M 50.05296 96.807888 
-L 231.24672 96.807888 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b87522; stroke-width: 3; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_6">
-    <path d="M 65.962656 149.96376 
-L 215.337024 149.96376 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #d8dee6; stroke-width: 0.75; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_7">
-    <path d="M 262.18224 96.807888 
-L 443.376 96.807888 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #197c8e; stroke-width: 3; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_8">
-    <path d="M 278.091936 149.96376 
-L 427.466304 149.96376 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #d8dee6; stroke-width: 0.75; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_9">
-    <path d="M 474.31152 96.807888 
-L 655.50528 96.807888 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #2f63aa; stroke-width: 3; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_10">
-    <path d="M 490.221216 149.96376 
-L 639.595584 149.96376 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #d8dee6; stroke-width: 0.75; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_11">
-    <path d="M 686.4408 96.807888 
-L 867.63456 96.807888 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #6c4db3; stroke-width: 3; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_12">
-    <path d="M 702.350496 149.96376 
-L 851.724864 149.96376 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #d8dee6; stroke-width: 0.75; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_13">
-    <path d="M 67.7304 51.469056 
-L 213.56928 51.469056 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #b87522; stroke-width: 1.1; stroke-linecap: square"/>
-   </g>
-   <g id="line2d_14">
-    <path d="M 279.85968 51.469056 
-L 849.95712 51.469056 
-" clip-path="url(#p2a4fa54c19)" style="fill: none; stroke: #87919d; stroke-width: 1.1; stroke-linecap: square"/>
-   </g>
-   <g id="text_1">
-    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="65.962656" y="123.883345" transform="rotate(-0 65.962656 123.883345)">Fine-Tuning</text>
-   </g>
-   <g id="text_2">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #b87522" x="215.337024" y="120.84397" transform="rotate(-0 215.337024 120.84397)">n=21</text>
-   </g>
-   <g id="text_3">
-    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="65.962656" y="147.573875" transform="rotate(-0 65.962656 147.573875)">Adapt model on repair data</text>
-   </g>
-   <g id="text_4">
-    <text style="font-weight: 600; font-size: 7.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="65.962656" y="170.153847" transform="rotate(-0 65.962656 170.153847)">Full FT | PEFT | KD | RLFT | Context FT</text>
-   </g>
-   <g id="text_5">
-    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="278.091936" y="123.883345" transform="rotate(-0 278.091936 123.883345)">Prompting</text>
-   </g>
-   <g id="text_6">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #197c8e" x="427.466304" y="120.84397" transform="rotate(-0 427.466304 120.84397)">n=17</text>
-   </g>
-   <g id="text_7">
-    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="278.091936" y="147.573875" transform="rotate(-0 278.091936 147.573875)">Single LLM generation</text>
-   </g>
-   <g id="text_8">
-    <text style="font-weight: 600; font-size: 7.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="278.091936" y="170.153847" transform="rotate(-0 278.091936 170.153847)">Zero-shot | Few-shot | Context</text>
-   </g>
-   <g id="text_9">
-    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="490.221216" y="123.883345" transform="rotate(-0 490.221216 123.883345)">Procedural</text>
-   </g>
-   <g id="text_10">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #2f63aa" x="639.595584" y="120.84397" transform="rotate(-0 639.595584 120.84397)">n=15</text>
-   </g>
-   <g id="text_11">
-    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="490.221216" y="147.573875" transform="rotate(-0 490.221216 147.573875)">Scripted iterative loop</text>
-   </g>
-   <g id="text_12">
-    <text style="font-weight: 600; font-size: 7.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="490.221216" y="170.153847" transform="rotate(-0 490.221216 170.153847)">Test loop | Human loop | RAG/AAG loop</text>
-   </g>
-   <g id="text_13">
-    <text style="font-weight: 700; font-size: 13px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="702.350496" y="123.883345" transform="rotate(-0 702.350496 123.883345)">Agentic</text>
-   </g>
-   <g id="text_14">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: end; fill: #6c4db3" x="851.724864" y="120.84397" transform="rotate(-0 851.724864 120.84397)">n=13</text>
-   </g>
-   <g id="text_15">
-    <text style="font-size: 9.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="702.350496" y="147.573875" transform="rotate(-0 702.350496 147.573875)">LLM-selected actions</text>
-   </g>
-   <g id="text_16">
-    <text style="font-weight: 600; font-size: 7.2px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #7a8592" x="702.350496" y="170.153847" transform="rotate(-0 702.350496 170.153847)">Tool agents | LLM judges | Self-control</text>
-   </g>
-   <g id="text_17">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="140.64984" y="41.445229" transform="rotate(-0 140.64984 41.445229)">Adapted backbone</text>
-   </g>
-   <g id="text_18">
-    <text style="font-weight: 700; font-size: 9px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="564.9084" y="41.445229" transform="rotate(-0 564.9084 41.445229)">Frozen backbone</text>
-   </g>
-   <g id="text_19">
-    <text style="font-size: 7.4px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #5b6673" x="564.9084" y="60.873943" transform="rotate(-0 564.9084 60.873943)">control authority</text>
-   </g>
-   <g id="text_20">
-    <text style="font-weight: 700; font-size: 9.5px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #1b2430" x="67.7304" y="250.986756" transform="rotate(-0 67.7304 250.986756)">Auxiliary evidence tags</text>
-   </g>
-   <g id="text_21">
-    <text style="font-size: 7.6px; font-family: 'DejaVu Sans'; text-anchor: start; fill: #5b6673" x="67.7304" y="264.075389" transform="rotate(-0 67.7304 264.075389)">cross-cutting</text>
-   </g>
-   <g id="PathCollection_1">
-    <defs>
-     <path id="m5164dd000e" d="M 0 2.345208 
-C 0.621956 2.345208 1.218523 2.098102 1.658312 1.658312 
-C 2.098102 1.218523 2.345208 0.621956 2.345208 0 
-C 2.345208 -0.621956 2.098102 -1.218523 1.658312 -1.658312 
-C 1.218523 -2.098102 0.621956 -2.345208 0 -2.345208 
-C -0.621956 -2.345208 -1.218523 -2.098102 -1.658312 -1.658312 
-C -2.098102 -1.218523 -2.345208 -0.621956 -2.345208 0 
-C -2.345208 0.621956 -2.098102 1.218523 -1.658312 1.658312 
-C -1.218523 2.098102 -0.621956 2.345208 0 2.345208 
-z
-" style="stroke: #3a7d53"/>
-    </defs>
-    <g clip-path="url(#p2a4fa54c19)">
-     <use xlink:href="#m5164dd000e" x="237.433824" y="257.213549" style="fill: #3a7d53; stroke: #3a7d53"/>
-    </g>
-   </g>
-   <g id="text_22">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="261.740304" y="259.365861" transform="rotate(-0 261.740304 259.365861)">RAG</text>
-   </g>
-   <g id="PathCollection_2">
-    <defs>
-     <path id="mbda3f32903" d="M 0 2.345208 
-C 0.621956 2.345208 1.218523 2.098102 1.658312 1.658312 
-C 2.098102 1.218523 2.345208 0.621956 2.345208 0 
-C 2.345208 -0.621956 2.098102 -1.218523 1.658312 -1.658312 
-C 1.218523 -2.098102 0.621956 -2.345208 0 -2.345208 
-C -0.621956 -2.345208 -1.218523 -2.098102 -1.658312 -1.658312 
-C -2.098102 -1.218523 -2.345208 -0.621956 -2.345208 0 
-C -2.345208 0.621956 -2.098102 1.218523 -1.658312 1.658312 
-C -1.218523 2.098102 -0.621956 2.345208 0 2.345208 
-z
-" style="stroke: #2f63aa"/>
-    </defs>
-    <g clip-path="url(#p2a4fa54c19)">
-     <use xlink:href="#mbda3f32903" x="312.562944" y="257.213549" style="fill: #2f63aa; stroke: #2f63aa"/>
-    </g>
-   </g>
-   <g id="text_23">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="336.869424" y="259.365861" transform="rotate(-0 336.869424 259.365861)">AAG</text>
-   </g>
-   <g id="PathCollection_3">
-    <defs>
-     <path id="mf08d739fea" d="M 0 2.345208 
-C 0.621956 2.345208 1.218523 2.098102 1.658312 1.658312 
-C 2.098102 1.218523 2.345208 0.621956 2.345208 0 
-C 2.345208 -0.621956 2.098102 -1.218523 1.658312 -1.658312 
-C 1.218523 -2.098102 0.621956 -2.345208 0 -2.345208 
-C -0.621956 -2.345208 -1.218523 -2.098102 -1.658312 -1.658312 
-C -2.098102 -1.218523 -2.345208 -0.621956 -2.345208 0 
-C -2.345208 0.621956 -2.098102 1.218523 -1.658312 1.658312 
-C -1.218523 2.098102 -0.621956 2.345208 0 2.345208 
-z
-" style="stroke: #b87522"/>
-    </defs>
-    <g clip-path="url(#p2a4fa54c19)">
-     <use xlink:href="#mf08d739fea" x="387.692064" y="257.213549" style="fill: #b87522; stroke: #b87522"/>
-    </g>
-   </g>
-   <g id="text_24">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="416.85984" y="259.365861" transform="rotate(-0 416.85984 259.365861)">Tests</text>
-   </g>
-   <g id="PathCollection_4">
-    <defs>
-     <path id="m3bf496e000" d="M 0 2.345208 
-C 0.621956 2.345208 1.218523 2.098102 1.658312 1.658312 
-C 2.098102 1.218523 2.345208 0.621956 2.345208 0 
-C 2.345208 -0.621956 2.098102 -1.218523 1.658312 -1.658312 
-C 1.218523 -2.098102 0.621956 -2.345208 0 -2.345208 
-C -0.621956 -2.345208 -1.218523 -2.098102 -1.658312 -1.658312 
-C -2.098102 -1.218523 -2.345208 -0.621956 -2.345208 0 
-C -2.345208 0.621956 -2.098102 1.218523 -1.658312 1.658312 
-C -1.218523 2.098102 -0.621956 2.345208 0 2.345208 
-z
-" style="stroke: #b64f6c"/>
-    </defs>
-    <g clip-path="url(#p2a4fa54c19)">
-     <use xlink:href="#m3bf496e000" x="472.543776" y="257.213549" style="fill: #b64f6c; stroke: #b64f6c"/>
-    </g>
-   </g>
-   <g id="text_25">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="501.711552" y="259.365861" transform="rotate(-0 501.711552 259.365861)">Human</text>
-   </g>
-   <g id="PathCollection_5">
-    <defs>
-     <path id="mb1cc8c48d7" d="M 0 2.345208 
-C 0.621956 2.345208 1.218523 2.098102 1.658312 1.658312 
-C 2.098102 1.218523 2.345208 0.621956 2.345208 0 
-C 2.345208 -0.621956 2.098102 -1.218523 1.658312 -1.658312 
-C 1.218523 -2.098102 0.621956 -2.345208 0 -2.345208 
-C -0.621956 -2.345208 -1.218523 -2.098102 -1.658312 -1.658312 
-C -2.098102 -1.218523 -2.345208 -0.621956 -2.345208 0 
-C -2.345208 0.621956 -2.098102 1.218523 -1.658312 1.658312 
-C -1.218523 2.098102 -0.621956 2.345208 0 2.345208 
-z
-" style="stroke: #6c4db3"/>
-    </defs>
-    <g clip-path="url(#p2a4fa54c19)">
-     <use xlink:href="#mb1cc8c48d7" x="557.395488" y="257.213549" style="fill: #6c4db3; stroke: #6c4db3"/>
-    </g>
-   </g>
-   <g id="text_26">
-    <text style="font-weight: 600; font-size: 7.8px; font-family: 'DejaVu Sans'; text-anchor: middle; fill: #1b2430" x="586.563264" y="259.365861" transform="rotate(-0 586.563264 259.365861)">Domain</text>
-   </g>
+  <g fill="#fff2da" stroke="#c88631" stroke-width="2.2">
+   <circle cx="10" cy="6" r="4"/><circle cx="22" cy="16" r="4"/><circle cx="14" cy="26" r="4"/>
   </g>
  </g>
- <defs>
-  <clipPath id="p2a4fa54c19">
-   <rect x="1.44" y="1.44" width="883.872" height="312.6816"/>
-  </clipPath>
- </defs>
-</svg>
+ <g transform="translate(369.68 190.00)">
+  <g fill="none" stroke="#278ea5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <rect x="2" y="12" width="12" height="10" rx="2" fill="#e5f6f8" stroke="#278ea5"/>
+   <line x1="15" y1="17" x2="28" y2="17"/><polyline points="24 13 28 17 24 21"/>
+  </g>
+ </g>
+ <g transform="translate(662.00 190.00)">
+  <g fill="none" stroke="#3d6fb6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M 26 17 A 10 10 0 1 1 16 7"/><polyline points="13 4 16 7 19 4.5"/>
+  </g>
+ </g>
+ <g transform="translate(954.32 190.00)">
+  <g fill="none" stroke="#7657b8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <line x1="16" y1="8" x2="16" y2="14"/>
+   <line x1="16" y1="14" x2="6"  y2="23"/><line x1="16" y1="14" x2="16" y2="23"/><line x1="16" y1="14" x2="26" y2="23"/>
+  </g>
+  <g fill="#f0ecfa" stroke="#7657b8" stroke-width="2.2">
+   <circle cx="16" cy="6"  r="3.2"/><circle cx="6"  cy="25" r="3.2"/>
+   <circle cx="16" cy="25" r="3.2"/><circle cx="26" cy="25" r="3.2"/>
+  </g>
+ </g>
 
+ <!-- Category titles + descriptions -->
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="77.36"  y="248">Fine-Tuning</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="77.36"  y="267">Backbone updated on repair data.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="369.68" y="248">Prompting</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="369.68" y="267">Frozen model; one prompt per defect.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="662.00" y="248">Procedural</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="662.00" y="267">Frozen model; fixed external loop.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="954.32" y="248">Agentic</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="954.32" y="267">Frozen model; LLM picks tools/steps.</text>
+
+ <!-- Pills: Fine-Tuning -->
+ <rect x="86.32"  y="286" width="65.32" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="118.98" y="301.5">Full FT</text>
+ <rect x="157.88" y="286" width="52.16" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="183.96" y="301.5">PEFT</text>
+ <rect x="221.69" y="286" width="36.86" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="240.12" y="301.5">KD</text>
+ <rect x="270.26" y="286" width="52.04" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="296.28" y="301.5">RLFT</text>
+
+ <!-- Pills: Prompting -->
+ <rect x="374.58" y="286" width="87.12" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f1fbfd;stroke:#6abecf;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="418.14" y="301.5">Zero-shot</text>
+ <rect x="460.58" y="286" width="83.24" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f1fbfd;stroke:#6abecf;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="502.20" y="301.5">Few-shot</text>
+
+ <!-- Pills: Procedural -->
+ <rect x="650.58" y="286" width="127.44" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="714.30" y="301.5">Test-in-the-loop</text>
+ <rect x="783.02" y="286" width="147.52" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="856.78" y="301.5">Human-in-the-loop</text>
+ <rect x="712.61" y="313" width="146.79" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="786.00" y="328.5">Scripted tool loop</text>
+
+ <!-- Pills: Agentic -->
+ <rect x="945.07"  y="286" width="167.07" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:12px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1028.60" y="301.5">Tool-augmented agents</text>
+ <rect x="1117.14" y="286" width="103.55" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:12px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1168.92" y="301.5">LLM-as-judges</text>
+ <rect x="988.40"  y="313" width="188.96" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1082.88" y="328.5">Self-controlled systems</text>
+
+ <!-- Bottom legend -->
+ <path d="M 72 380 L 1226 380" clip-path="url(#clip)" style="fill:none;stroke:#c8d0d9;stroke-width:1.4;stroke-linecap:square"/>
+ <circle cx="205.92"  cy="380" r="5.6" style="fill:#c88631;stroke:#c88631"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="205.92"  y="398">training-time control</text>
+ <circle cx="498.24"  cy="380" r="5.6" style="fill:#278ea5;stroke:#278ea5"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="498.24"  y="398">human prompt</text>
+ <circle cx="790.56"  cy="380" r="5.6" style="fill:#3d6fb6;stroke:#3d6fb6"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="790.56"  y="398">scripted controller</text>
+ <circle cx="1082.88" cy="380" r="5.6" style="fill:#7657b8;stroke:#7657b8"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="1082.88" y="398">LLM-selected actions</text>
+
+ <!-- Cross-cutting section -->
+ <path d="M 79.36 524.0 L 1219.52 524.0 Q 1235.52 524.0 1235.52 508.0 L 1235.52 431.0 Q 1235.52 415 1219.52 415 L 79.36 415 Q 63.36 415 63.36 431.0 L 63.36 508.0 Q 63.36 524.0 79.36 524.0 z" clip-path="url(#clip)" style="fill:#eaf7ed;stroke:#438a5e;stroke-width:1.8;stroke-linejoin:miter"/>
+ <text style="font-weight:700;font-size:22px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430;letter-spacing:0.3px" x="649.44" y="442">Cross-cutting auxiliary evidence tags</text>
+
+ <rect x="73.36"   y="468" width="160.38" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="92.76"   cy="484" r="5.4" style="fill:#438a5e;stroke:#438a5e"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="104.16"  y="488.5">Retrieval (RAG)</text>
+
+ <rect x="292.22"  y="468" width="221.09" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="311.62"  cy="484" r="5.4" style="fill:#3d6fb6;stroke:#3d6fb6"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="323.02"  y="488.5">Program analysis (AAG)</text>
+
+ <rect x="581.80"  y="468" width="149.99" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="601.20"  cy="484" r="5.4" style="fill:#c88631;stroke:#c88631"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="612.60"  y="488.5">Test feedback</text>
+
+ <rect x="800.28"  y="468" width="170.06" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="819.68"  cy="484" r="5.4" style="fill:#c05a73;stroke:#c05a73"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="831.08"  y="488.5">Human feedback</text>
+
+ <rect x="1038.82" y="468" width="186.62" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="1058.22" cy="484" r="5.4" style="fill:#7657b8;stroke:#7657b8"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="1069.62" y="488.5">Domain knowledge</text>
+</svg>
     </div>
   </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const svg = document.getElementById('taxonomy');
+
+    function toast(msg, isError){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.toggle('error', !!isError);
+      t.classList.add('show');
+      clearTimeout(toast._h);
+      toast._h = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function serializeSvg(){
+      const c = svg.cloneNode(true);
+      c.setAttribute('xmlns', SVG_NS);
+      c.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+      return new XMLSerializer().serializeToString(c);
+    }
+
+    function downloadBlob(blob, name){
+      const u = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = u; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(u);
+    }
+
+    function downloadSvg(){
+      try{
+        downloadBlob(new Blob([serializeSvg()], {type:'image/svg+xml;charset=utf-8'}), 'llm_repair_taxonomy.svg');
+        toast('SVG downloaded');
+      }catch(e){ toast('SVG export failed', true); console.error(e); }
+    }
+
+    function downloadPng(scale){
+      try{
+        const u = URL.createObjectURL(new Blob([serializeSvg()], {type:'image/svg+xml;charset=utf-8'}));
+        const img = new Image();
+        img.onload = () => {
+          const bx = svg.viewBox.baseVal;
+          const c  = document.createElement('canvas');
+          c.width  = Math.round(bx.width  * scale);
+          c.height = Math.round(bx.height * scale);
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, c.width, c.height);
+          ctx.drawImage(img, 0, 0, c.width, c.height);
+          URL.revokeObjectURL(u);
+          c.toBlob(b => {
+            downloadBlob(b, `llm_repair_taxonomy_${scale}x.png`);
+            toast(`PNG ${scale}× downloaded`);
+          }, 'image/png');
+        };
+        img.onerror = () => { URL.revokeObjectURL(u); toast('PNG export failed', true); };
+        img.src = u;
+      }catch(e){ toast('PNG export failed', true); console.error(e); }
+    }
+
+    async function downloadPdf(){
+      const btn = document.getElementById('btn-pdf');
+      const orig = btn.textContent;
+      try{
+        if (!window.jspdf || !window.jspdf.jsPDF){
+          toast('PDF library not loaded — check network', true);
+          return;
+        }
+        const { jsPDF } = window.jspdf;
+        const bx = svg.viewBox.baseVal;
+        const w = bx.width, h = bx.height;
+
+        const pdf = new jsPDF({
+          orientation: w > h ? 'landscape' : 'portrait',
+          unit: 'pt',
+          format: [w, h],
+          compress: true,
+        });
+
+        if (typeof pdf.svg !== 'function'){
+          toast('svg2pdf.js not loaded — check network', true);
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Rendering…';
+
+        await pdf.svg(svg, { x: 0, y: 0, width: w, height: h });
+        pdf.save('llm_repair_taxonomy.pdf');
+        toast('Vector PDF downloaded');
+      }catch(e){
+        console.error(e);
+        toast('PDF export failed: ' + e.message, true);
+      }finally{
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    }
+  </script>
 </body>
 </html>

@@ -4,7 +4,7 @@ This package is for collecting human double-coding evidence for the current manu
 
 Primary files:
 
-- `taxonomy_coding_guide.md`: operational definitions for the primary paradigm, sub-paradigm, and auxiliary tags
+- `taxonomy_coding_guide.md`: operational definitions for the primary paradigm, core subtype, and auxiliary tags
 - `scenario_assignment_audit.csv`: the deployment-scenario scheme used in the current manuscript
 - `human_taxonomy_annotation_template.csv`: the blank sheet to fill independently and then adjudicate
 - `compute_annotation_agreement.py`: agreement script to run after both coders finish
@@ -71,4 +71,4 @@ The script reports:
 ## Scope note
 
 - This package supports a human validation pass for the current taxonomy.
-- It does not reconstruct the original screening-agreement ledger from the first-round review cycle.
+- Screening-agreement evidence is reported separately in `selection_reference_474_final_adjudicated.csv` and `selection_reference_474_final_adjudicated_summary.json`.

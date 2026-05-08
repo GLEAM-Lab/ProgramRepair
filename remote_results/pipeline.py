@@ -59,6 +59,7 @@ TOOL_TERMS = [
     "CREF", "Cref",  # CREF 的变体
     "HULA", "DRCodePilot", "PATCH", "KGCompass",
     "Repilot", "SAN2PATCH", "PredicateFix", "LLM4CVE",
+    "PailGen", "ACFix", "Dr.Fix", "IntDiagSolver",
     # Prompting
     "AlphaRepair", "CEDAR", "RLCE", "DSrepair", "D4C", 
     "Appatch", "APPATCH",  # Appatch 的变体
@@ -1477,6 +1478,7 @@ def search_papers_by_tool_names(use_cache=True, top_k=3):
         # Procedural
         "ChatRepair", "ThinkRepair", "ContrastRepair", "Agentless",
         "CREF", "PATCH", "Repilot", "PredicateFix", "LLM4CVE",
+        "PailGen", "ACFix", "Dr.Fix", "IntDiagSolver",
         # Prompting
         "AlphaRepair", "CEDAR", "APPATCH", "TracePrompt",
         # Fine-tuning

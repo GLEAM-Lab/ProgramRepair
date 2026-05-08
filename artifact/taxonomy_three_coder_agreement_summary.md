@@ -34,6 +34,25 @@ This file summarizes the normalized taxonomy recoding audit for the pre-update c
 
 - PATCH: existing=Procedural; external1=Agentic; external2=Procedural
 
+## Scenario-Label Adjudication Note
+
+Primary-scenario labels are descriptive deployment-scope projections. They are used for the manuscript's scenario-count table, but they do not define the taxonomy itself. The two external coders agreed with each other on all 62 scenario labels; however, the pre-existing scenario sheet differed from the two external recodings for 10 systems, producing the lower three-coder Fleiss kappa reported above.
+
+The 10 scenario-boundary cases were adjudicated against benchmark scope and full-text evidence before finalizing `scenario_assignment_audit.csv`. The final adjudicated sheet keeps scenario labels tied to the dominant benchmark/deployment scope:
+
+| System | Final scenario used in `scenario_assignment_audit.csv` | Boundary source |
+|---|---|---|
+| InferFix | Localized benchmark repair | InferredBugs is treated as a localized benchmark setting, even though the method uses static analysis and retrieval. |
+| Ehsani et al. | Localized benchmark repair | BugsInPy is treated as a localized benchmark setting rather than a vulnerability-repair setting. |
+| RLCE | Repository-level issue resolution | RepoBugs evaluates repository-level context extraction for bug repair. |
+| DsRepair | Localized benchmark repair | DS-1000 is treated as a data-science repair benchmark rather than a vulnerability dataset. |
+| TracePrompt | Localized benchmark repair | HumanEval-Java is treated as a localized benchmark setting. |
+| DRCodePilot | Industrial / practitioner workflow | The retained evidence is the Flink/practitioner workflow rather than a standard repository benchmark. |
+| PATCH | Repository-level issue resolution | The BFP setting is retained as a repository/patch-assessment workflow rather than a localized benchmark. |
+| VulDebugger | Vulnerability repair | The ExtractFix/ARVO evidence is vulnerability repair even though dynamic execution feedback is used. |
+| Abstain and Validate | Industrial / practitioner workflow | The Google setting is retained as an industrial/practitioner workflow. |
+| SpecRover | Repository-level issue resolution | SWE-bench Lite is treated as repository-level issue resolution rather than localized benchmark repair. |
+
 ## Scope Note
 
-This audit assesses taxonomy coding stability for the 62-system pre-update core set. It is not a reconstruction of the original full-text screening ledger and should not be read as an agreement statistic for all 474 current full-text candidates or all 66 retained systems. The four published-update additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.
+This audit assesses taxonomy coding stability for the 62-system pre-update core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as a new three-coder taxonomy-agreement calculation over all 66 retained systems. The four published-update additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.

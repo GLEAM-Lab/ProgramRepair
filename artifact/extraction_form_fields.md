@@ -47,5 +47,5 @@ The form is designed to make the taxonomy, benchmark, and methodology claims aud
 
 ## Scope note
 
-- The released package preserves the finalized extraction outputs, not the original step-by-step adjudication ledger.
-- The purpose of this schema is therefore transparency of what was extracted, not a retrospective claim about unrecoverable disagreement counts from the original review cycle.
+- The released package preserves the finalized extraction outputs and the fields used to regenerate the manuscript tables.
+- The purpose of this schema is transparency of what was extracted and how boundary fields are represented in the artifact.

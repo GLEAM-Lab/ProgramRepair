@@ -1,179 +1,276 @@
 #!/usr/bin/env python3
-"""Regenerate the taxonomy figure with one cross-cutting evidence band."""
+"""Generate the core taxonomy figure for the LLM-based repair survey."""
 
 from __future__ import annotations
 
-from collections import Counter
-import csv
-import os
 from pathlib import Path
 import shutil
-import sys
+import textwrap
 
-try:
-    import matplotlib as mpl
-    import matplotlib.pyplot as plt
-    from matplotlib.patches import FancyArrowPatch, FancyBboxPatch
-except ModuleNotFoundError as exc:
-    fallback = Path("/usr/bin/python3")
-    if fallback.exists() and Path(sys.executable) != fallback:
-        os.execv(str(fallback), [str(fallback), *sys.argv])
-    raise SystemExit("This script requires matplotlib; install it or run with /usr/bin/python3.") from exc
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
+from matplotlib.patches import Circle, FancyBboxPatch
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "figure_sources"
-SCENARIO_CSV = ROOT / "artifact" / "scenario_assignment_audit.csv"
 PAPER_FIG_DIRS = [
     ROOT / "revised_submission" / "figures",
     ROOT / "diff_submission" / "figures",
 ]
 
-OUT_HTML = SOURCE_DIR / "categories_crosscutting.html"
 OUT_PNG = SOURCE_DIR / "categories_crosscutting.png"
 OUT_SVG = SOURCE_DIR / "categories_crosscutting.svg"
+OUT_HTML = SOURCE_DIR / "categories_crosscutting.html"
+PAPER_FILES = [
+    (fig_dir / "categories_crosscutting.png", fig_dir / "categories_crosscutting.svg")
+    for fig_dir in PAPER_FIG_DIRS
+]
+
+
+W, H = 18.0, 10.0
+
+COLORS = {
+    "ink": "#1B2430",
+    "muted": "#5B6673",
+    "soft_muted": "#7A8592",
+    "paper": "#FBFAF6",
+    "panel": "#FFFFFF",
+    "ft": "#C88631",
+    "ft_bg": "#FFF2DA",
+    "prompt": "#278EA5",
+    "prompt_bg": "#E5F6F8",
+    "proc": "#3D6FB6",
+    "proc_bg": "#EAF1FD",
+    "agent": "#7657B8",
+    "agent_bg": "#F0ECFA",
+    "aux": "#438A5E",
+    "aux_bg": "#EAF7ED",
+}
+
 
 PARADIGMS = [
     {
-        "key": "Fine-Tuning",
+        "key": "ft",
         "title": "Fine-Tuning",
-        "summary": "Adapt model on repair data",
-        "subtypes": "Full FT | PEFT | KD | RLFT | Context FT",
-        "color": "#B87522",
-        "fill": "#FFF6E6",
+        "count": "21",
+        "badge": "Adapted",
+        "definition": "Backbone updated on repair data; adaptation is the main empirical contribution.",
+        "sub": ["Full FT", "PEFT", "KD", "RLFT"],
     },
     {
-        "key": "Prompting",
+        "key": "prompt",
         "title": "Prompting",
-        "summary": "Single LLM generation",
-        "subtypes": "Zero-shot | Few-shot | Context",
-        "color": "#197C8E",
-        "fill": "#ECFAFC",
+        "count": "17",
+        "badge": "Single-shot",
+        "definition": "Frozen model; one repair generation per defect under a human-written prompt.",
+        "sub": ["Zero-shot", "Few-shot"],
     },
     {
-        "key": "Procedural",
+        "key": "proc",
         "title": "Procedural",
-        "summary": "Scripted iterative loop",
-        "subtypes": "Test loop | Human loop | RAG/AAG loop",
-        "color": "#2F63AA",
-        "fill": "#F0F6FF",
+        "count": "15",
+        "badge": "Scripted",
+        "definition": "Frozen model; repeated generations follow a fixed external controller.",
+        "sub": ["Test loop", "Human loop", "Scripted tool"],
     },
     {
-        "key": "Agentic",
+        "key": "agent",
         "title": "Agentic",
-        "summary": "LLM-selected actions",
-        "subtypes": "Tool agents | LLM judges | Self-control",
-        "color": "#6C4DB3",
-        "fill": "#F6F2FF",
+        "count": "13",
+        "badge": "LLM-led",
+        "definition": "Frozen model; an LLM chooses tools, branches, candidate patches, or stopping.",
+        "sub": ["Tool agents", "LLM judges", "Self-control"],
     },
 ]
 
 AUX_TAGS = [
-    ("RAG", "#3A7D53"),
-    ("AAG", "#2F63AA"),
-    ("Tests", "#B87522"),
-    ("Human", "#B64F6C"),
-    ("Domain", "#6C4DB3"),
+    ("Retrieval (RAG)", "#438A5E"),
+    ("Program analysis (AAG)", "#3D6FB6"),
+    ("Test feedback", "#C88631"),
+    ("Human feedback", "#C05A73"),
+    ("Domain knowledge", "#7657B8"),
 ]
 
 
-def load_primary_counts() -> Counter[str]:
-    with SCENARIO_CSV.open(newline="", encoding="utf-8") as f:
-        rows = list(csv.DictReader(f))
-    counts: Counter[str] = Counter(r["primary_paradigm"].strip() for r in rows)
-    total = sum(counts.values())
-    if total != 66:
-        raise SystemExit(f"Expected 66 systems in {SCENARIO_CSV}, found {total}")
-    missing = [p["key"] for p in PARADIGMS if p["key"] not in counts]
-    if missing:
-        raise SystemExit(f"Missing primary-paradigm counts for: {', '.join(missing)}")
-    return counts
-
-
-def rounded_box(ax, xy: tuple[float, float], width: float, height: float, *, fill: str, edge: str, lw: float = 1.3) -> None:
-    ax.add_patch(
-        FancyBboxPatch(
-            xy,
-            width,
-            height,
-            boxstyle="round,pad=0.012,rounding_size=0.018",
-            linewidth=lw,
-            facecolor=fill,
-            edgecolor=edge,
-        )
+def rounded_box(ax, xy, width, height, radius, fc, ec, lw=1.4, alpha=1.0, z=1):
+    x, y = xy
+    box = FancyBboxPatch(
+        (x, y),
+        width,
+        height,
+        boxstyle=f"round,pad=0.02,rounding_size={radius}",
+        linewidth=lw,
+        edgecolor=ec,
+        facecolor=fc,
+        alpha=alpha,
+        zorder=z,
     )
+    ax.add_patch(box)
+    return box
 
 
-def draw(counts: Counter[str]) -> None:
+def draw_wrapped(ax, x, y, text, width_chars, size, color, weight="regular", line_height=1.22, ha="left"):
+    lines = textwrap.wrap(text, width=width_chars, break_long_words=False)
+    for i, line in enumerate(lines):
+        ax.text(
+            x,
+            y - i * size * line_height / 72 * H / 7.2,
+            line,
+            fontsize=size,
+            color=color,
+            fontweight=weight,
+            ha=ha,
+            va="top",
+        )
+    return len(lines)
+
+
+def chip(ax, x, y, label, fc, ec, color=None, width=None, height=0.34, size=10.0):
+    width = width or max(0.68, 0.14 * len(label) + 0.32)
+    rounded_box(ax, (x, y), width, height, 0.16, fc, ec, lw=0.9, z=3)
+    ax.text(
+        x + width / 2,
+        y + height / 2,
+        label,
+        fontsize=size,
+        fontweight="semibold",
+        color=color or COLORS["ink"],
+        ha="center",
+        va="center",
+        zorder=4,
+    )
+    return width
+
+
+def draw_card(ax, x, y, w, h, spec):
+    key = spec["key"]
+    accent = COLORS[key]
+    bg = COLORS[f"{key}_bg"]
+    rounded_box(ax, (x + 0.05, y - 0.05), w, h, 0.25, "#000000", "#000000", lw=0, alpha=0.06, z=0)
+    rounded_box(ax, (x, y), w, h, 0.25, bg, accent, lw=1.8, z=2)
+
+    badge_width = max(1.18, 0.095 * len(spec["badge"]) + 0.42)
+    chip(ax, x + 0.30, y + h - 0.50, spec["badge"], "#FFFFFF", accent, color=accent, size=7.8, width=badge_width)
+    ax.text(x + w - 0.36, y + h - 0.40, spec["count"], fontsize=19, fontweight="bold", color=accent, ha="right", va="center", zorder=4)
+    ax.text(x + w - 0.34, y + h - 0.64, "systems", fontsize=7.1, color=COLORS["muted"], ha="right", va="center", zorder=4)
+
+    ax.text(x + 0.30, y + h - 0.88, spec["title"], fontsize=16.5, fontweight="bold", color=COLORS["ink"], va="top")
+    draw_wrapped(ax, x + 0.31, y + h - 1.34, spec["definition"], 36, 8.9, COLORS["muted"], line_height=1.16)
+
+    ax.add_line(Line2D([x + 0.28, x + w - 0.28], [y + 1.18, y + 1.18], lw=0.9, color="#CBD4DC", zorder=3))
+    ax.text(x + 0.30, y + 0.98, "Core subtypes", fontsize=7.8, color=COLORS["soft_muted"], fontweight="semibold", va="center")
+    cx = x + 0.30
+    cy = y + 0.52
+    for label in spec["sub"]:
+        cw = max(0.66, min(1.44, 0.095 * len(label) + 0.24))
+        if cx + cw > x + w - 0.25:
+            cx = x + 0.30
+            cy -= 0.42
+        chip(ax, cx, cy, label, "#FFFFFF", "#D8DEE6", size=7.0, width=cw, height=0.27)
+        cx += cw + 0.12
+
+
+def build_figure():
     mpl.rcParams.update(
         {
             "font.family": "DejaVu Sans",
             "svg.fonttype": "none",
             "pdf.fonttype": 42,
             "ps.fonttype": 42,
+            "axes.linewidth": 0,
         }
     )
 
-    fig, ax = plt.subplots(figsize=(15.84, 5.64), dpi=300)
-    fig.patch.set_facecolor("#FFFFFF")
-    ax.set_facecolor("#FFFFFF")
-    ax.set_xlim(0, 1)
-    ax.set_ylim(0, 1)
+    fig = plt.figure(figsize=(W, H), dpi=220, facecolor=COLORS["paper"])
+    ax = fig.add_axes([0, 0, 1, 1])
+    ax.set_xlim(0, 18)
+    ax.set_ylim(0, 10)
     ax.axis("off")
 
-    card_y = 0.40
-    card_h = 0.34
-    card_w = 0.205
-    gap = 0.035
-    left = 0.055
-    xs = [left + i * (card_w + gap) for i in range(4)]
+    ax.add_patch(Circle((1.0, 9.5), 1.9, fc="#E6F4F7", ec="none", alpha=0.55, zorder=-5))
+    ax.add_patch(Circle((17.0, 9.0), 2.1, fc="#FFF0D6", ec="none", alpha=0.55, zorder=-5))
+    ax.add_patch(Circle((16.2, 0.6), 2.5, fc="#EAF7ED", ec="none", alpha=0.50, zorder=-5))
 
-    for x, paradigm in zip(xs, PARADIGMS):
-        rounded_box(ax, (x, card_y), card_w, card_h, fill=paradigm["fill"], edge=paradigm["color"])
-        ax.plot([x, x + card_w], [card_y + card_h - 0.045, card_y + card_h - 0.045], color=paradigm["color"], lw=3)
-        ax.text(x + 0.018, card_y + card_h - 0.10, paradigm["title"], ha="left", va="top", fontsize=13, fontweight="bold", color="#1B2430")
-        ax.text(x + card_w - 0.018, card_y + card_h - 0.10, f"n={counts[paradigm['key']]}", ha="right", va="top", fontsize=9, fontweight="bold", color=paradigm["color"])
-        ax.text(x + 0.018, card_y + card_h - 0.185, paradigm["summary"], ha="left", va="top", fontsize=9.2, color="#5B6673")
-        ax.plot([x + 0.018, x + card_w - 0.018], [card_y + 0.125, card_y + 0.125], color="#D8DEE6", lw=0.75)
-        ax.text(x + 0.018, card_y + 0.055, paradigm["subtypes"], ha="left", va="bottom", fontsize=7.2, fontweight="semibold", color="#7A8592")
+    ax.text(0.80, 9.42, "LLM-based Software Repair Taxonomy", fontsize=20.5, fontweight="bold", color=COLORS["ink"], va="top")
+    ax.text(
+        0.82,
+        9.05,
+        "Primary paradigm = parameter adaptation + control authority; auxiliary evidence remains orthogonal.  n = 66.",
+        fontsize=9.8,
+        color=COLORS["muted"],
+        va="top",
+    )
 
-    ax.text(xs[0] + card_w / 2, 0.88, "Adapted backbone", ha="center", va="center", fontsize=9, fontweight="bold", color="#1B2430")
-    ax.text((xs[1] + xs[3] + card_w) / 2, 0.88, "Frozen backbone", ha="center", va="center", fontsize=9, fontweight="bold", color="#1B2430")
-    ax.plot([xs[0] + 0.02, xs[0] + card_w - 0.02], [0.84, 0.84], color="#B87522", lw=1.1)
-    ax.plot([xs[1] + 0.02, xs[3] + card_w - 0.02], [0.84, 0.84], color="#87919D", lw=1.1)
-    ax.add_patch(FancyArrowPatch((xs[1] + 0.02, 0.78), (xs[3] + card_w - 0.02, 0.78), arrowstyle="-|>", mutation_scale=11, lw=1.0, color="#87919D"))
-    ax.text((xs[1] + xs[3] + card_w) / 2, 0.805, "control authority", ha="center", va="bottom", fontsize=7.4, color="#5B6673")
+    ax.text(0.90, 8.40, "Primary decision axes", fontsize=10.4, fontweight="bold", color=COLORS["ink"], va="center")
+    ax.text(
+        3.00,
+        8.40,
+        "1) Is the backbone adapted?   2) If frozen, is repair single-shot, scripted iterative, or LLM-controlled?",
+        fontsize=8.7,
+        color=COLORS["muted"],
+        va="center",
+    )
 
-    band_x = left
-    band_y = 0.11
-    band_w = xs[-1] + card_w - left
-    band_h = 0.17
-    rounded_box(ax, (band_x, band_y), band_w, band_h, fill="#EFF8F1", edge="#3A7D53", lw=1.15)
-    ax.text(band_x + 0.02, band_y + band_h - 0.055, "Auxiliary evidence tags", ha="left", va="top", fontsize=9.5, fontweight="bold", color="#1B2430")
-    ax.text(band_x + 0.02, band_y + 0.045, "cross-cutting", ha="left", va="bottom", fontsize=7.6, color="#5B6673")
+    ax.add_line(Line2D([0.90, 4.42], [7.70, 7.70], lw=2.0, color=COLORS["ft"], solid_capstyle="round"))
+    ax.add_line(Line2D([4.74, 17.05], [7.70, 7.70], lw=2.0, color="#647282", solid_capstyle="round"))
+    ax.text(0.92, 7.86, "Adapted backbone", fontsize=11.0, fontweight="bold", color=COLORS["ink"], va="bottom")
+    ax.text(4.76, 7.86, "Frozen backbone at runtime", fontsize=11.0, fontweight="bold", color=COLORS["ink"], va="bottom")
+    ax.text(0.92, 7.46, "model parameters changed", fontsize=7.8, color=COLORS["muted"], va="center")
+    ax.text(4.76, 7.46, "base model kept fixed; paradigm depends on repair-loop control", fontsize=7.8, color=COLORS["muted"], va="center")
 
-    tag_x = band_x + 0.20
+    card_y = 3.78
+    card_w = 3.92
+    card_h = 3.22
+    xs = [0.88, 4.94, 9.00, 13.06]
+    for x, spec in zip(xs, PARADIGMS):
+        draw_card(ax, x, card_y, card_w, card_h, spec)
+
+    continuum_y = 3.26
+    ax.add_line(Line2D([1.08, 16.82], [continuum_y, continuum_y], lw=1.4, color="#C8D0D9", zorder=1))
+    for x, spec in zip([2.84, 6.90, 10.96, 15.02], PARADIGMS):
+        ax.add_patch(Circle((x, continuum_y), 0.08, fc=COLORS[spec["key"]], ec=COLORS[spec["key"]], zorder=3))
+    ax.text(1.08, 3.02, "training-time control", fontsize=8.6, color=COLORS["muted"], ha="left", va="top")
+    ax.text(6.90, 3.02, "human prompt", fontsize=8.6, color=COLORS["muted"], ha="center", va="top")
+    ax.text(10.96, 3.02, "scripted controller", fontsize=8.6, color=COLORS["muted"], ha="center", va="top")
+    ax.text(16.82, 3.02, "LLM-selected actions", fontsize=8.6, color=COLORS["muted"], ha="right", va="top")
+
+    rounded_box(ax, (0.88, 0.78), 16.18, 1.78, 0.28, COLORS["aux_bg"], COLORS["aux"], lw=1.8, z=2)
+    ax.text(9.0, 2.21, "Cross-cutting auxiliary evidence tags", fontsize=15.4, color=COLORS["ink"], fontweight="bold", ha="center", va="center")
+    ax.text(
+        9.0,
+        1.88,
+        "These sources can support any primary paradigm without becoming separate top-level buckets.",
+        fontsize=9.0,
+        color=COLORS["muted"],
+        ha="center",
+        va="center",
+    )
+
+    tag_x = 2.03
     for label, color in AUX_TAGS:
-        tag_w = 0.067 if label in {"RAG", "AAG"} else 0.078
-        rounded_box(ax, (tag_x, band_y + 0.045), tag_w, 0.055, fill="#FFFFFF", edge="#C8DCCF", lw=0.8)
-        ax.scatter([tag_x + 0.012], [band_y + 0.072], s=22, color=color, zorder=3)
-        ax.text(tag_x + tag_w / 2 + 0.006, band_y + 0.072, label, ha="center", va="center", fontsize=7.8, fontweight="semibold", color="#1B2430")
-        tag_x += tag_w + 0.018
+        width = max(1.44, 0.115 * len(label) + 0.54)
+        rounded_box(ax, (tag_x, 1.13), width, 0.43, 0.17, "#FFFFFF", "#C7DCCB", lw=0.9, z=3)
+        ax.add_patch(Circle((tag_x + 0.25, 1.345), 0.075, fc=color, ec=color, zorder=4))
+        ax.text(tag_x + 0.42, 1.355, label, fontsize=8.5, color=COLORS["ink"], fontweight="semibold", va="center", ha="left", zorder=4)
+        tag_x += width + 0.32
 
-    for x in xs:
-        ax.plot([x + card_w / 2, x + card_w / 2], [band_y + band_h, card_y], color="#B8D7C1", lw=0.9, zorder=0)
+    ax.text(
+        9.0,
+        0.42,
+        "Coding projection used in the paper: one primary paradigm + auxiliary evidence tags + defect scope/deployment scenario.",
+        fontsize=8.6,
+        color=COLORS["soft_muted"],
+        ha="center",
+        va="center",
+    )
 
-    fig.savefig(OUT_PNG, bbox_inches="tight", pad_inches=0.02, dpi=300)
-    fig.savefig(OUT_SVG, bbox_inches="tight", pad_inches=0.02, metadata={"Date": None})
-    plt.close(fig)
+    return fig
 
 
-def write_html() -> None:
-    svg = OUT_SVG.read_text(encoding="utf-8")
-    svg_start = svg.find("<svg")
-    if svg_start == -1:
-        raise SystemExit(f"Could not locate <svg> root in {OUT_SVG}")
-    svg = svg[svg_start:]
+def write_html(svg_path: Path, html_path: Path):
+    svg_text = svg_path.read_text(encoding="utf-8")
     html = f"""<!doctype html>
 <html lang="en">
 <head>
@@ -186,15 +283,33 @@ def write_html() -> None:
       min-height: 100vh;
       display: grid;
       place-items: center;
-      background: #ffffff;
+      background: #f2f0ea;
       font-family: "DejaVu Sans", "Noto Sans", Arial, sans-serif;
     }}
     main {{
-      width: min(96vw, 1200px);
-      padding: 16px;
+      width: min(96vw, 1600px);
+      padding: 24px;
+    }}
+    .toolbar {{
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-bottom: 12px;
+    }}
+    button {{
+      border: 1px solid rgba(27, 36, 48, 0.18);
+      background: #ffffff;
+      color: #1b2430;
+      border-radius: 999px;
+      padding: 9px 14px;
+      font: 700 14px/1 "DejaVu Sans", "Noto Sans", Arial, sans-serif;
+      cursor: pointer;
+      box-shadow: 0 8px 22px rgba(27, 36, 48, 0.10);
     }}
     .frame {{
-      background: #ffffff;
+      background: #fbfaf6;
+      border-radius: 18px;
+      box-shadow: 0 22px 64px rgba(27, 36, 48, 0.14);
       overflow: hidden;
     }}
     svg {{
@@ -206,33 +321,89 @@ def write_html() -> None:
 </head>
 <body>
   <main>
+    <div class="toolbar" aria-hidden="true">
+      <button onclick="downloadSvg()">Download SVG</button>
+      <button onclick="downloadPng(2)">Download PNG 2x</button>
+      <button onclick="downloadPng(3)">Download PNG 3x</button>
+    </div>
     <div class="frame">
-{svg}
+{svg_text}
     </div>
   </main>
+  <script>
+    const svg = document.querySelector('svg');
+    svg.id = 'taxonomy';
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'LLM-based software repair taxonomy');
+
+    function serializedSvg() {{
+      const clone = svg.cloneNode(true);
+      clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+      return new XMLSerializer().serializeToString(clone);
+    }}
+
+    function downloadBlob(blob, filename) {{
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }}
+
+    function downloadSvg() {{
+      downloadBlob(new Blob([serializedSvg()], {{type: 'image/svg+xml;charset=utf-8'}}), 'categories_crosscutting.svg');
+    }}
+
+    function downloadPng(scale) {{
+      const svgBlob = new Blob([serializedSvg()], {{type: 'image/svg+xml;charset=utf-8'}});
+      const url = URL.createObjectURL(svgBlob);
+      const img = new Image();
+      img.onload = () => {{
+        const box = svg.viewBox.baseVal;
+        const canvas = document.createElement('canvas');
+        canvas.width = box.width * scale;
+        canvas.height = box.height * scale;
+        const ctx = canvas.getContext('2d');
+        ctx.setTransform(scale, 0, 0, scale, 0, 0);
+        ctx.fillStyle = '#fbfaf6';
+        ctx.fillRect(0, 0, box.width, box.height);
+        ctx.drawImage(img, 0, 0);
+        URL.revokeObjectURL(url);
+        canvas.toBlob((blob) => downloadBlob(blob, `categories_crosscutting_${{scale}}x.png`), 'image/png');
+      }};
+      img.src = url;
+    }}
+  </script>
 </body>
 </html>
 """
-    OUT_HTML.write_text(html, encoding="utf-8")
+    html_path.write_text(html, encoding="utf-8")
 
 
-def copy_outputs() -> None:
+def main():
+    SOURCE_DIR.mkdir(parents=True, exist_ok=True)
     for fig_dir in PAPER_FIG_DIRS:
         fig_dir.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(OUT_PNG, fig_dir / "categories_crosscutting.png")
-        shutil.copy2(OUT_SVG, fig_dir / "categories_crosscutting.svg")
 
+    fig = build_figure()
+    fig.savefig(OUT_SVG, facecolor=COLORS["paper"], bbox_inches="tight", pad_inches=0.02, metadata={"Date": None})
+    fig.savefig(OUT_PNG, facecolor=COLORS["paper"], bbox_inches="tight", pad_inches=0.02, dpi=300)
+    plt.close(fig)
 
-def main() -> None:
-    SOURCE_DIR.mkdir(parents=True, exist_ok=True)
-    counts = load_primary_counts()
-    draw(counts)
-    write_html()
-    copy_outputs()
-    print(f"Wrote {OUT_HTML}")
+    write_html(OUT_SVG, OUT_HTML)
+    for paper_png, paper_svg in PAPER_FILES:
+        shutil.copy2(OUT_PNG, paper_png)
+        shutil.copy2(OUT_SVG, paper_svg)
+
     print(f"Wrote {OUT_PNG}")
     print(f"Wrote {OUT_SVG}")
-    print("Counts:", ", ".join(f"{p['key']}={counts[p['key']]}" for p in PARADIGMS))
+    print(f"Wrote {OUT_HTML}")
+    for paper_png, paper_svg in PAPER_FILES:
+        print(f"Copied PNG to {paper_png}")
+        print(f"Copied SVG to {paper_svg}")
 
 
 if __name__ == "__main__":

@@ -2,6 +2,8 @@
 
 This file aggregates the final 66-system audit table into benchmark-family-level summaries so that the benchmark-protocol claims in the current manuscript can be checked directly. Counts are derived from `artifact/taxonomy_assignment_audit.csv`.
 
+For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` and `artifact/benchmark_protocol_comparability_windows.csv`. For full-corpus coverage without invalid ranking, use `artifact/benchmark_protocol_coverage_groups.csv`. This file reports family-level concentration and fragmentation; the comparability files identify which rows can actually be compared under a common protocol, while the coverage groups show how all 66 systems participate in the benchmark audit.
+
 ## Defects4J
 
 - Systems: 12
@@ -13,6 +15,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 - Explicit `Perfect Fault Localization` assumptions: 6
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 10
+
+- Comparability interpretation: not rankable as a single group. The family mixes benchmark versions/subsets, denominators, pass@k budgets from 1 to 5000, Perfect-FL assumptions, single-function/single-hunk settings, and repository-level execution.
 
 
 ## HumanEval-Java
@@ -27,6 +31,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 4
 
+- Comparability interpretation: contains two useful pass@10 model-controlled windows (`DeepSeek-Coder 7B` with Perfect FL; `CodeLlama 13B` with less explicit FL/oracle reporting). Rows using pass@100, pass@40, or accuracy remain protocol snapshots.
+
 
 ## SWE-bench Lite
 
@@ -39,6 +45,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 - Explicit `Perfect Fault Localization` assumptions: 0
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 0
+
+- Comparability interpretation: the cleanest whole-system comparison window in the corpus because all eight rows report SWE-bench Lite pass@1. It is still a stack comparison, not an isolated paradigm comparison, because base model, search depth, cost budget, and validation policy vary.
 
 
 ## SWE-bench Verified
@@ -53,6 +61,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 0
 
+- Comparability interpretation: singleton row in the current corpus; keep as a protocol snapshot.
+
 
 ## SWE-bench Other
 
@@ -65,6 +75,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 - Explicit `Perfect Fault Localization` assumptions: 0
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 0
+
+- Comparability interpretation: not directly comparable with SWE-bench Lite or Verified because the rows use different variants or additional environment/trajectory conditions.
 
 
 ## Vulnerability repair datasets
@@ -79,6 +91,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, `single-hunk`, or `function-level`): 1
 
+- Comparability interpretation: not rankable as a group because datasets and metrics are disjoint.
+
 
 ## API misuse repair
 
@@ -91,6 +105,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 - Explicit `Perfect Fault Localization` assumptions: 0
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, `single-hunk`, or `function-level`): 0
+
+- Comparability interpretation: singleton row; keep as a protocol snapshot.
 
 
 ## Crash bug repair
@@ -105,6 +121,8 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, `single-hunk`, or `function-level`): 0
 
+- Comparability interpretation: singleton row; keep as a protocol snapshot.
+
 
 ## Other
 
@@ -117,3 +135,5 @@ This file aggregates the final 66-system audit table into benchmark-family-level
 - Explicit `Perfect Fault Localization` assumptions: 2
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 2
+
+- Comparability interpretation: not rankable as a group because the rows use smaller or domain-specific datasets, and apparent metric matches occur across different benchmarks.

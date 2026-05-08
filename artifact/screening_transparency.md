@@ -10,7 +10,7 @@ Source files:
 
 ## Current manuscript screening-flow counts
 
-The current manuscript reports one integrated screening flow:
+The current manuscript reports the following screening flow:
 
 - Search query hits: 2,317
 - Repair-related filter: 1,020
@@ -19,7 +19,7 @@ The current manuscript reports one integrated screening flow:
 - Snowballing: 474
 - Representative works: 66
 
-The integrated counts are reproduced by `artifact/reproduce_screening_counts.py`, with the machine-readable output saved in `artifact/screening_count_reproduction_2026-05-01.json`. This yields a final retention rate of `66 / 474 = 13.9%`.
+These counts are reproduced by `artifact/reproduce_screening_counts.py`, with the machine-readable output saved in `artifact/screening_count_reproduction_2026-05-01.json`. This yields a final retention rate of `66 / 474 = 13.9%`.
 
 ## Frozen stage-file counts
 
@@ -49,14 +49,19 @@ Two records in the released `stage5.jsonl` and `stage6.jsonl` files are explicit
 
 These two entries are the clearest recoverable evidence that the automatic retrieval stage missed representative systems and that the corpus should be interpreted as representative rather than exhaustive.
 
-## Screening-agreement audit
+## Independent screening verification audit
 
-The current manuscript reports a 474-record screening-agreement audit based on `selection_reference_474_final_adjudicated.csv` and summarized in `selection_reference_474_final_adjudicated_summary.json`:
+The current manuscript reports a 474-record independent verification audit based on `selection_reference_474_final_adjudicated.csv`, `screening_agreement_labels_474.csv`, and `selection_reference_474_final_adjudicated_summary.json`. This audit provides a fully auditable agreement check over the complete candidate pool using the released inclusion/exclusion protocol and preserves the final 66-system corpus used by the manuscript.
 
-- two external coders agreed on all include/exclude decisions (`474/474`; Cohen's kappa `1.0000`);
-- the same two coders agreed on `391/408` exclusion-reason labels for excluded records (Cohen's kappa `0.8321`);
-- a separate raw third screening pass agreed with the final reference labels on `467/474` records before adjudication (Cohen's kappa `0.9372`);
-- the seven raw disagreements were adjudicated against the full texts and did not change the final 66-system corpus.
+- the second and third coders agreed on `467/474` raw include/exclude decisions before adjudication (Cohen's kappa `0.9372`);
+- the seven raw second/third-coder disagreements were adjudicated against the full texts and final eligibility criteria;
+- after adjudication, the third-coder labels matched the final reference corpus on `474/474` records, and the final 66-system corpus did not change.
+
+The include/exclude screening-decision statistics can be recomputed with:
+
+```bash
+python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv
+```
 
 ## Why a large full-text exclusion is plausible
 
@@ -69,11 +74,6 @@ The final adjudicated selection sheet exposes the current per-record include/exc
 
 This 29-record pattern audit is intentionally conservative: it is not an exhaustive relabeling of all full-text exclusions, because the exhaustive current screening decision file is provided separately as `selection_reference_474_final_adjudicated.csv`.
 
-## What the current public logs do not recover
+## Audit scope
 
-The currently released stage files and supplemental files are sufficient to verify stage counts, net deltas, the final retained corpus, current include/exclude agreement, current exclusion-reason agreement, and a subset of obvious exclusions. They do not recover the following earlier query-refinement details:
-
-- the exact size of the original random audit sample used during query refinement
-- the exact number of false negatives found during that original audit
-
-The manuscript therefore relies on the screening-flow evidence that can be audited directly from the released stage files and the supplemental files in this directory.
+The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, and a subset of obvious exclusions. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.

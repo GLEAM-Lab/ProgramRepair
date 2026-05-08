@@ -1,0 +1,8 @@
+system,model,reported_pass1,source,reporting_context
+OpenHands,Claude 3.5 Sonnet,53.00%,wei2025swe,comparison baseline reported by SWE-RL
+Agentless,Claude 3.5 Sonnet,50.80%,wei2025swe,comparison baseline reported by SWE-RL
+AutoCodeRover,Claude 3.5 Sonnet,46.20%,wei2025swe,comparison baseline reported by SWE-RL
+SWE-RL,Llama3-SWE-RL-70B with Agentless Mini,41.00%,wei2025swe,SWE-RL own reported result
+Agentless,GPT-4o,38.80%,xia2025demystifying,Agentless own reported result
+SWE-Agent,Claude 3.5 Sonnet,33.60%,wei2025swe,comparison baseline reported by SWE-RL
+SWE-Agent,GPT-4o,23.20%,wei2025swe,comparison baseline reported by SWE-RL

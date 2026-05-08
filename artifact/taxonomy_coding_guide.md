@@ -1,6 +1,6 @@
 # Taxonomy Coding Guide
 
-This guide records the operational rules used to assign one primary paradigm to each retained study while preserving hybrid features as auxiliary tags.
+This guide records the operational rules used to assign one primary paradigm and one core subtype to each retained study while preserving hybrid features as auxiliary evidence tags.
 
 ## Primary-paradigm decision rules
 
@@ -24,11 +24,11 @@ Top-level counts in the retained 66-system corpus:
 ## Hybrid-handling rules
 
 - A paper is not assigned to `Fine-Tuning` merely because it uses an already fine-tuned model inside a larger scripted or agentic workflow. Fine-tuning is the primary paradigm only when the paper's main empirical contribution is the adaptation itself.
-- Retrieval and analysis are treated as auxiliary tags, not as mutually exclusive top-level paradigms.
-- A paper may therefore have one primary paradigm plus auxiliary tags such as `RAG`, `AAG`, repository-level, vulnerability-repair, or educational-repair.
+- Retrieval, analysis, tests, human feedback, and domain knowledge are treated as auxiliary evidence tags, not as mutually exclusive top-level paradigms or sub-paradigms.
+- A paper may therefore have one primary paradigm, one core subtype, and auxiliary tags such as `RAG`, `AAG`, `test feedback`, `human feedback`, or `domain knowledge`.
 - Deployment scenarios are recorded separately from the primary paradigm. The paper uses five recurring scenario labels: `Localized benchmark repair`, `Repository-level issue resolution`, `Vulnerability repair`, `Educational tutoring`, and `Industrial / practitioner workflow`.
 
-## Sub-paradigm rules
+## Core-subtype rules
 
 ### Fine-Tuning
 
@@ -36,25 +36,22 @@ Top-level counts in the retained 66-system corpus:
 - `PEFT`: updates a limited adapter subset.
 - `Knowledge Distillation`: transfers repair behavior from a teacher model or rule system.
 - `RLFT`: optimizes repair with reinforcement-learning-style reward signals.
-- `Context-enriched FT`: injects traces, static-analysis artifacts, or retrieved repair context into training.
+If a fine-tuned system injects traces, static-analysis artifacts, retrieved repair context, templates, or domain hints into training, keep the core subtype above and record the evidence source as an auxiliary tag.
 
 ### Prompting
 
 - `Zero-shot`: no demonstration examples in the repair prompt.
 - `Few-shot`: prompt includes exemplar bug-fix pairs.
-- `Context-enriched prompting`: a single-turn prompt whose main control structure is still one-shot prompting.
-- Use the auxiliary tag `RAG` when the context enrichment comes primarily from retrieved project or API context.
-- Use the auxiliary tag `AAG` when the context enrichment comes primarily from analysis artifacts such as failing-test evidence, slices, traces, or diagnostics.
+Keep the core subtype as `Zero-shot` or `Few-shot` even when the prompt includes additional evidence. Use the auxiliary tag `RAG` when the added evidence comes primarily from retrieved project, API, documentation, or historical-fix context. Use the auxiliary tag `AAG` when the added evidence comes primarily from analysis artifacts such as failing-test evidence, slices, traces, diagnostics, or mined program facts.
 
 ### Procedural
 
 - `Test-in-the-Loop`: repeated regeneration is driven primarily by test execution feedback.
 - `Human-in-the-Loop`: developer feedback is explicitly interleaved with model calls.
-- `Context-enriched scripted loop`: the scripted loop repeatedly inserts external evidence between model calls.
-- Use the auxiliary tag `RAG` when that inserted evidence is primarily retrieved repository or documentation context.
-- Use the auxiliary tag `AAG` when the scripted loop repeatedly consumes analysis artifacts.
+- `Scripted Tool Loop`: deterministic retrieval, analysis, validation, or other tool stages are inserted between model calls, while the next control step remains hard-coded by the system designer.
+Use the auxiliary tag `RAG` when inserted evidence is primarily retrieved repository, documentation, API, or historical-fix context. Use the auxiliary tag `AAG` when the scripted loop consumes analysis artifacts.
 
-Clarification: failing tests can appear in two roles. Raw pass/fail feedback that drives repeated regeneration is coded as `Test-in-the-Loop`, whereas richer artifacts such as traces, slices, predicate facts, or sanitizer logs are coded as `AAG`-tagged context-enriched scripted loops.
+Clarification: failing tests can appear in two roles. Raw pass/fail feedback that drives repeated regeneration is coded as `Test-in-the-Loop`, whereas richer artifacts such as traces, slices, predicate facts, or sanitizer logs are coded as `Scripted Tool Loop` with an `AAG` tag.
 
 ### Agentic
 

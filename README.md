@@ -14,6 +14,8 @@ The main auditable files for the current 66-system corpus are:
 - `artifact/screening_transparency.md`
 - `artifact/selection_reference_474_final_adjudicated.csv`
 - `artifact/selection_reference_474_final_adjudicated_summary.json`
+- `artifact/screening_agreement_labels_474.csv`
+- `artifact/compute_screening_agreement.py`
 - `artifact/taxonomy_assignment_audit.csv`
 - `artifact/taxonomy_three_coder_audit.csv`
 - `artifact/taxonomy_three_coder_agreement_summary.md`
