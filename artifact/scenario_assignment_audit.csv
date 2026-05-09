@@ -4,8 +4,8 @@ Jiang et al.,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair
 VulMaster,Fine-Tuning,Vulnerability repair datasets,CVEFixes,Vulnerability repair,security patching benchmark
 RepairCAT,Fine-Tuning,Other,APR Competition 2024,Localized benchmark repair,competition-style localized repair task
 RepairLLaMA,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
-MORepair,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
-Luo et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
+MORepair,Fine-Tuning,EvalRepair-Java,EvalRepair-Java,Localized benchmark repair,EvalPlus-augmented function-level benchmark
+Luo et al.,Fine-Tuning,EvalRepair-Java,EvalRepair-Java,Localized benchmark repair,EvalPlus-augmented function-level benchmark
 Li et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
 Ruiz et al.,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,function-level benchmark
 KNOD,Fine-Tuning,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
@@ -23,7 +23,7 @@ NTR,Fine-Tuning,HumanEval-Java,HumanEval-Java,Localized benchmark repair,functio
 AlphaRepair,Prompting,Defects4J,Defects4J v1.2/2.0,Localized benchmark repair,localized Java APR benchmark
 Prenner et al.,Prompting,Other,Quixbugs,Localized benchmark repair,localized benchmarked code repair
 Fan et al.,Prompting,Other,LMDefects,Localized benchmark repair,localized benchmarked code repair
-Tian et al.,Prompting,Other,LeetCode,Localized benchmark repair,localized benchmarked code repair
+Tian et al.,Prompting,Other,Refactory,Localized benchmark repair,localized benchmarked code repair
 Xia et al.,Prompting,Defects4J,Defects4J v1.2,Localized benchmark repair,localized Java APR benchmark
 Gao et al.,Prompting,Other,B2F small,Localized benchmark repair,localized benchmarked code repair
 Ahmed et al.,Prompting,Other,MODIT,Localized benchmark repair,localized benchmarked code repair

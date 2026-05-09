@@ -6,19 +6,20 @@ This summary aggregates the 66-system audit table used in the current manuscript
 
 Among the 66 retained systems:
 
-- 21 report `pass@1`
-- 28 report `pass@k` for `k > 1`
-- 5 report `full match`
+- 19 report `pass@1`
+- 27 report `pass@k` for `k > 1`
+- 4 report `full match`
 - 2 report `F1`
-- 1 reports `top@k`
 - 1 reports `accuracy`
 - 1 reports `avg@5`
 - 1 reports `merged PRs`
-- 1 reports `CodeBLEU`
+- 1 reports `CodeBLEU similarity`
 - 1 reports `accept@1`
-- 2 report `EM`
-- 1 reports `success rate`
-- 1 reports `repair accuracy`
+- 3 report `EM`
+- 2 report `success rate`
+- 2 report `repair accuracy`
+- 1 reports `exact match`
+- 1 reports `correct repairs`
 
 This explains why cross-paper ranking is difficult even within the same benchmark family.
 
@@ -28,14 +29,13 @@ We therefore identify comparison windows conservatively. The full per-system aud
 `benchmark_protocol_comparability_by_system.csv`, and the compact window summary is in
 `benchmark_protocol_comparability_windows.csv`.
 
-The final 66-system audit supports four useful windows:
+The final 66-system audit supports three useful windows:
 
+- `EvalRepair-Java`, `pass@10`, `CodeLlama 13B`, no fault-location prompt: 2 systems. This is the cleanest model-controlled fine-tuning comparison window in the current audit, while training data, objective, and federated versus multi-objective setup remain different.
 - `SWE-bench Lite`, `pass@1`: 8 systems. This is comparable as whole system+model stacks, but not as isolated algorithm effects because base models, search budgets, cost, and validation depth differ.
-- `SWE-bench Lite`, `pass@1`, `Claude 3.5 Sonnet` family: 4 systems. This controls the base-model family more tightly and shows that orchestration/context design still changes the reported score substantially.
-- `HumanEval-Java`, `pass@10`, `DeepSeek-Coder 7B`, `Perfect Fault Localization`: 2 systems. This is the cleanest model-controlled fine-tuning comparison window in the current audit.
-- `HumanEval-Java`, `pass@10`, `CodeLlama 13B`: 2 systems. This is a narrow model-controlled comparison, but the FL/oracle assumptions are less explicit.
+- `HumanEval-Java`, `pass@10`, PEFT-oriented systems: 3 systems. This supports a limited same-benchmark/metric comparison, but it does not control base model, training objective, or localization assumption.
 
-The broader `HumanEval-Java`, `pass@10` PEFT group contains 5 systems and supports a limited same-benchmark/metric comparison, but it does not control base model or training objective. All remaining rows should be treated as protocol snapshots rather than global leaderboard entries.
+All remaining rows should be treated as protocol snapshots rather than global leaderboard entries.
 
 ## Same-benchmark/family coverage groups
 
@@ -45,8 +45,9 @@ The bounded windows are intentionally small. To avoid under-analyzing the rest o
 - Defects4J single-function group: 3 systems
 - Defects4J tool/search group without explicit Perfect-FL control: 2 systems
 - Defects4J single-hunk singleton: 1 system
-- HumanEval-Java pass@10 group: 5 systems
+- HumanEval-Java pass@10 group: 3 systems
 - HumanEval-Java non-pass@10 group: 3 systems
+- EvalRepair-Java augmented benchmark group: 2 systems
 - SWE-bench Lite pass@1 group: 8 systems
 - Other SWE-bench variants: 3 systems
 - Vulnerability/API/crash repair group: 11 systems
@@ -60,8 +61,8 @@ The open-challenge sub-challenge table in the manuscript uses the following aggr
 
 - 38/66 systems use proprietary/API models, 27/66 use open or academic models, and 1/66 does not specify the base model.
 - 19/21 fine-tuning systems use open or academic models, while 37/45 prompting, procedural, and agentic systems use proprietary/API models.
-- 12/66 systems explicitly assume `Perfect Fault Localization`, 8/66 use train/test split style evaluation, and 5/66 narrow repair to single-function, single-hunk, or function-level settings.
-- 21/66 systems report `pass@1`, 28/66 report larger `pass@k`, and 17/66 use non-`pass@k` or task-specific metrics.
+- 10/66 systems explicitly assume `Perfect Fault Localization`, 7/66 use train/test split style evaluation, and 6/66 narrow repair to single-function, single-hunk, code-region, or function-level settings.
+- 19/66 systems report `pass@1`, 27/66 report larger pass@k candidate-budget metrics, and 20/66 use single-candidate or non-pass@k task-specific metrics.
 - 13/66 systems fall into model-controlled, protocol-aligned, or limited within-benchmark comparison tiers, while 53/66 are snapshot-only rows.
 - 13/66 systems target repository-level issue resolution, including 8 agentic systems.
 - 28/66 systems are procedural or agentic, meaning the repair process is explicitly organized as a multi-step scripted or model-controlled loop.
@@ -76,22 +77,24 @@ For the model-dependency count, the grouping is derived from the recorded `base_
 
 ## Explicit assumptions in the 66-system audit table
 
-- 12 systems explicitly assume `Perfect Fault Localization`
+- 10 systems explicitly assume `Perfect Fault Localization`
 - 3 systems explicitly narrow the task to `single-function` repair
 - 1 system explicitly narrows the task to `single-hunk` repair
+- 1 system explicitly reports `code-region` localization
 - 1 system explicitly reports a function-level vulnerability-patch setting
 - 10 systems use test feedback, human feedback, or LLM-as-judge review as the recorded control subtype
-- 8 systems explicitly frame evaluation around a train/test split
+- 7 systems explicitly frame evaluation around a train/test split
 
-The first four assumption rows indicate that at least 16 systems use a narrowed setup that is weaker than fully end-to-end repair, even before considering differences in sampling budget, benchmark version, or oracle strength. The acceptance-gate row is used separately for the Section 10 trust analysis.
+The first five assumption rows indicate that at least 16 systems use a narrowed setup that is weaker than fully end-to-end repair, even before considering differences in sampling budget, benchmark version, or oracle strength. The acceptance-gate row is used separately for the Section 10 trust analysis.
 
 ## Selected recurring benchmark families in the 66-system table
 
 - `Defects4J` family (`v1.2` plus `v1.2/2.0`): 12 systems
-- `HumanEval-Java`: 8 systems
+- `HumanEval-Java`: 6 systems
+- `EvalRepair-Java`: 2 systems
 - `SWE-bench Lite`: 8 systems
 - `SWE-bench Verified`: 1 directly benchmarked system
-- `Vulnerability repair datasets`: 9 systems across eight metric families
+- `Vulnerability repair datasets`: 9 systems across seven metric families
 - `API misuse repair`: 1 system
 - `Crash bug repair`: 1 system
 
@@ -101,4 +104,4 @@ The remaining systems are spread across many smaller or domain-specific datasets
 
 The current manuscript is synchronized with the final 66-system audit. The SWE-bench protocol table uses `MAGIS` for the SWE-bench Lite `pass@1` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv`.
 
-The remaining alignment checks are also reflected in the manuscript tables: `KNOD` uses `Not specified` as the base model, `TSAPR` is not marked as a Perfect-FL row, `PailGen` and `Dr.Fix` use the audit metric `EM`, and `Dr.Fix` uses `GPT-4o` as the base model.
+The remaining alignment checks are also reflected in the manuscript tables: `KNOD` uses `Not specified` as the base model, `TSAPR` is not marked as a Perfect-FL row, and the fragmented security/API/crash table avoids labeling task-specific exact-match, correct-repair, success-rate, or repair-accuracy results as pass@k unless the source paper explicitly reports pass@k.

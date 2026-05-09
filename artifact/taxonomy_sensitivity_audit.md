@@ -16,6 +16,8 @@ This audit is a taxonomy robustness check. It is separate from the 474-record sc
 3. Compute agreement before adjudication with `compute_annotation_agreement.py`.
 4. Adjudicate the remaining boundary cases against the full texts before merging the labels into the current 66-system coding sheet.
 
+The four systems added after the 62-system audit subset were classified with the same guide and checked against their full texts in the final 66-system audit table. They are not included in the Cohen-kappa or Fleiss-kappa calculations because no external recoding sheet was collected for those four systems.
+
 ## Result
 
 - Display-paradigm agreement: `61 / 62 = 98.4%`

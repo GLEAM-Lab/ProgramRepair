@@ -137,6 +137,6 @@ Current conversion and retention audit for these retained arXiv records:
 | `TSAPR: A Tree Search Framework For Automated Program Repair` | Indexed as an arXiv preprint; no in-scope archival version was found. | Retained because it contributes tree-search and LLM-as-judge repair evidence on Defects4J. |
 | `Is ChatGPT the ultimate programming assistant--how far is it?` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an early benchmarked ChatGPT repair study that anchors the prompting baseline in the 2023 corpus. |
 
-## Stage-6 retained-list alignment
+## Legacy stage-6 retained-list repair-scope check
 
-The current artifact aligns `remote_results/stage6.jsonl` with the 66-system repair corpus used in the manuscript tables. The retained-list slot previously occupied by the vulnerability-detection record `Smart-LLaMA-DPO` now points to the retained repair paper `Vul-R2`, which already appeared in the public candidate logs and in the manuscript itself.
+The released `remote_results/stage6.jsonl` file is the legacy 62-record retained-list snapshot described in `screening_transparency.md`; the current 66-system corpus is defined by `selection_reference_474_final_adjudicated.csv`, `taxonomy_assignment_audit.csv`, and `scenario_assignment_audit.csv`. Within the legacy stage-6 snapshot, the retained-list slot previously occupied by the vulnerability-detection record `Smart-LLaMA-DPO` now points to the retained repair paper `Vul-R2`, which already appeared in the public candidate logs and in the manuscript itself. This keeps the legacy snapshot repair-focused while avoiding the incorrect implication that `stage6.jsonl` alone contains all 66 current manuscript systems.

@@ -100,10 +100,12 @@ SYSTEM_YEAR = {
 def norm_model(value: str) -> str:
     text = (value or "").strip().lower().replace("-", " ")
     text = re.sub(r"\s+", " ", text)
+    if ("claude" in text and "3.5" in text and "sonnet" in text) and ("gpt 4o" in text or "gpt-4o" in text):
+        return "Claude 3.5 Sonnet + GPT-4o"
     if "claude" in text and "3.5" in text and "sonnet" in text:
         return "Claude 3.5 Sonnet"
-    if "deepseek" in text and "coder" in text and "7b" in text:
-        return "DeepSeek-Coder 7B"
+    if "deepseek" in text and "coder" in text and ("6.7b" in text or "7b" in text):
+        return "DeepSeek-Coder 6.7B"
     if "codellama" in text and "13b" in text:
         return "CodeLlama 13B"
     if "codellama" in text and "7b" in text:
@@ -126,8 +128,14 @@ def assumption_bucket(value: str) -> str:
         buckets.append("single-function")
     if "single-hunk" in text:
         buckets.append("single-hunk")
+    if "code-region" in text:
+        buckets.append("code-region localization")
     if "train/test split" in text:
         buckets.append("train/test split")
+    if "evalplus" in text or "augmented test" in text:
+        buckets.append("augmented oracle")
+    if "no fault-location" in text or "no fault location" in text:
+        buckets.append("no FL prompt")
     if "human" in text or "tutor" in text:
         buckets.append("human feedback")
     if "verified" in text or "execution validation" in text:
@@ -164,9 +172,11 @@ def metric_family(value: str) -> str:
         return "pass@5"
     if re.search(r"pass@\s*10\b", text):
         return "pass@10"
-    if re.search(r"pass@\s*\d+", text):
+    if re.search(r"pass@\s*(?:k|\d+)", text):
         return "other pass@k"
-    if re.search(r"(top@k|accept@1)", text):
+    if re.search(r"top@\s*(?:k|[2-9]\b|[1-9]\d+)", text):
+        return "other pass@k"
+    if re.search(r"(top@\s*1\b|accept@1)", text):
         return "single-candidate non-pass@k"
     return "non-pass@k"
 
@@ -219,6 +229,9 @@ def coverage_group(row: dict[str, str]) -> str:
             return "G6_HumanEvalJava_pass10"
         return "G7_HumanEvalJava_other_metrics"
 
+    if family == "EvalRepair-Java":
+        return "G12_EvalRepairJava_augmented"
+
     if benchmark == "SWE-bench Lite" and metric == "pass@1":
         return "G8_SWEBench_Lite_pass1"
     if family in {"SWE-bench Verified", "SWE-bench Other"}:
@@ -246,22 +259,16 @@ def assign_windows(row: dict[str, str]) -> tuple[list[str], str, str]:
         windows.append("W1_SWE_BENCH_LITE_PASS1")
         tier = "B_protocol_aligned_stack_snapshot"
         reason = "Same benchmark variant and metric; comparable as whole system+model stacks, but not as isolated algorithm effects because base models and search budgets differ."
-        if model == "Claude 3.5 Sonnet":
-            windows.append("W1a_SWE_BENCH_LITE_CLAUDE35_PASS1")
-            reason += " Also belongs to the Claude 3.5 Sonnet subwindow, where base-model family is controlled more tightly."
 
     if benchmark == "HumanEval-Java" and metric == "pass@10":
         windows.append("W4_HUMANEVAL_JAVA_PASS10_PEFT")
         tier = "C_limited_within_benchmark_comparison"
         reason = "Same benchmark and pass@10 metric, but base model and fault-localization reporting differ across rows."
-        if model == "DeepSeek-Coder 7B" and "Perfect FL" in assumption:
-            windows.append("W2_HUMANEVAL_JAVA_DEEPSEEK7B_PASS10_PERFECT_FL")
-            tier = "A_model_controlled_comparison"
-            reason = "Same benchmark, same pass@10 metric, same base model, and same Perfect-FL assumption; remaining differences mainly concern training data/objective and repair procedure."
-        elif model == "CodeLlama 13B" and "Perfect FL" not in assumption:
-            windows.append("W3_HUMANEVAL_JAVA_CODELLAMA13B_PASS10")
-            tier = "A_model_controlled_comparison"
-            reason = "Same benchmark, same pass@10 metric, and same base-model family; FL/oracle details are less explicit, so interpret as model-controlled but assumption-underreported."
+
+    if family == "EvalRepair-Java" and metric == "pass@10" and model == "CodeLlama 13B":
+        windows.append("W5_EVALREPAIR_JAVA_CODELLAMA13B_PASS10")
+        tier = "A_model_controlled_comparison"
+        reason = "Same augmented benchmark, same pass@10 metric, same base model, and no fault-location prompt; remaining differences concern training data, adaptation objective, and federated versus centralized training setup."
 
     if family == "Defects4J":
         reason = "Defects4J rows mix benchmark versions/subsets, denominators, pass@k budgets, Perfect-FL assumptions, single-function/single-hunk settings, and repository-level execution."
@@ -271,6 +278,8 @@ def assign_windows(row: dict[str, str]) -> tuple[list[str], str, str]:
         reason = "Only one Verified row appears in the final audit, so it is a singleton protocol snapshot."
     elif family == "SWE-bench Other":
         reason = "Rows use different SWE-bench variants or additional environment/trajectory conditions, so they should not be merged with SWE-bench Lite pass@1."
+    elif family == "EvalRepair-Java" and not windows:
+        reason = "EvalRepair-Java extends HumanEval-Java with additional tests and uses TOP/PASS metrics, so it is kept separate from HumanEval-Java."
     elif family == "Other":
         reason = "Rows use smaller or domain-specific datasets; apparent metric matches can occur across different benchmarks and should not be ranked."
 
@@ -348,35 +357,21 @@ def main() -> None:
             "SWE-bench Lite, pass@1, repository-level issue repair.",
             "Benchmark variant and metric.",
             "Base model, cost budget, search depth, validation strategy, and publication snapshot.",
-            "Whole-system stacks vary from 16.67% to 46.00%; repository context selection and search/validation design materially affect results.",
-        ),
-        "W1a_SWE_BENCH_LITE_CLAUDE35_PASS1": (
-            "B_protocol_aligned_stack_snapshot",
-            "SWE-bench Lite, pass@1, Claude 3.5 Sonnet family.",
-            "Benchmark variant, metric, and base-model family.",
-            "Tool interface, retrieval/search policy, validation depth, and exact model snapshot.",
-            "Even under the same base-model family, reported pass@1 spans 26.00%--46.00%, supporting analysis of orchestration/context design.",
-        ),
-        "W2_HUMANEVAL_JAVA_DEEPSEEK7B_PASS10_PERFECT_FL": (
-            "A_model_controlled_comparison",
-            "HumanEval-Java, pass@10, DeepSeek-Coder 7B, Perfect FL.",
-            "Benchmark, metric, base model, and FL assumption.",
-            "Training data, adaptation objective, and iterative repair details.",
-            "Ruiz et al. reports 78.53% versus Li et al. 68.10%, showing that training/evaluation design matters even with the same base model and FL assumption.",
-        ),
-        "W3_HUMANEVAL_JAVA_CODELLAMA13B_PASS10": (
-            "A_model_controlled_comparison",
-            "HumanEval-Java, pass@10, CodeLlama 13B.",
-            "Benchmark, metric, and base-model family.",
-            "FL/oracle assumptions are underreported; training objective differs.",
-            "Luo et al. (76.88%) and MORepair (77.90%) are close, so this window supports only a narrow comparison of PEFT variants.",
+            "Whole-system stacks vary from 16.67% to 58.30%; repository context selection and search/validation design materially affect results.",
         ),
         "W4_HUMANEVAL_JAVA_PASS10_PEFT": (
             "C_limited_within_benchmark_comparison",
             "HumanEval-Java, pass@10, PEFT-oriented systems.",
             "Benchmark and metric.",
             "Base model, training data, adaptation objective, and FL/oracle assumptions.",
-            "The five pass@10 rows range from 67.28% to 78.53%; useful for a bounded discussion, not for broad paradigm ranking.",
+            "The three pass@10 rows range from 67.28% to 78.05%; useful for a bounded discussion, not for broad paradigm ranking.",
+        ),
+        "W5_EVALREPAIR_JAVA_CODELLAMA13B_PASS10": (
+            "A_model_controlled_comparison",
+            "EvalRepair-Java, pass@10, CodeLlama 13B, no fault-location prompt.",
+            "Augmented benchmark, metric, base model, and no-FL-prompt setting.",
+            "Training corpus, objective, and federated versus multi-objective fine-tuning setup.",
+            "MORepair reports 77.90% and Luo et al. report 76.88%; the close pass@10 scores support a narrow comparison of adaptation strategies under an augmented Java repair oracle.",
         ),
     }
 
@@ -417,7 +412,7 @@ def main() -> None:
         "G1_Defects4J_PerfectFL_or_function_level": (
             "Defects4J with Perfect-FL/function-level assumptions",
             "Same benchmark family; all six rows use localized Java APR settings with Perfect-FL or comparable localized inputs.",
-            "pass@1/top@k/pass@5/pass@10/pass@200/pass@1000 budgets, denominators, benchmark versions, and base models differ.",
+            "pass@1/pass@k/pass@5/pass@10/pass@200/pass@1000 budgets, denominators, benchmark versions, and base models differ.",
             "Useful for showing how headline Defects4J scores depend on FL hints and sampling budget; not a direct ranking.",
         ),
         "G2_Defects4J_single_function": (
@@ -429,7 +424,7 @@ def main() -> None:
         "G3_Defects4J_tool_or_search_no_explicit_FL": (
             "Defects4J tool/search systems without explicit Perfect-FL control",
             "Same broad benchmark family and GPT-3.5-class repair systems.",
-            "pass@1 versus pass@16, tool autonomy, search policy, and FL assumptions differ.",
+            "pass@1 versus a 32-patch search budget, tool autonomy, search policy, and FL assumptions differ.",
             "Useful as end-to-end or search-heavy protocol evidence, not a direct score ranking.",
         ),
         "G4_Defects4J_single_hunk": (
@@ -442,7 +437,7 @@ def main() -> None:
             "HumanEval-Java pass@10",
             "Same benchmark and pass@10 metric.",
             "Base model, training data, PEFT objective, and FL reporting differ.",
-            "Supports bounded comparison of PEFT-oriented repair systems; two smaller subwindows control base model more tightly.",
+            "Supports bounded comparison of PEFT-oriented repair systems, but not a model-controlled ranking because base model, adaptation objective, and localization reporting differ.",
         ),
         "G7_HumanEvalJava_other_metrics": (
             "HumanEval-Java non-pass@10 rows",
@@ -465,14 +460,20 @@ def main() -> None:
         "G10_security_api_crash_fragmented": (
             "Vulnerability, API-misuse, and crash-repair datasets",
             "Security or robustness-oriented repair tasks.",
-            "Datasets and metrics are disjoint: EM, F1, CodeBLEU, success rate, repair accuracy, and pass@k.",
+            "Datasets and metrics are disjoint: exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.",
             "Supports the conclusion that security/API/crash repair lacks a consolidated benchmark.",
         ),
         "G11_other_task_specific_or_singleton_benchmarks": (
             "Other task-specific or singleton benchmarks",
             "Each row is retained in the corpus-level audit.",
-            "The 24 rows span non-overlapping or singleton benchmarks, including APR Competition, QuixBugs, BugsInPy, RepoBugs, DS-1000, TutorCode, Flink, and Google accept@1.",
+            "These rows span non-overlapping or singleton benchmarks, including APR Competition, QuixBugs, BugsInPy, RepoBugs, DS-1000, TutorCode, Flink, and Google accept@1.",
             "Used for coverage and protocol-diversity analysis, not cross-paper ranking.",
+        ),
+        "G12_EvalRepairJava_augmented": (
+            "EvalRepair-Java pass@10 augmented benchmark rows",
+            "Same EvalRepair-Java benchmark family derived from HumanEval-Java with additional tests.",
+            "Training data, adaptation objective, and privacy/federation settings differ.",
+            "Useful for showing benchmark evolution and augmented-oracle practice, but kept separate from HumanEval-Java pass@10 comparisons.",
         ),
     }
 
@@ -644,14 +645,15 @@ def main() -> None:
     report.append("\n## Non-comparable families and why\n")
     report.append("- **Defects4J**: 12 rows can all be used in same-family protocol analysis. They split into Perfect-FL/function-level, single-function, tool/search, and single-hunk groups, but the rows still mix benchmark versions/subsets, denominators, pass@k budgets from 1 to 5000, and FL assumptions. A global ranking remains unsupported by the reported protocols.\n")
     report.append("- **HumanEval-Java non-pass@10 rows**: NTR uses pass@100, ContrastRepair uses pass@40, and TracePrompt reports accuracy; these should remain protocol snapshots rather than being ranked against pass@10 PEFT rows.\n")
+    report.append("- **EvalRepair-Java rows**: MORepair and Luo et al. both report pass@10 results on the same augmented benchmark family with CodeLlama 13B, but they are kept separate from HumanEval-Java because EvalRepair-Java adds EvalPlus tests and changes the oracle strength.\n")
     report.append("- **SWE-bench Verified/Other**: SWE-RL is a singleton Verified row, while SWE-Agent M and Learn-by-Interact use different SWE-bench variants or extra environment/trajectory conditions.\n")
-    report.append("- **Vulnerability/API/crash repair**: rows use disjoint datasets and metric families, including exact match, F1, CodeBLEU, EM, success rate, repair accuracy, and pass@k.\n")
+    report.append("- **Vulnerability/API/crash repair**: rows use disjoint datasets and task-specific metric families, including exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.\n")
     report.append("- **Other benchmark family**: rows use smaller or domain-specific datasets; apparent metric matches can occur across different datasets and should not be ranked.\n")
     report.append("\n## Manuscript consistency checks\n")
     report.append("- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 16.67%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.\n")
     report.append("- The current Defects4J table records `KNOD` with base model `Not specified`, matching the audit value `/`.\n")
     report.append("- The current Defects4J table does not mark `TSAPR` as a Perfect-FL row, matching the final audit.\n")
-    report.append("- The current fragmented security/API table uses `EM` for `PailGen` and `Dr.Fix`, and records `Dr.Fix` with base model `GPT-4o`, matching the final audit.\n")
+    report.append("- The current fragmented security/API table does not label security/API/crash success, exact-match, or repair-accuracy results as pass@k unless the source paper explicitly reports pass@k. It also records `Dr.Fix` with base model `GPT-4o`, matching the final audit.\n")
     REPORT.write_text("".join(report))
 
 

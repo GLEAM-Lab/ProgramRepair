@@ -1,13 +1,13 @@
 display_paradigm,control_subtype,system,training_dataset,base_model,benchmark,benchmark_family,metric,result,assumption
 Fine-Tuning,Full Fine-Tuning,Huang et al.,Recoder dataset,CodeT5,Defects4J v1.2/2.0,Defects4J,pass@5,82/107,Perfect Fault Localization
 Fine-Tuning,Full Fine-Tuning,Jiang et al.,Recoder dataset,Incoder 7B,Defects4J v1.2/2.0,Defects4J,pass@10,31/138,Perfect Fault Localization
-Fine-Tuning,Full Fine-Tuning,VulMaster,"CVEFixes, Big-Vul",CodeT5,CVEFixes,Vulnerability repair datasets,full match,20%,"train/test split, requires CVE type"
+Fine-Tuning,Full Fine-Tuning,VulMaster,"CVEFixes, Big-Vul",CodeT5,CVEFixes,Vulnerability repair datasets,EM,20%,"train/test split, requires CVE type"
 Fine-Tuning,Full Fine-Tuning,RepairCAT,APPS,StarCoder-1B,APR Competition 2024,Other,pass@1000,14%,
-Fine-Tuning,PEFT,RepairLLaMA,Megadiff,CodeLlama 7B,HumanEval-Java,HumanEval-Java,pass@10,67.28%,Perfect Fault Localization
-Fine-Tuning,PEFT,MORepair,TutorLLMCode,CodeLlama 13B,HumanEval-Java,HumanEval-Java,pass@10,77.90%,
-Fine-Tuning,PEFT,Luo et al.,TutorCode,CodeLlama 13B,HumanEval-Java,HumanEval-Java,pass@10,76.88%,
-Fine-Tuning,PEFT,Li et al.,APR-Instruction,DeepSeek-Coder 7B,HumanEval-Java,HumanEval-Java,pass@10,68.10%,Perfect Fault Localization
-Fine-Tuning,PEFT,Ruiz et al.,Recoder dataset,DeepSeek-Coder 7B,HumanEval-Java,HumanEval-Java,pass@10,78.53%,Perfect Fault Localization
+Fine-Tuning,PEFT,RepairLLaMA,Megadiff,CodeLlama 7B,HumanEval-Java,HumanEval-Java,pass@10,67.28%,code-region localization
+Fine-Tuning,PEFT,MORepair,TutorLLMCode,CodeLlama 13B,EvalRepair-Java,EvalRepair-Java,pass@10,77.90%,EvalPlus-augmented tests; no fault-location prompt
+Fine-Tuning,PEFT,Luo et al.,TutorCode,CodeLlama 13B,EvalRepair-Java,EvalRepair-Java,pass@10,76.88%,100-client federated fine-tuning; EvalPlus-augmented tests; no fault-location prompt
+Fine-Tuning,PEFT,Li et al.,APR-Instruction,DeepSeek-Coder 6.7B,HumanEval-Java,HumanEval-Java,pass@10,68.10%,Perfect Fault Localization
+Fine-Tuning,PEFT,Ruiz et al.,Recoder dataset,DeepSeek-Coder 6.7B,HumanEval-Java,HumanEval-Java,pass@10,128/164,LoRA 30K; source table reports solved problems under Strategy A
 Fine-Tuning,Knowledge Distillation,KNOD,GitHub,/,Defects4J v1.2/2.0,Defects4J,pass@1000,122/837,Perfect Fault Localization
 Fine-Tuning,Knowledge Distillation,DistiLRR,MBPP,CodeLlama-7B,HumanEval-Perl,Other,pass@1,42.10%,train/test split
 Fine-Tuning,Knowledge Distillation,NARRepair,selfAPR,CodeT5,Defects4J v1.2/2.0,Defects4J,pass@1,110/127,Perfect Fault Localization
@@ -15,15 +15,15 @@ Fine-Tuning,RLFT,RePair,CodeNet4Repair,StarCoder-16B,CodeNet4Repair,Other,pass@5
 Fine-Tuning,RLFT,SecRepair,InstructVul,CodeGen2-7B,InstructVul,Other,F1,82,train/test split
 Fine-Tuning,RLFT,SWE-RL,Seed RL,Llama3 70B,SWE-bench Verified,SWE-bench Verified,pass@1,41.00%,with Agentless pipeline
 Fine-Tuning,RLFT,AdaPatcher,ACPR,CodeLlama-7B,ACPR,Other,pass@1,67.57%,train/test split
-Fine-Tuning,RLFT,Vul-R2,PrimeVul,Qwen-14B-Instruct-1M,PrimeVul,Vulnerability repair datasets,pass@10,24.83,train/test split
+Fine-Tuning,RLFT,Vul-R2,PrimeVul,Qwen-14B-Instruct-1M,PrimeVul,Vulnerability repair datasets,exact match,24.83%,sample size 10; PrimeVul test set
 Fine-Tuning,Full Fine-Tuning,TraceFixer,CodeNet,CodeT5-small,CodeNet,Other,pass@10,87%,
 Fine-Tuning,Full Fine-Tuning,InferFix,InferredBugs,Codex-12B,InferredBugs,Other,pass@1,76.80%,train/test split
 Fine-Tuning,Full Fine-Tuning,PyTy,PyTyDefects,CodeT5,PyTyDefects,Other,full match,54.40%,train/test split
 Fine-Tuning,Full Fine-Tuning,NTR,TRANSFER,CodeLlama-70B,HumanEval-Java,HumanEval-Java,pass@100,83.44%,Perfect Fault Localization
-Prompting,Zero-Shot,AlphaRepair,,CodeBERT,Defects4J v1.2/2.0,Defects4J,top@k (5h),74/109,Perfect Fault Localization
+Prompting,Zero-Shot,AlphaRepair,,CodeBERT,Defects4J v1.2/2.0,Defects4J,pass@k (5h),74/109,Perfect Fault Localization
 Prompting,Zero-Shot,Prenner et al.,,Codex-175B,Quixbugs,Other,pass@1,37/80,Perfect Fault Localization
 Prompting,Zero-Shot,Fan et al.,,Codex-175B,LMDefects,Other,pass@5,46/113,
-Prompting,Zero-Shot,Tian et al.,,GPT-3.5 Turbo,LeetCode,Other,pass@5,105/120,
+Prompting,Zero-Shot,Tian et al.,,GPT-3.5 Turbo,Refactory,Other,pass@5,84.00%,1783 incorrect student programs; source also reports avg@5 60%
 Prompting,Few-Shot,Xia et al.,,Codex 12B,Defects4J v1.2,Defects4J,pass@200,99/255,Perfect Fault Localization
 Prompting,Few-Shot,Gao et al.,,Codex-175B,B2F small,Other,full match,32.25%,
 Prompting,Few-Shot,Ahmed et al.,,Codex-175B,MODIT,Other,pass@30,31.80%,
@@ -43,23 +43,23 @@ Procedural,Human-in-the-Loop,HULA,,GPT-4,Atlassian Jira issues,Other,merged PRs,
 Procedural,Human-in-the-Loop,DRCodePilot,,GPT-4 + CodeT5P,Flink,Other,full match,15.27%,requires solution-design cues
 Procedural,Scripted Tool Loop,Agentless,,GPT-4o,SWE-bench Lite,SWE-bench Lite,pass@1,32%,
 Procedural,Scripted Tool Loop,PATCH,,GPT-4,BFP,Other,pass@5,39.81%,
-Procedural,Scripted Tool Loop,KGCompass,,Claude-3.5 Sonnet,SWE-bench Lite,SWE-bench Lite,pass@1,46%,
+Procedural,Scripted Tool Loop,KGCompass,,Claude-4 Sonnet,SWE-bench Lite,SWE-bench Lite,pass@1,58.3%,repository-aware knowledge graph; source table also reports Claude-3.5 Sonnet at 46.0%
 Procedural,Scripted Tool Loop,Repilot,,Incoder 7B,Defects4J v1.2/2.0,Defects4J,pass@5000,116/273,single-hunk bugs
-Procedural,Scripted Tool Loop,SAN2PATCH,,GPT-4o,VulnLoc,Vulnerability repair datasets,pass@5,79.49%,
-Procedural,Scripted Tool Loop,PredicateFix,,Claude-3.5 Sonnet,CVE,Vulnerability repair datasets,pass@1,81/117,
-Procedural,Scripted Tool Loop,LLM4CVE,,Llama3 70B,CVEFixes,Vulnerability repair datasets,CodeBLEU,+20%,
+Procedural,Scripted Tool Loop,SAN2PATCH,,GPT-4o,VulnLoc,Vulnerability repair datasets,success rate,79.49% (31/39),VulnLoc final 39 vulnerabilities; sanitizer-log guided validation
+Procedural,Scripted Tool Loop,PredicateFix,,Claude-3.5 Sonnet,CVE,Vulnerability repair datasets,correct repairs,81/117 (69.2%),117 CodeQL-recognized CVE vulnerabilities; manual inspection
+Procedural,Scripted Tool Loop,LLM4CVE,,Llama3 70B,CVEFixes,Vulnerability repair datasets,CodeBLEU similarity,+20%,
 Agentic,Tool-Augmented,SWE-Agent,,GPT-4 Turbo,SWE-bench Lite,SWE-bench Lite,pass@1,18.00%,
 Agentic,Tool-Augmented,SWE-Agent M,,GPT-4o,SWE-bench Multimodal,SWE-bench Other,pass@1,12.20%,
 Agentic,Tool-Augmented,OpenHands,,Claude-3.5 Sonnet,SWE-bench Lite,SWE-bench Lite,pass@1,26%,
 Agentic,Tool-Augmented,AutoCodeRover,,GPT-4,SWE-bench Lite,SWE-bench Lite,pass@1,19.00%,
 Agentic,Tool-Augmented,RepairAgent,,GPT-3.5,Defects4J v1.2/2.0,Defects4J,pass@1,164/835,
 Agentic,Tool-Augmented,LANTERN,,DeepSeek-V3,Rust subset of xCodeEval,Other,pass@10,87.67%,
-Agentic,Tool-Augmented,VulDebugger,,GPT-4,50 of ExtractFix and ARVO,Vulnerability repair datasets,pass@1,60%,
+Agentic,Tool-Augmented,VulDebugger,,GPT-4o,50 of ExtractFix and ARVO,Vulnerability repair datasets,repair accuracy,60.00% (30/50),dynamic-state debugging on 50 real-life projects
 Agentic,LLM-as-Judges,Abstain and Validate,,Gemini 2.0 Flash,Google,Other,accept@1,62%,
-Agentic,LLM-as-Judges,TSAPR,,GPT-3.5,Defects4J v1.2/2.0,Defects4J,pass@16,24.07%,
-Agentic,LLM-as-Judges,SpecRover,,Claude-3.5 Sonnet,SWE-bench Lite,SWE-bench Lite,pass@1,31.00%,
+Agentic,LLM-as-Judges,TSAPR,,GPT-3.5,Defects4J v1.2/2.0,Defects4J,pass@32,201/835 (24.07%),32-patch budget reported by source table
+Agentic,LLM-as-Judges,SpecRover,,Claude-3.5 Sonnet + GPT-4o,SWE-bench Lite,SWE-bench Lite,pass@1,31.00%,
 Agentic,Self-Controlled System,MAGIS,,GPT-4,SWE-bench Lite,SWE-bench Lite,pass@1,16.67%,
-Agentic,Self-Controlled System,SWE-Search,,Claude 3.5 Sonnet,SWE-bench Lite,SWE-bench Lite,pass@1,39.00%,
+Agentic,Self-Controlled System,SWE-Search,,GPT-4o,SWE-bench Lite,SWE-bench Lite,pass@1,31.00%,
 Agentic,Self-Controlled System,Learn-by-Interact,,Claude-3.5 Sonnet,SWE-bench,SWE-bench Other,pass@1,60.00%,environment documentation and synthesized trajectories
 Prompting,Zero-/Few-Shot,PailGen,,DeepSeek-Coder V2,Big-Vul_CVEfixes,Vulnerability repair datasets,EM,23.23%,function-level vulnerability patches; reference exact match
 Prompting,Zero-/Few-Shot,ACFix,,GPT-4,118 real-world AC vulnerabilities,Vulnerability repair datasets,success rate,94.92%,smart-contract access-control vulnerabilities

@@ -10,7 +10,7 @@ For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` a
 
 - Paradigm mix: Fine-Tuning=4, Prompting=3, Procedural=3, Agentic=2
 
-- Metric mix: pass@5=1, pass@10=2, pass@1000=1, pass@1=2, top@k (5h)=1, pass@200=1, pass@500=1, pass@25=1, pass@5000=1, pass@16=1
+- Metric mix: pass@5=1, pass@10=2, pass@1000=1, pass@1=2, pass@k (5h)=1, pass@200=1, pass@500=1, pass@25=1, pass@5000=1, pass@32=1
 
 - Explicit `Perfect Fault Localization` assumptions: 6
 
@@ -21,17 +21,32 @@ For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` a
 
 ## HumanEval-Java
 
-- Systems: 8
+- Systems: 6
 
-- Paradigm mix: Fine-Tuning=6, Prompting=1, Procedural=1
+- Paradigm mix: Fine-Tuning=4, Prompting=1, Procedural=1
 
-- Metric mix: pass@10=5, pass@100=1, accuracy=1, pass@40=1
+- Metric mix: pass@10=3, pass@100=1, accuracy=1, pass@40=1
 
-- Explicit `Perfect Fault Localization` assumptions: 4
+- Explicit `Perfect Fault Localization` assumptions: 2
 
-- Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 4
+- Narrowed settings (`Perfect Fault Localization`, `code-region localization`, `single-function`, or `single-hunk`): 3
 
-- Comparability interpretation: contains two useful pass@10 model-controlled windows (`DeepSeek-Coder 7B` with Perfect FL; `CodeLlama 13B` with less explicit FL/oracle reporting). Rows using pass@100, pass@40, or accuracy remain protocol snapshots.
+- Comparability interpretation: contains one useful pass@10 PEFT-oriented window. Rows using pass@100, pass@40, or accuracy remain protocol snapshots.
+
+
+## EvalRepair-Java
+
+- Systems: 2
+
+- Paradigm mix: Fine-Tuning=2
+
+- Metric mix: pass@10=2
+
+- Explicit `Perfect Fault Localization` assumptions: 0
+
+- Narrowed settings (`Perfect Fault Localization`, `code-region localization`, `single-function`, or `single-hunk`): 0
+
+- Comparability interpretation: kept separate from HumanEval-Java because EvalRepair-Java augments HumanEval-Java with additional tests and uses a different oracle protocol. The two rows share pass@10, CodeLlama 13B, and no fault-location prompt, supporting a narrow model-controlled comparison while training data and adaptation objectives still differ.
 
 
 ## SWE-bench Lite
@@ -85,7 +100,7 @@ For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` a
 
 - Paradigm mix: Fine-Tuning=2, Prompting=3, Procedural=3, Agentic=1
 
-- Metric mix: full match=1, pass@10=1, F1=1, pass@5=1, pass@1=2, CodeBLEU=1, EM=1, success rate=1
+- Metric mix: EM=2, exact match=1, F1=1, success rate=2, correct repairs=1, CodeBLEU similarity=1, repair accuracy=1
 
 - Explicit `Perfect Fault Localization` assumptions: 0
 
