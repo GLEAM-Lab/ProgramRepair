@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="workflow" width="1600" height="950" viewBox="0 0 1600 950" role="img" aria-label="Workflow view of LLM-based software repair">
+<style>
+
+    :root{
+      --paper:#f7f4ec;
+      --ink:#18212c;
+      --muted:#566474;
+      --line:#1f6381;
+      --dash:#8bb6c9;
+      --soft:#eaf4fb;
+      --cream:#fff4c8;
+      --cream2:#fff9de;
+      --green:#3f8558;
+      --green-soft:#e9f6ed;
+      --border:#c8d4df;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:var(--paper);
+      font-family:"Helvetica Neue",Arial,"DejaVu Sans",sans-serif;
+      color:var(--ink);
+      padding:28px;
+    }
+    main{width:min(98vw,1600px)}
+    .toolbar{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    button{
+      border:1px solid rgba(24,33,44,.15);
+      background:#fff;
+      border-radius:8px;
+      padding:7px 12px;
+      font:700 13px/1 inherit;
+      cursor:pointer;
+      color:var(--ink);
+      box-shadow:0 2px 8px rgba(24,33,44,.08);
+    }
+    button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .frame{
+      background:#fff;
+      border:1px solid rgba(24,33,44,.12);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(24,33,44,.12);
+    }
+    svg{display:block;width:100%;height:auto}
+    .title{font-size:35px;font-weight:800;letter-spacing:.2px;fill:var(--ink)}
+    .subtitle{font-size:17px;font-weight:500;fill:var(--muted)}
+    .lane-title{font-size:30px;font-weight:800;fill:#000}
+    .box-text{font-size:26px;font-weight:500;fill:#16607d}
+    .small{font-size:17px;font-weight:600;fill:var(--muted)}
+    .tiny{font-size:14px;font-weight:600;fill:var(--muted)}
+    .tag{font-size:21px;font-weight:700;fill:#16607d}
+    .evidence{font-size:24px;font-weight:650;fill:#16607d}
+    .caption{font-size:16px;font-weight:600;fill:var(--muted)}
+  
+</style>
+  <defs>
+    <marker id="arrow" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6.5 L1,12 Z" fill="#1f6381"/>
+    </marker>
+    <marker id="arrow-dash" markerWidth="13" markerHeight="13" refX="10" refY="6.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L11,6.5 L1,12 Z" fill="#8bb6c9"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#1b2430" flood-opacity=".12"/>
+    </filter>
+    <pattern id="dotgrid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.2" fill="#dce6ee"/>
+    </pattern>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="950" fill="#ffffff"/>
+  <rect x="0" y="0" width="1600" height="950" fill="url(#dotgrid)" opacity=".18"/>
+
+  <text class="title" x="42" y="48">Workflow view of LLM-based software repair</text>
+  <text class="subtitle" x="42" y="78">The four display paradigms differ in parameter adaptation and runtime control; retrieval and analysis are cross-cutting auxiliary evidence sources.</text>
+
+  <!-- Left evidence rail -->
+  <rect x="36" y="112" width="232" height="756" rx="18" fill="#f1f1f1" stroke="#e2e2e2"/>
+  <text x="152" y="150" text-anchor="middle" font-size="27" font-weight="800" fill="#000">Bug-related</text>
+  <text x="152" y="181" text-anchor="middle" font-size="27" font-weight="800" fill="#000">information</text>
+
+  <g id="evidence-rail">
+    <rect x="56" y="232" width="192" height="104" rx="4" fill="#fff"/>
+    <text class="evidence" x="152" y="266" text-anchor="middle">Buggy program</text>
+    <text class="evidence" x="152" y="296" text-anchor="middle">or repository</text>
+    <line x1="36" y1="370" x2="268" y2="370" stroke="#7b7b7b" stroke-width="2.4" stroke-dasharray="11 11"/>
+
+    <rect x="56" y="404" width="192" height="82" rx="4" fill="#fff"/>
+    <text class="evidence" x="152" y="438" text-anchor="middle">Test suites</text>
+    <line x1="36" y1="520" x2="268" y2="520" stroke="#7b7b7b" stroke-width="2.4" stroke-dasharray="11 11"/>
+
+    <rect x="56" y="554" width="192" height="82" rx="4" fill="#fff"/>
+    <text class="evidence" x="152" y="588" text-anchor="middle">Runtime logs</text>
+    <line x1="36" y1="670" x2="268" y2="670" stroke="#7b7b7b" stroke-width="2.4" stroke-dasharray="11 11"/>
+
+    <rect x="56" y="704" width="192" height="82" rx="4" fill="#fff"/>
+    <text class="evidence" x="152" y="736" text-anchor="middle">Internal</text>
+    <text class="evidence" x="152" y="766" text-anchor="middle">knowledge</text>
+    <line x1="36" y1="820" x2="268" y2="820" stroke="#7b7b7b" stroke-width="2.4" stroke-dasharray="11 11"/>
+
+    <rect x="56" y="840" width="192" height="62" rx="4" fill="#fff"/>
+    <text class="evidence" x="152" y="878" text-anchor="middle">Global knowledge</text>
+  </g>
+
+  <!-- Model band -->
+  <rect x="318" y="118" width="1240" height="116" rx="0" fill="#e8f2fb"/>
+  <text x="332" y="216" font-size="30" font-weight="800" fill="#000">LLM checkpoints</text>
+  <rect x="344" y="138" width="208" height="70" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="448" y="168" text-anchor="middle">Base</text>
+  <text class="box-text" x="448" y="197" text-anchor="middle">checkpoints</text>
+  <rect x="1094" y="148" width="360" height="58" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="1274" y="185" text-anchor="middle">Fine-tuned checkpoints</text>
+
+  <!-- Fine-tuning lane -->
+  <rect x="720" y="94" width="812" height="96" rx="0" fill="#fff4c8"/>
+  <text class="lane-title" x="738" y="176">Fine-tuning</text>
+  <circle cx="804" cy="131" r="28" fill="none" stroke="#000" stroke-width="3"/>
+  <path d="M776 131 H832 M804 103 V159 M785 112 L823 150 M823 112 L785 150" stroke="#000" stroke-width="3" fill="none"/>
+  <rect x="908" y="112" width="246" height="54" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="1031" y="147" text-anchor="middle">Training corpus</text>
+  <rect x="1230" y="112" width="250" height="54" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="1355" y="147" text-anchor="middle">Training algorithms</text>
+  <path d="M552 173 H710" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M1154 139 H1225" stroke="#1f6381" stroke-width="3" marker-end="url(#arrow)" fill="none"/>
+  <path d="M1327 190 V236 H1274 V145" stroke="#1f6381" stroke-width="0" fill="none"/>
+  <path d="M1327 190 V236 H1274 V211" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Prompting lane -->
+  <rect x="318" y="278" width="1240" height="124" rx="0" fill="#fff4c8"/>
+  <text class="lane-title" x="332" y="386">Prompting</text>
+  <path d="M1274 234 V276" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M1018 234 V278" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <rect x="520" y="318" width="420" height="58" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="730" y="356" text-anchor="middle">Human-written instruction</text>
+  <rect x="1048" y="318" width="356" height="58" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="1226" y="356" text-anchor="middle">One/few-shot examples</text>
+  <path d="M940 347 H1043" stroke="#1f6381" stroke-width="3" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Auxiliary evidence hub -->
+  <rect x="500" y="454" width="820" height="102" rx="0" fill="#e8f2fb"/>
+  <text x="520" y="493" font-size="29" font-weight="800" fill="#000">Auxiliary evidence sources</text>
+  <text class="tiny" x="520" y="520">orthogonal tags that can support any display paradigm</text>
+  <rect x="732" y="474" width="270" height="58" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="tag" x="867" y="511" text-anchor="middle">Retrieval (RAG)</text>
+  <rect x="1062" y="474" width="226" height="58" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="tag" x="1175" y="511" text-anchor="middle">Analysis (AAG)</text>
+
+  <!-- Evidence arrows -->
+  <path d="M268 284 H430 V454" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M268 445 H500" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M268 595 H500" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M268 745 H732" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M268 872 H1062" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="10 9" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M1138 402 V454" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Procedural lane -->
+  <rect x="318" y="602" width="500" height="202" rx="0" fill="#fff4c8"/>
+  <text class="lane-title" x="332" y="785">Procedural</text>
+  <rect x="468" y="676" width="260" height="74" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="598" y="706" text-anchor="middle">Human-defined</text>
+  <text class="box-text" x="598" y="735" text-anchor="middle">controller</text>
+  <text class="caption" x="468" y="638">scripted loop: generate → validate → refine</text>
+  <path d="M404 402 V675" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M867 556 V640 H728" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Human interaction bridge -->
+  <rect x="842" y="686" width="188" height="72" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="936" y="716" text-anchor="middle">Human</text>
+  <text class="box-text" x="936" y="745" text-anchor="middle">interactions</text>
+  <path d="M728 722 H837" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M1030 722 H1140" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+  <path d="M936 686 V556" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Agentic lane -->
+  <rect x="1118" y="602" width="440" height="202" rx="0" fill="#fff4c8"/>
+  <text class="lane-title" x="1436" y="785">Agentic</text>
+  <rect x="1160" y="676" width="260" height="74" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="3"/>
+  <text class="box-text" x="1290" y="706" text-anchor="middle">LLM-determined</text>
+  <text class="box-text" x="1290" y="735" text-anchor="middle">controller</text>
+  <text class="caption" x="1160" y="638">model selects tools, critics, branches, or stopping</text>
+  <path d="M1404 402 V602 H1290 V671" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M1175 556 V640 H1160" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Prompting direct path to patch -->
+  <path d="M1404 347 H1584 V868 H1558" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Submitted patch -->
+  <rect x="318" y="856" width="1240" height="58" rx="0" fill="#e8f2fb"/>
+  <text x="938" y="894" text-anchor="middle" font-size="30" font-weight="800" fill="#000">Submitted patch</text>
+  <path d="M598 804 V852" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+  <path d="M1290 804 V852" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Legend -->
+  <rect x="1088" y="24" width="470" height="56" rx="14" fill="#ffffff" stroke="#d9e1e8"/>
+  <line x1="1110" y1="43" x2="1160" y2="43" stroke="#1f6381" stroke-width="4" marker-end="url(#arrow)"/>
+  <text class="tiny" x="1170" y="48">main workflow</text>
+  <line x1="1312" y1="43" x2="1362" y2="43" stroke="#8bb6c9" stroke-width="3" stroke-dasharray="9 8" marker-end="url(#arrow-dash)"/>
+  <text class="tiny" x="1372" y="48">optional evidence flow</text>
+</svg>
