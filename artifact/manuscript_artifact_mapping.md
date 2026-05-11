@@ -27,7 +27,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 | Multidimensional taxonomy rules | `taxonomy_coding_guide.md` | Defines display paradigm, control subtype, auxiliary evidence tags, and scenario labels. |
 | Final 66-system taxonomy labels | `taxonomy_assignment_audit.csv` | Per-system display paradigm, control subtype, benchmark family, metric, and assumptions. |
 | Deployment-scenario counts | `scenario_assignment_audit.csv` | Source for the deployment-scenario count table replacing the earlier qualitative fit figure. |
-| 66-system external-coder taxonomy audit | `taxonomy_external_pair_66_audit.csv`; `taxonomy_external_pair_66_agreement_summary.md` | Run `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_external_pair_66_audit.csv`. |
+| 66-system independent-coder taxonomy audit | `taxonomy_external_pair_66_audit.csv`; `taxonomy_external_pair_66_agreement_summary.md` | Run `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_external_pair_66_audit.csv`. |
 | Historical 62-system three-coder audit trail | `taxonomy_three_coder_audit.csv`; `taxonomy_three_coder_agreement_summary.md` | Retained as an audit trail; manuscript-facing final-corpus statistics use the 66-system files above. |
 | Sensitivity and boundary-case discussion | `taxonomy_sensitivity_audit.md` | Documents remaining hybrid edge cases such as PATCH and TSAPR. |
 
@@ -54,5 +54,5 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 - The manuscript-facing corpus contains 66 retained systems and 474 full-text candidate records before final screening.
 - The 29-record exclusion-pattern audit is only a conservative example set; the full exclusion distribution is `full_text_exclusion_breakdown.csv`.
 - Boundary records in `notable_boundary_records.csv` are documented for transparency and are not included in the 474-record screening-agreement denominator or the final 66-system corpus.
-- The manuscript-facing taxonomy reliability numbers use the final 66-system external-coder audit, not the older 62-system audit trail.
+- The manuscript-facing taxonomy reliability numbers use the final 66-system independent-coder audit, not the older 62-system audit trail.
 - Benchmark tables preserve published scores and protocol assumptions; they do not rerun systems or normalize candidate budgets across papers.

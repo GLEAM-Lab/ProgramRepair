@@ -4,9 +4,9 @@ This file preserves the normalized taxonomy recoding audit for the 62-system cor
 
 ## Inputs
 
-- `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`: released final coding tables. The agreement calculation uses the overlapping 62 systems for which external recodings were collected.
-- `human_taxonomy_annotation_external_pair.csv`: normalized paired two-external-coder sheet compatible with `compute_annotation_agreement.py`; the missing `RepairCAT` row in one raw handoff sheet was filled using the same labels as the other external coder before this normalized public export was produced.
-- `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both external recodings; running `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_three_coder_audit.csv` recomputes the pairwise Cohen-kappa and Fleiss-kappa values below.
+- `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`: released final coding tables. The agreement calculation uses the overlapping 62 systems for which independent recodings were collected.
+- `human_taxonomy_annotation_external_pair.csv`: normalized paired two-independent-coder sheet compatible with `compute_annotation_agreement.py`; the missing `RepairCAT` row in one raw handoff sheet was filled using the same labels as the other independent coder before this normalized public export was produced.
+- `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both independent recodings; running `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_three_coder_audit.csv` recomputes the pairwise Cohen-kappa and Fleiss-kappa values below.
 
 ## Pairwise Agreement
 
@@ -36,7 +36,7 @@ This file preserves the normalized taxonomy recoding audit for the 62-system cor
 
 ## Scenario-Label Adjudication Note
 
-Deployment-scenario labels are descriptive deployment-scope labels. They are used for the manuscript's scenario-count table, but they do not define the display paradigm itself. The two external coders agreed with each other on all 62 scenario labels; however, the existing scenario sheet differed from the two external recodings for 10 systems, producing the lower three-coder Fleiss kappa reported above.
+Deployment-scenario labels are descriptive deployment-scope labels. They are used for the manuscript's scenario-count table, but they do not define the display paradigm itself. The two independent coders agreed with each other on all 62 scenario labels; however, the existing scenario sheet differed from the two independent recodings for 10 systems, producing the lower three-coder Fleiss kappa reported above.
 
 The 10 scenario-boundary cases were adjudicated against benchmark scope and full-text evidence before finalizing `scenario_assignment_audit.csv`. The final adjudicated sheet keeps scenario labels tied to the dominant benchmark/deployment scope:
 
@@ -55,4 +55,4 @@ The 10 scenario-boundary cases were adjudicated against benchmark scope and full
 
 ## Scope Note
 
-This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as the manuscript-facing final-corpus taxonomy-agreement calculation. The current 66-system external-coder audit, including the four later corpus additions, is reported separately in `taxonomy_external_pair_66_agreement_summary.md`.
+This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as the manuscript-facing final-corpus taxonomy-agreement calculation. The current 66-system independent-coder audit, including the four later corpus additions, is reported separately in `taxonomy_external_pair_66_agreement_summary.md`.

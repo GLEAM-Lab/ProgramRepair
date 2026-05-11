@@ -11,12 +11,12 @@ This audit is a taxonomy robustness check. It is separate from the 474-record sc
 
 ## Procedure
 
-1. Give two external coders the same final 66-system corpus and the same `taxonomy_coding_guide.md`.
+1. Give two independent coders the same final 66-system corpus and the same `taxonomy_coding_guide.md`.
 2. Ask each coder to assign the display paradigm, control subtype, retrieval tag, analysis tag, and deployment scenario.
 3. Compute agreement before adjudication with `compute_annotation_agreement.py`.
 4. Adjudicate the remaining boundary cases against the full texts before merging the labels into the current 66-system coding sheet.
 
-The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66_audit.csv`, which integrates the 62-system external-pair recoding sheet and the four later-system external recodings into one normalized 66-system audit table.
+The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66_audit.csv`, which integrates the 62-system independent-pair recoding sheet and the four later-system independent recodings into one normalized 66-system audit table.
 
 ## Result
 
@@ -26,7 +26,7 @@ The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66
 - Cohen's kappa on the control-subtype label: `0.967`
 - Retrieval-tag agreement: `66 / 66 = 100.0%`
 - Analysis-tag agreement: `66 / 66 = 100.0%`
-- Deployment-scenario agreement between the two external recodings: `66 / 66 = 100.0%`
+- Deployment-scenario agreement between the two independent recodings: `66 / 66 = 100.0%`
 - Rows with at least one disagreement: `2`
 
 ## Borderline cases
@@ -38,7 +38,7 @@ The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66
 
 ## Scenario-label note
 
-The deployment-scenario number above reports agreement between the two external recodings. A separate three-coder check that also includes the existing scenario sheet is documented in `taxonomy_three_coder_agreement_summary.md`; it yields lower scenario agreement because 10 older scenario labels needed adjudication against benchmark scope and full-text evidence. The manuscript therefore treats scenario labels as descriptive deployment-scope labels, not as display-paradigm labels.
+The deployment-scenario number above reports agreement between the two independent recodings. A separate three-coder check that also includes the existing scenario sheet is documented in `taxonomy_three_coder_agreement_summary.md`; it yields lower scenario agreement because 10 older scenario labels needed adjudication against benchmark scope and full-text evidence. The manuscript therefore treats scenario labels as descriptive deployment-scope labels, not as display-paradigm labels.
 
 ## Interpretation
 

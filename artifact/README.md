@@ -28,11 +28,11 @@ Included files:
 - `human_taxonomy_annotation_instructions.md`: handoff instructions for collecting human double-coding evidence for the current manuscript audit.
 - `human_taxonomy_annotation_template.csv`: blank annotation template aligned with the current taxonomy and scenario fields.
 - `compute_annotation_agreement.py`: lightweight script for computing agreement statistics and enumerating disagreement rows once two coders have filled the template.
-- `human_taxonomy_annotation_external_pair.csv`: normalized paired annotation sheet for the two external taxonomy coders, compatible with `compute_annotation_agreement.py`.
-- `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two external recoding sheets.
+- `human_taxonomy_annotation_external_pair.csv`: normalized paired annotation sheet for the two independent taxonomy coders, compatible with `compute_annotation_agreement.py`.
+- `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two independent recoding sheets.
 - `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the manuscript-facing final-corpus audit is superseded by `taxonomy_external_pair_66_agreement_summary.md`.
-- `taxonomy_external_pair_66_audit.csv`: normalized two-external-coder audit sheet over the final 66-system corpus.
-- `taxonomy_external_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting external-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
+- `taxonomy_external_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus.
+- `taxonomy_external_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting independent-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.
 - `benchmark_protocol_summary.md`: corpus-level summary of metrics, assumptions, and benchmark concentration derived from the 66-system audit table used in the paper.
 - `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the current corpus-context and benchmark-protocol synthesis.
