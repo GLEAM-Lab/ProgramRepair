@@ -5,7 +5,7 @@ This script is intentionally conservative. It scans the full-text cache for the
 66 systems used in the manuscript and exports candidate evidence snippets for
 three manuscript-facing reliability dimensions:
 
-* explicit contamination / data-leakage discussion or control;
+* explicit contamination / data-leakage discussion;
 * active leakage mitigation or diagnostic control; and
 * validation beyond public benchmark tests (e.g., hidden/additional tests,
   manual/expert review, sanitizer/exploit/static-analyzer validation).
@@ -326,7 +326,7 @@ def main() -> None:
                         }
                     )
 
-        leakage_label, leakage_query, leakage_note = LEAKAGE_LABELS.get(system, ("no", "", "No explicit contamination/data-leakage discussion or control found in the audited full text."))
+        leakage_label, leakage_query, leakage_note = LEAKAGE_LABELS.get(system, ("no", "", "No explicit contamination/data-leakage discussion found in the audited full text."))
         if leakage_label == "yes":
             leakage_page, leakage_evidence = find_evidence(text, leakage_query)
         else:
@@ -412,11 +412,11 @@ def main() -> None:
         [
             {
                 "risk_factor": "explicit_contamination_or_leakage_discussion",
-                "coding_criterion": "The paper explicitly discusses or controls benchmark, pretraining, train/test, temporal, or corpus contamination/leakage risk.",
+                "coding_criterion": "The paper explicitly discusses possible data contamination, leakage, benchmark overlap, or related mitigation concerns.",
                 "count": str(leakage_count),
                 "denominator": str(len(systems)),
                 "source": "evaluation_reliability_by_system.csv",
-                "interpretation": "Counts explicit reporting about contamination or leakage risk; this includes both discussion-only acknowledgments and papers that also report a concrete mitigation or diagnostic check.",
+                "interpretation": "Counts explicit reporting about contamination or leakage risk; active mitigation or diagnostic controls are counted separately.",
             },
             {
                 "risk_factor": "active_leakage_mitigation_or_control",
@@ -446,7 +446,7 @@ def main() -> None:
 
     print(f"Wrote {OUT.relative_to(ROOT)} with candidate snippets for {len(systems)} systems")
     print(f"Wrote {FINAL_OUT.relative_to(ROOT)}")
-    print(f"Leakage reporting/control: {leakage_count}/{len(systems)}")
+    print(f"Leakage discussion: {leakage_count}/{len(systems)}")
     print(f"Active leakage mitigation/control: {active_leakage_count}/{len(systems)}")
     print(f"Extra validation beyond public tests: {validation_count}/{len(systems)}")
 

@@ -60,7 +60,8 @@ The open-challenge sub-challenge table in the manuscript uses the following aggr
 - 38/66 systems use proprietary/API models, 27/66 use open or academic models, and 1/66 does not specify the base model.
 - 19/21 fine-tuning systems use open or academic models, while 37/45 prompting, procedural, and agentic systems use proprietary/API models.
 - 10/66 systems explicitly assume `Perfect Fault Localization`, 7/66 use train/test split style evaluation, and 6/66 narrow repair to single-function, single-hunk, code-region, or function-level settings.
-- 36/66 systems explicitly discuss or control benchmark, pretraining, train/test, temporal, or corpus contamination/leakage risk.
+- 36/66 systems explicitly discuss benchmark, pretraining, train/test, temporal, or corpus contamination/leakage risk.
+- 28/66 systems report an active mitigation or diagnostic control, such as decontamination, temporal or train/test split design, benchmark construction to avoid overlap, dataset exclusion, or leakage analysis tied to evaluation.
 - 39/66 systems use hidden, held-out, or additional tests, manual/expert review, LLM/human review, static/runtime validation, sanitizer/exploit reproduction, or a comparable independent validation signal beyond ordinary public benchmark tests.
 - 21/66 systems report `pass@1`, 28/66 report larger pass@k candidate-budget metrics, and 17/66 use single-candidate or non-pass@k task-specific metrics.
 - 13/66 systems fall into model-controlled, protocol-aligned, or limited within-benchmark comparison tiers, while 53/66 are snapshot-only rows.
