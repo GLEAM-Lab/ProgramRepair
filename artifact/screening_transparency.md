@@ -17,7 +17,7 @@ The current manuscript reports the following screening flow:
 - LLM-related filter: 752
 - Benchmark-related filter: 461
 - Snowballing: 474
-- Representative works: 66
+- Retained works: 66
 
 These counts are reproduced by `artifact/reproduce_screening_counts.py`, with the machine-readable output saved in `artifact/screening_count_reproduction_2026-05-01.json`. This yields a final retention rate of `66 / 474 = 13.9%`.
 
