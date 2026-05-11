@@ -92,6 +92,10 @@ To make the final drop easier to inspect manually, `exclusion_pattern_audit.csv`
 
 This 29-record pattern audit is intentionally conservative: it is not the full exclusion distribution. The full exclusion breakdown is provided in `full_text_exclusion_breakdown.csv`, and the exhaustive current screening decision file is provided separately as `selection_reference_474_final_adjudicated.csv`.
 
+## Notable boundary records
+
+The file `notable_boundary_records.csv` documents a small set of adjacent or reviewer-mentioned records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions.
+
 ## Audit scope
 
-The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, the full 408-record exclusion breakdown, and conservative exclusion examples. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.
+The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, the full 408-record exclusion breakdown, conservative exclusion examples, and the documented boundary notes. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.

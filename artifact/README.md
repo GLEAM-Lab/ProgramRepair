@@ -17,6 +17,7 @@ Included files:
 - `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
 - `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
+- `notable_boundary_records.csv`: checked boundary records that are relevant to reviewer questions or adjacent issue-resolution terminology but are not part of the final 66-system corpus.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.
