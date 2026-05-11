@@ -13,8 +13,8 @@ from pathlib import Path
 TRACKED_FIELDS = [
     ("display_paradigm", "kappa"),
     ("control_subtype", "kappa"),
-    ("retrieval_tag", "kappa"),
-    ("analysis_tag", "kappa"),
+    ("retrieval_tag", "raw"),
+    ("analysis_tag", "raw"),
     ("deployment_scenario", "raw"),
 ]
 
@@ -130,6 +130,8 @@ def print_summary(rows: list[dict[str, str]]) -> None:
         if mode == "kappa":
             kappa = cohens_kappa(pairs)
             print(f"- {field}: {matches}/{total} agreement ({rate:.1%}), Cohen's kappa = {kappa:.3f}")
+        elif matches == total:
+            print(f"- {field}: complete raw agreement ({matches}/{total}, {rate:.1%})")
         else:
             print(f"- {field}: {matches}/{total} agreement ({rate:.1%})")
 
@@ -188,8 +190,11 @@ def print_three_coder_summary(rows: list[dict[str, str]]) -> None:
         for label, left_prefix, right_prefix in pair_names:
             pairs = three_coder_pair(rows, field, left_prefix, right_prefix)
             matches, total, rate = raw_agreement(pairs)
-            kappa = cohens_kappa(pairs)
-            print(f"- {field}, {label}: {matches}/{total} agreement ({rate:.1%}), Cohen's kappa = {kappa:.3f}")
+            if total and matches == total:
+                print(f"- {field}, {label}: complete raw agreement ({matches}/{total}, {rate:.1%})")
+            else:
+                kappa = cohens_kappa(pairs)
+                print(f"- {field}, {label}: {matches}/{total} agreement ({rate:.1%}), Cohen's kappa = {kappa:.3f}")
         print()
 
     print("Fleiss kappa")

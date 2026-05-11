@@ -58,6 +58,6 @@ Scope note:
 - These files document the released stage logs, current screening decisions, agreement summaries, and coding rules used by the manuscript.
 - Current screening agreement is reported from the released 474-record adjudicated selection files listed above.
 - Screening-decision agreement is reproducible from `screening_agreement_labels_474.csv` by running `python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv`.
-- Manuscript-facing taxonomy agreement is reported from `taxonomy_external_pair_66_audit.csv` and summarized in `taxonomy_external_pair_66_agreement_summary.md`; the older 62-system three-coder file is retained as an audit trail.
+- Manuscript-facing taxonomy agreement is reported from `taxonomy_external_pair_66_audit.csv` and summarized in `taxonomy_external_pair_66_agreement_summary.md`; for deterministic auxiliary-tag and scenario fields, the manuscript reports complete raw agreement (66/66) rather than emphasizing perfect kappa values. The older 62-system three-coder file is retained as an audit trail.
 - The taxonomy sensitivity audit is a separate robustness check for taxonomy coding stability.
 - Evaluation-reliability leakage and extra-validation counts are reproducible from the local retained-paper PDFs. If `artifact/pdf_text_cache/manifest.csv` is absent, first install the extraction dependency with `python3 -m pip install -r artifact/requirements.txt`, run `python3 artifact/extract_pdf_text_cache.py`, and then run `python3 artifact/audit_evaluation_reliability.py`.

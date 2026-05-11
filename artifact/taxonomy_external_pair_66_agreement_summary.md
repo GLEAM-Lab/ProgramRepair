@@ -2,15 +2,15 @@
 
 This file reports the manuscript-facing taxonomy reliability audit over the final 66-system corpus. It combines the 62-system independent-pair recoding sheet with the four later-system independent recodings after normalizing all label names to the manuscript codebook.
 
-## External-Coder Pair Agreement
+## Independent-Coder Pair Agreement
 
-| Field | Agreement | Cohen kappa |
-|---|---:|---:|
-| display_paradigm | 65/66 (98.5%) | 0.980 |
-| control_subtype | 64/66 (97.0%) | 0.967 |
-| retrieval_tag | 66/66 (100.0%) | 1.000 |
-| analysis_tag | 66/66 (100.0%) | 1.000 |
-| deployment_scenario | 66/66 (100.0%) | 1.000 |
+| Field | Agreement evidence |
+|---|---:|
+| display_paradigm | 65/66 (98.5%), Cohen kappa 0.980 |
+| control_subtype | 64/66 (97.0%), Cohen kappa 0.967 |
+| retrieval_tag | complete raw agreement, 66/66 (100.0%) |
+| analysis_tag | complete raw agreement, 66/66 (100.0%) |
+| deployment_scenario | complete raw agreement, 66/66 (100.0%) |
 
 ## Boundary Notes
 

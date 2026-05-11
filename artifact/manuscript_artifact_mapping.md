@@ -54,5 +54,5 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 - The manuscript-facing corpus contains 66 retained systems and 474 full-text candidate records before final screening.
 - The 29-record exclusion-pattern audit is only a conservative example set; the full exclusion distribution is `full_text_exclusion_breakdown.csv`.
 - Boundary records in `notable_boundary_records.csv` are documented for transparency and are not included in the 474-record screening-agreement denominator or the final 66-system corpus.
-- The manuscript-facing taxonomy reliability numbers use the final 66-system independent-coder audit, not the older 62-system audit trail.
+- The manuscript-facing taxonomy reliability numbers use the final 66-system independent-coder audit, not the older 62-system audit trail; for deterministic auxiliary-tag and scenario fields, the manuscript reports complete raw agreement (66/66) rather than emphasizing perfect kappa values.
 - Benchmark tables preserve published scores and protocol assumptions; they do not rerun systems or normalize candidate budgets across papers.

@@ -1,6 +1,6 @@
 # Human Taxonomy Annotation Agreement Summary
 
-This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_external_pair_66_agreement_summary.md` and `taxonomy_external_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
+This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_external_pair_66_agreement_summary.md` and `taxonomy_external_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet; perfect raw-agreement rows are noted as complete raw agreement rather than emphasized as perfect kappa. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
 
 ## Inputs
 
@@ -10,17 +10,17 @@ This file preserves the normalized taxonomy recoding audit for the 62-system cor
 
 ## Pairwise Agreement
 
-| Field | Pair | Agreement | Cohen kappa | Disagreements |
+| Field | Pair | Agreement | Cohen kappa or note | Disagreements |
 |---|---:|---:|---:|---:|
-| display_paradigm | existing vs external coder 1 | 61/62 (98.4%) | 0.978 | 1 |
-| display_paradigm | existing vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
-| display_paradigm | external coder 1 vs external coder 2 | 61/62 (98.4%) | 0.978 | 1 |
-| control_subtype | existing vs external coder 1 | 53/62 (85.5%) | 0.841 | 9 |
-| control_subtype | existing vs external coder 2 | 55/62 (88.7%) | 0.876 | 7 |
-| control_subtype | external coder 1 vs external coder 2 | 60/62 (96.8%) | 0.964 | 2 |
-| deployment_scenario | existing vs external coder 1 | 52/62 (83.9%) | 0.726 | 10 |
-| deployment_scenario | existing vs external coder 2 | 52/62 (83.9%) | 0.726 | 10 |
-| deployment_scenario | external coder 1 vs external coder 2 | 62/62 (100.0%) | 1.000 | 0 |
+| display_paradigm | existing vs independent coder 1 | 61/62 (98.4%) | 0.978 | 1 |
+| display_paradigm | existing vs independent coder 2 | 62/62 (100.0%) | complete raw agreement | 0 |
+| display_paradigm | independent coder 1 vs independent coder 2 | 61/62 (98.4%) | 0.978 | 1 |
+| control_subtype | existing vs independent coder 1 | 53/62 (85.5%) | 0.841 | 9 |
+| control_subtype | existing vs independent coder 2 | 55/62 (88.7%) | 0.876 | 7 |
+| control_subtype | independent coder 1 vs independent coder 2 | 60/62 (96.8%) | 0.964 | 2 |
+| deployment_scenario | existing vs independent coder 1 | 52/62 (83.9%) | 0.726 | 10 |
+| deployment_scenario | existing vs independent coder 2 | 52/62 (83.9%) | 0.726 | 10 |
+| deployment_scenario | independent coder 1 vs independent coder 2 | 62/62 (100.0%) | complete raw agreement | 0 |
 
 ## Three-Coder Fleiss Kappa
 
@@ -32,7 +32,7 @@ This file preserves the normalized taxonomy recoding audit for the 62-system cor
 
 ## Display-Paradigm Disagreements
 
-- PATCH: existing=Procedural; external1=Agentic; external2=Procedural
+- PATCH: existing=Procedural; independent coder 1=Agentic; independent coder 2=Procedural
 
 ## Scenario-Label Adjudication Note
 
