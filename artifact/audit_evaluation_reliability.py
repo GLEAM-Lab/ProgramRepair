@@ -3,9 +3,10 @@
 
 This script is intentionally conservative. It scans the full-text cache for the
 66 systems used in the manuscript and exports candidate evidence snippets for
-two manuscript-facing reliability dimensions:
+three manuscript-facing reliability dimensions:
 
-* explicit contamination / data-leakage discussion or control; and
+* explicit contamination / data-leakage discussion or control;
+* active leakage mitigation or diagnostic control; and
 * validation beyond public benchmark tests (e.g., hidden/additional tests,
   manual/expert review, sanitizer/exploit/static-analyzer validation).
 
@@ -151,6 +152,38 @@ LEAKAGE_LABELS = {
     "VulDebugger": ("yes", "data leakage concerns", "Compares against conversation-only LLM patches to address leakage concerns."),
     "SpecRover": ("yes", "risk of data leak", "Counts syntactically identical ground-truth patches to evaluate memorization risk."),
     "SWE-Agent M": ("yes", "Temporal analysis does not reveal", "Performs temporal analysis for possible solution leakage."),
+}
+
+
+ACTIVE_LEAKAGE_CONTROL_SYSTEMS = {
+    "Jiang et al.",
+    "VulMaster",
+    "RepairLLaMA",
+    "MORepair",
+    "Luo et al.",
+    "Li et al.",
+    "Ruiz et al.",
+    "NARRepair",
+    "RePair",
+    "SWE-RL",
+    "AdaPatcher",
+    "Vul-R2",
+    "NTR",
+    "Tian et al.",
+    "RLCE",
+    "DsRepair",
+    "D4C",
+    "Appatch",
+    "Dr.Fix",
+    "ChatRepair",
+    "ThinkRepair",
+    "ContrastRepair",
+    "CREF",
+    "Agentless",
+    "KGCompass",
+    "PredicateFix",
+    "IntDiagSolver",
+    "SWE-Agent M",
 }
 
 
@@ -321,6 +354,9 @@ def main() -> None:
                 "leakage_evidence_page": leakage_page,
                 "leakage_evidence": leakage_evidence,
                 "leakage_notes": leakage_note,
+                "active_leakage_mitigation_or_control": "yes"
+                if system in ACTIVE_LEAKAGE_CONTROL_SYSTEMS
+                else "no",
                 "extra_validation_beyond_public_tests": validation_label,
                 "validation_type": validation_type,
                 "validation_evidence_page": validation_page,
@@ -341,6 +377,7 @@ def main() -> None:
         "leakage_evidence_page",
         "leakage_evidence",
         "leakage_notes",
+        "active_leakage_mitigation_or_control",
         "extra_validation_beyond_public_tests",
         "validation_type",
         "validation_evidence_page",
@@ -353,6 +390,7 @@ def main() -> None:
         writer.writerows(final_rows)
 
     leakage_count = sum(row["leakage_discussion_or_control"] == "yes" for row in final_rows)
+    active_leakage_count = sum(row["active_leakage_mitigation_or_control"] == "yes" for row in final_rows)
     validation_count = sum(row["extra_validation_beyond_public_tests"] == "yes" for row in final_rows)
 
     existing_rows: list[dict[str, str]] = []
@@ -364,6 +402,8 @@ def main() -> None:
                 if row["risk_factor"]
                 not in {
                     "explicit_contamination_or_leakage_discussion_or_control",
+                    "explicit_contamination_or_leakage_discussion",
+                    "active_leakage_mitigation_or_control",
                     "hidden_manual_or_independent_validation_beyond_public_tests",
                 }
             ]
@@ -371,12 +411,20 @@ def main() -> None:
     existing_rows.extend(
         [
             {
-                "risk_factor": "explicit_contamination_or_leakage_discussion_or_control",
+                "risk_factor": "explicit_contamination_or_leakage_discussion",
                 "coding_criterion": "The paper explicitly discusses or controls benchmark, pretraining, train/test, temporal, or corpus contamination/leakage risk.",
                 "count": str(leakage_count),
                 "denominator": str(len(systems)),
                 "source": "evaluation_reliability_by_system.csv",
-                "interpretation": "Counts explicit reporting only; discussion-only acknowledgments and concrete controls are both recorded because both affect protocol transparency.",
+                "interpretation": "Counts explicit reporting about contamination or leakage risk; this includes both discussion-only acknowledgments and papers that also report a concrete mitigation or diagnostic check.",
+            },
+            {
+                "risk_factor": "active_leakage_mitigation_or_control",
+                "coding_criterion": "The paper reports a concrete leakage-mitigation or diagnostic control, such as decontamination, temporal or train/test split design, benchmark construction to avoid overlap, dataset exclusion, or explicit leakage analysis tied to the reported evaluation.",
+                "count": str(active_leakage_count),
+                "denominator": str(len(systems)),
+                "source": "evaluation_reliability_by_system.csv",
+                "interpretation": "Subset of the explicit-reporting row; excludes papers that only acknowledge leakage risk without a concrete mitigation or diagnostic check.",
             },
             {
                 "risk_factor": "hidden_manual_or_independent_validation_beyond_public_tests",
@@ -399,6 +447,7 @@ def main() -> None:
     print(f"Wrote {OUT.relative_to(ROOT)} with candidate snippets for {len(systems)} systems")
     print(f"Wrote {FINAL_OUT.relative_to(ROOT)}")
     print(f"Leakage reporting/control: {leakage_count}/{len(systems)}")
+    print(f"Active leakage mitigation/control: {active_leakage_count}/{len(systems)}")
     print(f"Extra validation beyond public tests: {validation_count}/{len(systems)}")
 
 

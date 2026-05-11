@@ -49,7 +49,7 @@ Included files:
 - `audit_evaluation_reliability.py`: script that links the 66 retained systems to local full-text PDFs, extracts candidate evidence snippets, and regenerates the leakage/validation rows in `evaluation_reliability_risk_coding.csv`.
 - `evaluation_reliability_candidate_snippets.csv`: keyword-based candidate snippets for contamination/leakage and validation evidence, used as an inspection aid rather than as final labels.
 - `evaluation_reliability_by_system.csv`: final per-system evidence table for explicit contamination/leakage reporting and validation beyond ordinary public tests.
-- `evaluation_reliability_risk_coding.csv`: corpus-level coding behind the manuscript's evaluation-reliability risk table, including perfect fault localization, train/test split, contamination/leakage reporting, narrowed scope, metric heterogeneity, comparability tier, acceptance-gate counts, and extra-validation counts.
+- `evaluation_reliability_risk_coding.csv`: corpus-level coding behind the manuscript's evaluation-reliability risk table, including perfect fault localization, train/test split, explicit contamination/leakage discussion, active leakage mitigation/control, narrowed scope, metric heterogeneity, comparability tier, acceptance-gate counts, and extra-validation counts.
 - `challenge_evidence_profile.csv`: sub-challenge evidence profile used in Section 10, linking each open challenge to corpus counts, source files, and representative systems.
 - `version_status_audit.md`: arXiv-to-venue status audit showing which retained studies now have verified archival publications and which remain arXiv-only in the current bibliography.
 
