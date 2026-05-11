@@ -16,7 +16,7 @@ This audit is a taxonomy robustness check. It is separate from the 474-record sc
 3. Compute agreement before adjudication with `compute_annotation_agreement.py`.
 4. Adjudicate the remaining boundary cases against the full texts before merging the labels into the current 66-system coding sheet.
 
-The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66_audit.csv`, which integrates the 62-system independent-pair recoding sheet and the four later-system independent recodings into one normalized 66-system audit table.
+The current manuscript-facing pairwise statistics use `taxonomy_independent_pair_66_audit.csv`, which integrates the 62-system independent-pair recoding sheet and the four later-system independent recodings into one normalized 66-system audit table.
 
 ## Result
 
@@ -50,4 +50,4 @@ The main consequence of this audit is that the taxonomy is stable at the display
 
 ## Follow-up path
 
-The source annotation file is `taxonomy_external_pair_66_audit.csv`, and the agreement numbers above are reproduced by `compute_annotation_agreement.py`.
+The source annotation file is `taxonomy_independent_pair_66_audit.csv`, and the agreement numbers above are reproduced by `compute_annotation_agreement.py`.

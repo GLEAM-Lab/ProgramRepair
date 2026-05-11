@@ -1,11 +1,11 @@
 # Human Taxonomy Annotation Agreement Summary
 
-This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_external_pair_66_agreement_summary.md` and `taxonomy_external_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet; perfect raw-agreement rows are noted as complete raw agreement rather than emphasized as perfect kappa. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
+This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_independent_pair_66_agreement_summary.md` and `taxonomy_independent_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet; perfect raw-agreement rows are noted as complete raw agreement rather than emphasized as perfect kappa. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
 
 ## Inputs
 
 - `taxonomy_assignment_audit.csv` and `scenario_assignment_audit.csv`: released final coding tables. The agreement calculation uses the overlapping 62 systems for which independent recodings were collected.
-- `human_taxonomy_annotation_external_pair.csv`: normalized paired two-independent-coder sheet compatible with `compute_annotation_agreement.py`; the missing `RepairCAT` row in one raw handoff sheet was filled using the same labels as the other independent coder before this normalized public export was produced.
+- `human_taxonomy_annotation_independent_pair.csv`: normalized paired two-independent-coder sheet compatible with `compute_annotation_agreement.py`; the public export normalizes the available paired annotations to the manuscript codebook before agreement calculation.
 - `taxonomy_three_coder_audit.csv`: three-coder audit table combining the existing coding sheet with both independent recodings; running `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_three_coder_audit.csv` recomputes the pairwise Cohen-kappa and Fleiss-kappa values below.
 
 ## Pairwise Agreement
@@ -55,4 +55,4 @@ The 10 scenario-boundary cases were adjudicated against benchmark scope and full
 
 ## Scope Note
 
-This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as the manuscript-facing final-corpus taxonomy-agreement calculation. The current 66-system independent-coder audit, including the four later corpus additions, is reported separately in `taxonomy_external_pair_66_agreement_summary.md`.
+This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as the manuscript-facing final-corpus taxonomy-agreement calculation. The current 66-system independent-coder audit, including the four later corpus additions, is reported separately in `taxonomy_independent_pair_66_agreement_summary.md`.

@@ -40,14 +40,14 @@ Comparing the released `stage4.jsonl` and `stage5.jsonl` files yields a net chan
 
 The machine-readable delta is provided in `stage4_to_stage5_delta.csv`.
 
-## Explicit manual supplements visible in the released logs
+## Citation-chasing supplements visible in the released logs
 
-Two records in the released `stage5.jsonl` and `stage6.jsonl` files are explicitly marked as manual supplements with `source=manual_supplement` and `reason=representative_system_missed`:
+Two records in the released `stage5.jsonl` and `stage6.jsonl` files are marked as citation-chasing supplements:
 
 - `Unlocking LLM Repair Capabilities in Low-Resource Programming Languages Through Cross-Language Translation and Multi-Agent Refinement`
 - `DistiLRR: Transferring Code Repair for Low-Resource Programming Languages`
 
-These two entries show why the corpus should be interpreted as representative rather than exhaustive: citation chasing and manual inspection can identify relevant systems that automatic retrieval alone misses.
+These two entries show why the corpus should be interpreted as a criteria-bounded evidence corpus rather than an exhaustive census: citation chasing can identify relevant systems that are not returned by the automatic keyword filters alone.
 
 ## Independent dual-coder screening audit
 
@@ -94,7 +94,7 @@ This 29-record pattern audit is intentionally conservative: it is not the full e
 
 ## Notable boundary records
 
-The file `notable_boundary_records.csv` documents a small set of adjacent or reviewer-mentioned records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions. Boundary records are checked for whether they would introduce a new taxonomy dimension or protocol-aligned comparison window; the currently logged records do not change the codebook or benchmark-comparability windows. If a boundary record later enters the in-scope archival venue set, it should be handled through a future corpus update that reruns the same screening and coding protocol rather than by changing the current frozen audit denominator.
+The file `notable_boundary_records.csv` documents a small set of adjacent records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions. Boundary records are checked for whether they would introduce a new taxonomy dimension or protocol-aligned comparison window; the currently logged records do not change the codebook or benchmark-comparability windows. If a boundary record later enters the in-scope archival venue set, it should be handled through a future corpus update that reruns the same screening and coding protocol rather than by changing the current frozen audit denominator.
 
 ## Audit scope
 

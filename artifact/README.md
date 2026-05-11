@@ -6,7 +6,7 @@ Included files:
 
 - `manuscript_artifact_mapping.md`: artifact-side index that maps manuscript counts, audit statistics, benchmark tables, and challenge evidence to their source files and reproduction scripts.
 - `search_keywords_and_filters.md`: readable map from the paper's search description to the executable keyword lists and screening functions in the repo-root script `remote_results/pipeline.py`.
-- `screening_transparency.md`: exact counts for the released screening stages, the stage-to-stage delta, the explicit manual supplements, and the screening-agreement evidence used in the current manuscript.
+- `screening_transparency.md`: exact counts for the released screening stages, the stage-to-stage delta, the citation-chasing supplements, and the screening-agreement evidence used in the current manuscript.
 - `reproduce_screening_counts.py`: script that reproduces the current screening-flow counts from the released stage files and current corpus decisions.
 - `screening_count_reproduction_2026-05-01.json`: machine-readable output from `reproduce_screening_counts.py`.
 - `screening_annotation_instructions.md`: English instructions for independently screening the 474 candidate records under the released inclusion/exclusion protocol.
@@ -17,7 +17,7 @@ Included files:
 - `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
 - `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
-- `notable_boundary_records.csv`: checked boundary records that are relevant to reviewer questions or adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
+- `notable_boundary_records.csv`: checked boundary records that are relevant to adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.
@@ -28,11 +28,11 @@ Included files:
 - `human_taxonomy_annotation_instructions.md`: handoff instructions for collecting human double-coding evidence for the current manuscript audit.
 - `human_taxonomy_annotation_template.csv`: blank annotation template aligned with the current taxonomy and scenario fields.
 - `compute_annotation_agreement.py`: lightweight script for computing agreement statistics and enumerating disagreement rows once two coders have filled the template.
-- `human_taxonomy_annotation_external_pair.csv`: normalized paired annotation sheet for the two independent taxonomy coders, compatible with `compute_annotation_agreement.py`.
+- `human_taxonomy_annotation_independent_pair.csv`: normalized paired annotation sheet for the two independent taxonomy coders, compatible with `compute_annotation_agreement.py`.
 - `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two independent recoding sheets.
-- `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the manuscript-facing final-corpus audit is superseded by `taxonomy_external_pair_66_agreement_summary.md`.
-- `taxonomy_external_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus.
-- `taxonomy_external_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting independent-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
+- `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the manuscript-facing final-corpus audit is superseded by `taxonomy_independent_pair_66_agreement_summary.md`.
+- `taxonomy_independent_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus.
+- `taxonomy_independent_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting independent-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.
 - `benchmark_protocol_summary.md`: corpus-level summary of metrics, assumptions, and benchmark concentration derived from the 66-system audit table used in the paper.
 - `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the current corpus-context and benchmark-protocol synthesis.
@@ -58,6 +58,6 @@ Scope note:
 - These files document the released stage logs, current screening decisions, agreement summaries, and coding rules used by the manuscript.
 - Current screening agreement is reported from the released 474-record adjudicated selection files listed above.
 - Screening-decision agreement is reproducible from `screening_agreement_labels_474.csv` by running `python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv`.
-- Manuscript-facing taxonomy agreement is reported from `taxonomy_external_pair_66_audit.csv` and summarized in `taxonomy_external_pair_66_agreement_summary.md`; for deterministic auxiliary-tag and scenario fields, the manuscript reports complete raw agreement (66/66) rather than emphasizing perfect kappa values. The older 62-system three-coder file is retained as an audit trail.
+- Manuscript-facing taxonomy agreement is reported from `taxonomy_independent_pair_66_audit.csv` and summarized in `taxonomy_independent_pair_66_agreement_summary.md`; for deterministic auxiliary-tag and scenario fields, the manuscript reports complete raw agreement (66/66) rather than emphasizing perfect kappa values. The older 62-system three-coder file is retained as an audit trail.
 - The taxonomy sensitivity audit is a separate robustness check for taxonomy coding stability.
 - Evaluation-reliability leakage and extra-validation counts are reproducible from the local retained-paper PDFs. If `artifact/pdf_text_cache/manifest.csv` is absent, first install the extraction dependency with `python3 -m pip install -r artifact/requirements.txt`, run `python3 artifact/extract_pdf_text_cache.py`, and then run `python3 artifact/audit_evaluation_reliability.py`.

@@ -8,7 +8,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 |---|---|---|
 | Search keyword families and automatic filters | `search_keywords_and_filters.md`; `remote_results/pipeline.py` | Documents query terms, filter rules, and the executable filtering logic. |
 | Screening-flow counts: 2,317 -> 1,020 -> 752 -> 461 -> 474 -> 66 | `reproduce_screening_counts.py`; `screening_count_reproduction_2026-05-01.json`; `screening_transparency.md` | Run `python3 artifact/reproduce_screening_counts.py`. |
-| Stage delta from benchmark filter to snowballing/manual supplements | `stage4_to_stage5_delta.csv`; `screening_transparency.md` | Documents the net `+13` records between released stage files. |
+| Stage delta from benchmark filter to snowballing/citation-chasing supplements | `stage4_to_stage5_delta.csv`; `screening_transparency.md` | Documents the net `+13` records between released stage files. |
 | Final 474-record screening decisions | `selection_reference_474_final_adjudicated.csv`; `screening_agreement_labels_474.csv` | Final adjudicated include/exclude labels for the 474 full-text candidates. |
 | Screening agreement: 467/474 raw agreement, Cohen's kappa 0.9372 | `compute_screening_agreement.py`; `screening_agreement_labels_474.csv`; `selection_reference_474_final_adjudicated_summary.json` | Run `python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv`. |
 
@@ -18,7 +18,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 |---|---|---|
 | Full-text exclusion breakdown totaling 408 excluded records | `full_text_exclusion_breakdown.csv`; `selection_reference_474_final_adjudicated.csv`; `screening_transparency.md` | Category counts sum to the 408 excluded records in the final 474-record adjudicated sheet. |
 | Conservative examples of clear exclusions | `exclusion_pattern_audit.csv`; `screening_transparency.md` | Provides high-confidence examples only; it is not the full exclusion distribution. |
-| Notable adjacent or reviewer-mentioned boundary records | `notable_boundary_records.csv`; `screening_transparency.md` | Documents checked records that are not counted in the final 66-system corpus, including issue-resolution records outside the finalized auditable candidate pool and whether each boundary record would change the taxonomy dimensions or protocol-comparison windows. |
+| Notable adjacent boundary records | `notable_boundary_records.csv`; `screening_transparency.md` | Documents checked records that are not counted in the final 66-system corpus, including issue-resolution records outside the finalized auditable candidate pool and whether each boundary record would change the taxonomy dimensions or protocol-comparison windows. |
 
 ## Taxonomy and Scenario Coding
 
@@ -27,7 +27,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 | Multidimensional taxonomy rules | `taxonomy_coding_guide.md` | Defines display paradigm, control subtype, auxiliary evidence tags, and scenario labels. |
 | Final 66-system taxonomy labels | `taxonomy_assignment_audit.csv` | Per-system display paradigm, control subtype, benchmark family, metric, and assumptions. |
 | Deployment-scenario counts | `scenario_assignment_audit.csv` | Source for the deployment-scenario count table replacing the earlier qualitative fit figure. |
-| 66-system independent-coder taxonomy audit | `taxonomy_external_pair_66_audit.csv`; `taxonomy_external_pair_66_agreement_summary.md` | Run `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_external_pair_66_audit.csv`. |
+| 66-system independent-coder taxonomy audit | `taxonomy_independent_pair_66_audit.csv`; `taxonomy_independent_pair_66_agreement_summary.md` | Run `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_independent_pair_66_audit.csv`. |
 | Historical 62-system three-coder audit trail | `taxonomy_three_coder_audit.csv`; `taxonomy_three_coder_agreement_summary.md` | Retained as an audit trail; manuscript-facing final-corpus statistics use the 66-system files above. |
 | Sensitivity and boundary-case discussion | `taxonomy_sensitivity_audit.md` | Documents remaining hybrid edge cases such as PATCH and TSAPR. |
 

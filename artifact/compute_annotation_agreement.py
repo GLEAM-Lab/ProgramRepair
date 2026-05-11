@@ -176,9 +176,9 @@ def three_coder_pair(rows: list[dict[str, str]], field: str, left_prefix: str, r
 
 def print_three_coder_summary(rows: list[dict[str, str]]) -> None:
     pair_names = [
-        ("existing vs external coder 1", "original", "coder_2"),
-        ("existing vs external coder 2", "original", "coder_3"),
-        ("external coder 1 vs external coder 2", "coder_2", "coder_3"),
+        ("existing vs independent coder 1", "original", "coder_2"),
+        ("existing vs independent coder 2", "original", "coder_3"),
+        ("independent coder 1 vs independent coder 2", "coder_2", "coder_3"),
     ]
 
     print("Three-coder taxonomy agreement summary")

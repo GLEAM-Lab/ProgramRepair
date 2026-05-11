@@ -3,7 +3,7 @@
 
 This script is intentionally conservative. It scans the full-text cache for the
 66 systems used in the manuscript and exports candidate evidence snippets for
-two reviewer-facing reliability dimensions:
+two manuscript-facing reliability dimensions:
 
 * explicit contamination / data-leakage discussion or control; and
 * validation beyond public benchmark tests (e.g., hidden/additional tests,

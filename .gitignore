@@ -4,7 +4,7 @@ now
 cache/
 data/
 
-# Historical paper/source snapshots and Overleaf working copies
+# Local manuscript/source working copies
 origin_submission/
 revised_submission/
 diff_submission/
@@ -16,7 +16,7 @@ artifact/overleaf_before_major_source_2026-05-01/
 artifact/revised_submission_base_for_new_paper_diff_2026-05-01/
 artifact/frozen_results_2025-10-31/
 
-# Draft manual diffs, patch plans, and review working notes
+# Draft manual diffs, patch plans, and local working notes
 *_overleaf_*.txt
 overleaf_*.txt
 *_overleaf_*.patch
@@ -69,7 +69,6 @@ artifact/benchmark_rq3_*manual_diff_zh_*.txt
 artifact/extract_pdf_benchmark_mentions.py
 artifact/pdf_text_cache/
 artifact/annotation_to_send/
-artifact/fulltexts/
 .venv-pdf/
 *:Zone.Identifier
 

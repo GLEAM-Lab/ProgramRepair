@@ -24,7 +24,6 @@ ROOT = Path(__file__).resolve().parents[1]
 SELECTION_CSV = ROOT / "artifact" / "selection_reference_474_final_adjudicated.csv"
 SOURCE_DIR = ROOT / "figure_sources"
 PAPER_FIG_DIRS = [
-    ROOT / "overleaf_latest" / "repo" / "figures",
     ROOT / "revised_submission" / "figures",
     ROOT / "diff_submission" / "figures",
 ]

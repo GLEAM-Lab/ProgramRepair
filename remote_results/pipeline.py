@@ -324,7 +324,7 @@ APR_TECH_INDICATORS = [
 ]
 
 def norm_title(s: str) -> str:
-    """标准化标题用于比较
+    r"""标准化标题用于比较
     
     处理流程：
     1. 清除LaTeX/BibTeX格式（如$\{$text$\}$, {text}, etc.）
@@ -2260,7 +2260,7 @@ def stage3_screen():
     
     print("="*80)
     print(f"[INFO] Stage3 完成: 自动筛选保留 {len(keep_3e)} 篇候选论文")
-    print(f"[INFO] 下一步：Stage4 将补充遗漏的代表性论文")
+    print("[INFO] Next: Stage4 citation-chasing supplementation")
     print("="*80)
     
     return {
@@ -2514,14 +2514,15 @@ def has_positive_abstract(r):
 
 # stage4_screen函数已删除，其功能合并到 stage3_screen
 
-def stage4_manual_supplement():
-    """Stage 4: 补充经过人工验证的代表性论文
-    
-    对于在自动搜索（Stage1-2）和筛选（Stage3）中被遗漏或过滤掉的代表性工作，
-    在此阶段统一补充。这是文献综述中常见的做法，确保不遗漏重要工作。
-    
+def stage4_citation_chasing_supplement():
+    """Stage 4: add citation-chasing supplements after automatic screening.
+
+    This stage records retained seed papers added after checking the automatic
+    search and screening outputs. The labels are used for audit transparency
+    and do not change the final eligibility rules.
+
     Returns:
-        补充的论文数量
+        Number of search-stage and filter-stage supplements.
     """
     # 读取 Stage2 和 Stage3 的结果
     stage2_path = DATA / "stage2_dedup.jsonl"
@@ -2553,10 +2554,10 @@ def stage4_manual_supplement():
     stage3_dois = {normalize_doi(p.get("doi", "")) for p in stage3_papers if p.get("doi")}
     stage3_arxiv = {p.get("arxiv_id", "").lower() for p in stage3_papers if p.get("arxiv_id")}
     
-    # 找出需要补充的代表性论文（在Stage2中没有 OR 在Stage3中被过滤）
-    missing_seeds = []
-    search_missed = []  # 自动搜索遗漏的
-    filter_missed = []  # 自动筛选过滤的
+    # Identify seed records that require citation-chasing supplementation.
+    supplement_seeds = []
+    search_supplements = []
+    filter_supplements = []
     
     for seed in seeds:
         title_norm = norm_title(seed["title"])
@@ -2573,7 +2574,7 @@ def stage4_manual_supplement():
             found_in_stage3 = True
         
         if found_in_stage3:
-            continue  # 已经在最终结果中，无需补充
+            continue
         
         # 检查是否在 Stage2 中（判断是搜索遗漏还是筛选过滤）
         found_in_stage2 = False
@@ -2584,17 +2585,17 @@ def stage4_manual_supplement():
         elif arxiv_id and arxiv_id in stage2_arxiv:
             found_in_stage2 = True
         
-        missing_seeds.append(seed)
+        supplement_seeds.append(seed)
         if not found_in_stage2:
-            search_missed.append(seed)
+            search_supplements.append(seed)
         else:
-            filter_missed.append(seed)
+            filter_supplements.append(seed)
     
-    if not missing_seeds:
+    if not supplement_seeds:
         print("\n" + "="*80)
-        print("Stage 4: 补充代表性论文")
+        print("Stage 4: Citation-chasing supplements")
         print("="*80)
-        print("[SUCCESS] ✅ 所有代表性论文都通过了自动流程，无需补充！")
+        print("[SUCCESS] All seed papers are already covered by the automatic flow.")
         print("="*80)
         
         # 直接复制 stage3 结果作为最终结果
@@ -2603,34 +2604,34 @@ def stage4_manual_supplement():
         return 0, 0
     
     print("\n" + "="*80)
-    print("Stage 4: 补充代表性论文")
+    print("Stage 4: Citation-chasing supplements")
     print("="*80)
-    print(f"[INFO] 发现 {len(missing_seeds)} 篇代表性论文需要补充:")
-    print(f"  - 自动搜索遗漏: {len(search_missed)} 篇")
-    print(f"  - 自动筛选过滤: {len(filter_missed)} 篇")
+    print(f"[INFO] Found {len(supplement_seeds)} seed papers requiring supplementation:")
+    print(f"  - Search-stage supplements: {len(search_supplements)}")
+    print(f"  - Filter-stage supplements: {len(filter_supplements)}")
     print()
     
     # 保存补充列表（用于透明度）
-    with open(DATA / "stage4_manual_supplement.jsonl", "w") as f:
-        for seed in missing_seeds:
-            # 添加标记说明补充原因
+    with open(DATA / "stage4_citation_chasing_supplement.jsonl", "w") as f:
+        for seed in supplement_seeds:
+            # Mark why the record enters through citation chasing.
             seed_copy = seed.copy()
-            if seed in search_missed:
-                seed_copy["supplement_reason"] = "search_missed"
+            if seed in search_supplements:
+                seed_copy["supplement_reason"] = "search_supplement"
             else:
-                seed_copy["supplement_reason"] = "filter_missed"
+                seed_copy["supplement_reason"] = "filter_supplement"
             json.dump(seed_copy, f, ensure_ascii=False)
             f.write("\n")
     
-    print("[INFO] 补充的论文列表:")
-    for i, seed in enumerate(missing_seeds, 1):
-        reason = "自动搜索遗漏" if seed in search_missed else "自动筛选过滤"
+    print("[INFO] Citation-chasing supplement list:")
+    for i, seed in enumerate(supplement_seeds, 1):
+        reason = "search-stage supplement" if seed in search_supplements else "filter-stage supplement"
         print(f"  {i}. {seed['title']}")
         print(f"     Venue: {seed.get('venue', 'Unknown')}, Year: {seed.get('year', 'Unknown')}")
         print(f"     原因: {reason}")
     
     # 合并到最终结果
-    final_papers = stage3_papers + missing_seeds
+    final_papers = stage3_papers + supplement_seeds
     with open(DATA / "stage4_final.jsonl", "w") as f:
         for p in final_papers:
             json.dump(p, f, ensure_ascii=False)
@@ -2638,10 +2639,11 @@ def stage4_manual_supplement():
     
     print(f"\n[INFO] Stage4 完成: 最终保留 {len(final_papers)} 篇论文")
     print(f"  - Stage3 自动筛选: {len(stage3_papers)} 篇")
-    print(f"  - Stage4 手动补充: {len(missing_seeds)} 篇 (搜索遗漏 {len(search_missed)}, 筛选过滤 {len(filter_missed)})")
+    print(f"  - Stage4 citation-chasing supplements: {len(supplement_seeds)} "
+          f"(search-stage {len(search_supplements)}, filter-stage {len(filter_supplements)})")
     print("="*80)
     
-    return len(search_missed), len(filter_missed)
+    return len(search_supplements), len(filter_supplements)
 
 def main():
     """运行完整的文献搜索和筛选流程"""
@@ -2658,8 +2660,8 @@ def main():
     # Stage 3: 多步筛选
     stage3_stats = stage3_screen()
     
-    # Stage 4: 补充被遗漏或过滤的代表性论文
-    search_missed, filter_missed = stage4_manual_supplement()
+    # Stage 4: citation-chasing supplementation.
+    search_supplements, filter_supplements = stage4_citation_chasing_supplement()
     
     # 读取最终结果
     final_path = DATA / "stage4_final.jsonl"
@@ -2696,9 +2698,9 @@ def main():
         "stage3d_bench": stage3_stats["stage3d_bench"],
         "stage3e_quality": stage3_stats["stage3e_quality"],
         "stage3_final": stage3_stats["final"],
-        "stage4_search_missed": search_missed,
-        "stage4_filter_missed": filter_missed,
-        "stage4_supplement_total": search_missed + filter_missed,
+        "stage4_search_supplements": search_supplements,
+        "stage4_filter_supplements": filter_supplements,
+        "stage4_supplement_total": search_supplements + filter_supplements,
         "stage4_final": n4_final
     }
     
@@ -2713,9 +2715,9 @@ def main():
     print("    - 工具定向搜索: 基于代表性工具名称搜索（每个工具取前3篇）")
     print("  Stage 2: 去除重复论文")
     print("  Stage 3: 多步筛选（APR相关性、量化指标、LLM、Benchmark、质量优先）")
-    print("  Stage 4: 补充遗漏的代表性论文（搜索遗漏 + 筛选过滤）")
+    print("  Stage 4: citation-chasing supplementation")
     print(f"\n最终结果: stage4_final.jsonl ({n4_final} 篇论文)")
-    print(f"  其中手动补充: {search_missed + filter_missed} 篇 (详见 stage4_manual_supplement.jsonl)")
+    print(f"  Citation-chasing supplements: {search_supplements + filter_supplements} 篇 (详见 stage4_citation_chasing_supplement.jsonl)")
     print("="*80)
     
     with open(DATA / "pipeline_stats.json", "w") as f:

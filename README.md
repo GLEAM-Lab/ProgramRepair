@@ -17,8 +17,8 @@ The main auditable files for the current 66-system corpus are:
 - `artifact/screening_agreement_labels_474.csv`
 - `artifact/compute_screening_agreement.py`
 - `artifact/taxonomy_assignment_audit.csv`
-- `artifact/taxonomy_three_coder_audit.csv`
-- `artifact/taxonomy_three_coder_agreement_summary.md`
+- `artifact/taxonomy_independent_pair_66_audit.csv`
+- `artifact/taxonomy_independent_pair_66_agreement_summary.md`
 - `artifact/scenario_assignment_audit.csv`
 - `artifact/benchmark_protocol_summary.md`
 - `artifact/version_status_audit.md`
@@ -32,5 +32,5 @@ The main auditable files for the current 66-system corpus are:
 ## Notes
 
 - The public artifact focuses on auditable metadata, screening decisions, taxonomy assignments, benchmark summaries, and the released retrieval/filtering stages.
-- Local submission-package folders, review-response drafts, Overleaf snapshots, raw full-text PDFs, and temporary annotation handoff files are excluded from Git tracking.
-- The old full-text PDF library is intentionally not part of the public artifact; the auditable corpus is represented through metadata and coding tables under `artifact/`.
+- Local submission-package folders, draft response files, temporary annotation handoff files, and generated text caches are excluded from Git tracking.
+- The retained-paper full-text PDFs are included as auditable source material. The structured audit data, reproduction scripts, and table-to-file mappings under `artifact/` remain the authoritative interface for reproducing manuscript counts and labels.
