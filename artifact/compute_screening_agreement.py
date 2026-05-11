@@ -54,25 +54,25 @@ def main(argv: list[str]) -> int:
         return 2
 
     rows = load_rows(Path(argv[1]))
-    second_decisions = [normalize(row["second_coder_decision"]) for row in rows]
-    third_raw_decisions = [normalize(row["third_coder_raw_decision"]) for row in rows]
-    third_after_decisions = [normalize(row["third_coder_after_adjudication_decision"]) for row in rows]
+    coder_a_decisions = [normalize(row["audit_coder_a_decision"]) for row in rows]
+    coder_b_raw_decisions = [normalize(row["audit_coder_b_raw_decision"]) for row in rows]
+    coder_b_after_decisions = [normalize(row["audit_coder_b_after_adjudication_decision"]) for row in rows]
     final_decisions = [normalize(row["final_reference_decision"]) for row in rows]
 
     print("Screening agreement summary")
     print("===========================")
-    print_pair("second coder vs third coder raw include/exclude", second_decisions, third_raw_decisions)
-    print_consistency("third coder after adjudication vs final reference", third_after_decisions, final_decisions)
+    print_pair("audit coder A vs audit coder B raw include/exclude", coder_a_decisions, coder_b_raw_decisions)
+    print_consistency("audit coder B after adjudication vs final reference", coder_b_after_decisions, final_decisions)
 
     print()
     disagreements = [
-        row for row in rows if normalize(row["second_coder_decision"]) != normalize(row["third_coder_raw_decision"])
+        row for row in rows if normalize(row["audit_coder_a_decision"]) != normalize(row["audit_coder_b_raw_decision"])
     ]
-    print(f"Raw second/third coder disagreements: {len(disagreements)}")
+    print(f"Raw two-coder disagreements: {len(disagreements)}")
     for row in disagreements:
         print(
-            f"- {row['record_id']}: second={row['second_coder_decision']}, "
-            f"third_raw={row['third_coder_raw_decision']} | {row.get('adjudication_note', '')}"
+            f"- {row['record_id']}: coder_A={row['audit_coder_a_decision']}, "
+            f"coder_B_raw={row['audit_coder_b_raw_decision']} | {row.get('adjudication_note', '')}"
         )
 
     return 0

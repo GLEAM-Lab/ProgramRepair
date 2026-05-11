@@ -53,8 +53,8 @@ These two entries show why the corpus should be interpreted as a criteria-bounde
 
 The current manuscript reports a 474-record independent dual-coder screening audit based on `selection_reference_474_final_adjudicated.csv`, `screening_agreement_labels_474.csv`, and `selection_reference_474_final_adjudicated_summary.json`. This audit provides a fully auditable agreement check over the complete candidate pool using the released inclusion/exclusion protocol, and the adjudicated decisions form the final 66-system corpus used by the manuscript.
 
-- the second and third coders agreed on `467/474` raw include/exclude decisions before adjudication (Cohen's kappa `0.9372`);
-- the seven raw second/third-coder disagreements were adjudicated against the full texts and final eligibility criteria;
+- the two audit coders agreed on `467/474` raw include/exclude decisions before adjudication (Cohen's kappa `0.9372`);
+- the seven raw two-coder disagreements were adjudicated against the full texts and final eligibility criteria;
 - after adjudication, the final decision sheet contains `66` included and `408` excluded records.
 
 The include/exclude screening-decision statistics can be recomputed with:

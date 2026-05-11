@@ -1,4 +1,4 @@
-record_id,title,year,venue,doi,final_reference_decision,second_coder_decision,third_coder_raw_decision,third_coder_after_adjudication_decision,second_third_raw_match,third_after_adjudication_matches_final,adjudication_note
+record_id,title,year,venue,doi,final_reference_decision,audit_coder_a_decision,audit_coder_b_raw_decision,audit_coder_b_after_adjudication_decision,audit_coder_a_b_raw_match,audit_coder_b_after_adjudication_matches_final,adjudication_note
 S5-001,A 1Mb mixed-precision quantized encoder for image classification and patch-based compression,2025,arXiv,10.1109/tcsvt.2022.3145024,exclude,exclude,exclude,exclude,true,true,
 S5-002,A Case Study of LLM for Automated Vulnerability Repair: Assessing Impact of Reasoning and Patch Validation Feedback,2024,arXiv,,exclude,exclude,exclude,exclude,true,true,
 S5-003,A Comprehensive Survey of AI-Driven Advancements and Techniques in Automated Program Repair and Code Generation,2024,arXiv,,exclude,exclude,exclude,exclude,true,true,
@@ -95,7 +95,7 @@ S5-093,CEDAR: Silent Control Flow Error Detection via Heterogeneous Relation Lea
 S5-094,Challenging Bug Prediction and Repair Models with Synthetic Bugs,2023,arXiv,,exclude,exclude,exclude,exclude,true,true,
 S5-095,"Characterizing Multi-Hunk Patches: Divergence, Proximity, and LLM Repair Challenges",2025,ASE 2025,https://arxiv.org/pdf/2506.04418,exclude,exclude,exclude,exclude,true,true,
 S5-096,Checker Bug Detection and Repair in Deep Learning Libraries,2024,arXiv,,exclude,exclude,exclude,exclude,true,true,
-S5-097,CigaR: Cost-efficient Program Repair with LLMs,2024,arXiv.org,10.48550/arxiv.2402.06598,exclude,exclude,include,exclude,false,true,third-only inclusion; adjudicated as not retained in the core corpus
+S5-097,CigaR: Cost-efficient Program Repair with LLMs,2024,arXiv.org,10.48550/arxiv.2402.06598,exclude,exclude,include,exclude,false,true,coder-B-only inclusion; adjudicated as not retained in the core corpus
 S5-098,CIRCLE: Continual Repair across Programming Languages,2022,ISSTA 2022,10.1145/3533767.3534219,exclude,exclude,exclude,exclude,true,true,
 S5-099,CirFix: Automated Hardware Repair and its Real-World Applications,2023,TSE,10.1109/tse.2023.3269899,exclude,exclude,exclude,exclude,true,true,
 S5-100,CME propagation in the dynamically coupled space weather tool: COCONUT + EUHFORIA,2024,arXiv,,exclude,exclude,exclude,exclude,true,true,

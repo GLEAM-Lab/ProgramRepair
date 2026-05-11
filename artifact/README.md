@@ -13,9 +13,9 @@ Included files:
 - `screening_annotation_template_474.csv`: blank two-coder annotation sheet for screening the 474 full-text candidates in the current manuscript screening flow.
 - `screening_reference_labels_474.csv`: current final include/exclude reference labels for the same 474 candidates, derived from the retained studies, archival-status decisions, and the conservative exclusion audit.
 - `selection_reference_474_final_adjudicated.csv`: final adjudicated 474-record selection sheet used for the screening-agreement audit reported in the manuscript.
-- `selection_reference_474_final_adjudicated_summary.json`: machine-readable agreement summary for the final 474-record screening audit, including second/third coder agreement and a post-adjudication consistency check with the final reference corpus.
-- `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
-- `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
+- `selection_reference_474_final_adjudicated_summary.json`: machine-readable agreement summary for the final 474-record screening audit, including raw two-coder agreement and a post-adjudication consistency check with the final reference corpus.
+- `screening_agreement_labels_474.csv`: per-record audit-coder decisions and adjudication notes used to inspect the screening audit.
+- `compute_screening_agreement.py`: lightweight script for recomputing raw two-coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
 - `notable_boundary_records.csv`: checked boundary records that are relevant to adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
