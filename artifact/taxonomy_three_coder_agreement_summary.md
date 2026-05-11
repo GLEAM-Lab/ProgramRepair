@@ -1,6 +1,6 @@
 # Human Taxonomy Annotation Agreement Summary
 
-This file summarizes the normalized taxonomy recoding audit for the 62-system core set. The current manuscript-level taxonomy assignment covers 66 retained systems in `taxonomy_assignment_audit.csv`; the pairwise and Fleiss-kappa statistics below are limited to the 62-system recoding sheet for which two external annotation files are available. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
+This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_external_pair_66_agreement_summary.md` and `taxonomy_external_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
 
 ## Inputs
 
@@ -55,4 +55,4 @@ The 10 scenario-boundary cases were adjudicated against benchmark scope and full
 
 ## Scope Note
 
-This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as a new three-coder taxonomy-agreement calculation over all 66 retained systems. The four later corpus additions are classified in the final 66-system audit table using the same codebook, but they are not included in this three-coder kappa calculation because external recodings for those four systems were not collected.
+This audit assesses taxonomy coding stability for the 62-system core set. It should not be read as the screening-agreement statistic for all 474 current full-text candidates or as the manuscript-facing final-corpus taxonomy-agreement calculation. The current 66-system external-coder audit, including the four later corpus additions, is reported separately in `taxonomy_external_pair_66_agreement_summary.md`.

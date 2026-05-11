@@ -100,7 +100,7 @@ For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` a
 
 - Paradigm mix: Fine-Tuning=2, Prompting=3, Procedural=3, Agentic=1
 
-- Metric mix: EM=2, exact match=1, F1=1, success rate=2, correct repairs=1, CodeBLEU similarity=1, repair accuracy=1
+- Metric mix: EM=2, pass@1=2, full match=1, F1=1, pass@5=1, CodeBLEU similarity=1, success rate=1
 
 - Explicit `Perfect Fault Localization` assumptions: 0
 

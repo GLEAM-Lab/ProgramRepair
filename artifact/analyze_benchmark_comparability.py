@@ -460,7 +460,7 @@ def main() -> None:
         "G10_security_api_crash_fragmented": (
             "Vulnerability, API-misuse, and crash-repair datasets",
             "Security or robustness-oriented repair tasks.",
-            "Datasets and metrics are disjoint: exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.",
+            "Datasets and metrics are disjoint: full match/EM, F1, pass@1/pass@5, CodeBLEU similarity, success rate, and repair accuracy.",
             "Supports the conclusion that security/API/crash repair lacks a consolidated benchmark.",
         ),
         "G11_other_task_specific_or_singleton_benchmarks": (
@@ -647,13 +647,13 @@ def main() -> None:
     report.append("- **HumanEval-Java non-pass@10 rows**: NTR uses pass@100, ContrastRepair uses pass@40, and TracePrompt reports accuracy; these should remain protocol snapshots rather than being ranked against pass@10 PEFT rows.\n")
     report.append("- **EvalRepair-Java rows**: MORepair and Luo et al. both report pass@10 results on the same augmented benchmark family with CodeLlama 13B, but they are kept separate from HumanEval-Java because EvalRepair-Java adds EvalPlus tests and changes the oracle strength.\n")
     report.append("- **SWE-bench Verified/Other**: SWE-RL is a singleton Verified row, while SWE-Agent M and Learn-by-Interact use different SWE-bench variants or extra environment/trajectory conditions.\n")
-    report.append("- **Vulnerability/API/crash repair**: rows use disjoint datasets and task-specific metric families, including exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.\n")
+    report.append("- **Vulnerability/API/crash repair**: rows use disjoint datasets and metric families, including full match/EM, F1, pass@1/pass@5, CodeBLEU similarity, success rate, and repair accuracy.\n")
     report.append("- **Other benchmark family**: rows use smaller or domain-specific datasets; apparent metric matches can occur across different datasets and should not be ranked.\n")
     report.append("\n## Manuscript consistency checks\n")
     report.append("- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 16.67%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.\n")
     report.append("- The current Defects4J table records `KNOD` with base model `Not specified`, matching the audit value `/`.\n")
     report.append("- The current Defects4J table does not mark `TSAPR` as a Perfect-FL row, matching the final audit.\n")
-    report.append("- The current fragmented security/API table does not label security/API/crash success, exact-match, or repair-accuracy results as pass@k unless the source paper explicitly reports pass@k. It also records `Dr.Fix` with base model `GPT-4o`, matching the final audit.\n")
+    report.append("- The current fragmented security/API table follows the final audit metric labels, including the pass@1/pass@5 entries that satisfy the paper's candidate-budget definition and the remaining task-specific full-match, EM, F1, CodeBLEU, success-rate, and repair-accuracy entries.\n")
     REPORT.write_text("".join(report))
 
 

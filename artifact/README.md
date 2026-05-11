@@ -4,6 +4,7 @@ This directory supplements the survey repository with auditable files referenced
 
 Included files:
 
+- `manuscript_artifact_mapping.md`: artifact-side index that maps manuscript counts, audit statistics, benchmark tables, and challenge evidence to their source files and reproduction scripts.
 - `search_keywords_and_filters.md`: readable map from the paper's search description to the executable keyword lists and screening functions in the repo-root script `remote_results/pipeline.py`.
 - `screening_transparency.md`: exact counts for the released screening stages, the stage-to-stage delta, the explicit manual supplements, and the screening-agreement evidence used in the current manuscript.
 - `reproduce_screening_counts.py`: script that reproduces the current screening-flow counts from the released stage files and current corpus decisions.
@@ -15,6 +16,7 @@ Included files:
 - `selection_reference_474_final_adjudicated_summary.json`: machine-readable agreement summary for the final 474-record screening audit, including second/third coder agreement and a post-adjudication consistency check with the final reference corpus.
 - `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
 - `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
+- `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.
@@ -27,7 +29,9 @@ Included files:
 - `compute_annotation_agreement.py`: lightweight script for computing agreement statistics and enumerating disagreement rows once two coders have filled the template.
 - `human_taxonomy_annotation_external_pair.csv`: normalized paired annotation sheet for the two external taxonomy coders, compatible with `compute_annotation_agreement.py`.
 - `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two external recoding sheets.
-- `taxonomy_three_coder_agreement_summary.md`: pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the current 66-system taxonomy assignment is recorded in `taxonomy_assignment_audit.csv`.
+- `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the manuscript-facing final-corpus audit is superseded by `taxonomy_external_pair_66_agreement_summary.md`.
+- `taxonomy_external_pair_66_audit.csv`: normalized two-external-coder audit sheet over the final 66-system corpus.
+- `taxonomy_external_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting external-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.
 - `benchmark_protocol_summary.md`: corpus-level summary of metrics, assumptions, and benchmark concentration derived from the 66-system audit table used in the paper.
 - `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the current corpus-context and benchmark-protocol synthesis.
@@ -39,6 +43,7 @@ Included files:
 - `benchmark_passk_distribution_by_k.csv`: metric-family counts and system lists used to audit pass@1, pass@5, pass@10, and other reporting choices.
 - `benchmark_swebench_verified_context.csv`: SWE-bench Verified pass@1 rows available in surveyed-paper contexts; rows cited to SWE-RL are explicitly marked as comparison baselines rather than the original systems' own reports.
 - `benchmark_protocol_comparability.md`: human-readable benchmark-comparability analysis, including the protocol-aligned windows, full-corpus coverage groups, and manuscript consistency checks.
+- `evaluation_reliability_risk_coding.csv`: corpus-level coding behind the manuscript's evaluation-reliability risk table, including perfect fault localization, train/test split, narrowed scope, metric heterogeneity, comparability tier, and acceptance-gate counts.
 - `challenge_evidence_profile.csv`: sub-challenge evidence profile used in Section 10, linking each open challenge to corpus counts, source files, and representative systems.
 - `version_status_audit.md`: arXiv-to-venue status audit showing which retained studies now have verified archival publications and which remain arXiv-only in the current bibliography.
 
@@ -47,4 +52,5 @@ Scope note:
 - These files document the released stage logs, current screening decisions, agreement summaries, and coding rules used by the manuscript.
 - Current screening agreement is reported from the released 474-record adjudicated selection files listed above.
 - Screening-decision agreement is reproducible from `screening_agreement_labels_474.csv` by running `python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv`.
+- Manuscript-facing taxonomy agreement is reported from `taxonomy_external_pair_66_audit.csv` and summarized in `taxonomy_external_pair_66_agreement_summary.md`; the older 62-system three-coder file is retained as an audit trail.
 - The taxonomy sensitivity audit is a separate robustness check for taxonomy coding stability.

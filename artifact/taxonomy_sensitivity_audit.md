@@ -4,29 +4,29 @@ This file records the current human coding audit for the taxonomy coding rules.
 
 Purpose:
 
-- test whether the released coding guide yields stable display-paradigm and control-subtype assignments for the 62-system audit subset
+- test whether the released coding guide yields stable display-paradigm and control-subtype assignments for the final 66-system corpus
 - make the remaining hybrid edge cases explicit
 
 This audit is a taxonomy robustness check. It is separate from the 474-record screening-agreement audit documented in `screening_transparency.md`.
 
 ## Procedure
 
-1. Give two external coders the same 62-system audit subset and the same `taxonomy_coding_guide.md`.
+1. Give two external coders the same final 66-system corpus and the same `taxonomy_coding_guide.md`.
 2. Ask each coder to assign the display paradigm, control subtype, retrieval tag, analysis tag, and deployment scenario.
 3. Compute agreement before adjudication with `compute_annotation_agreement.py`.
 4. Adjudicate the remaining boundary cases against the full texts before merging the labels into the current 66-system coding sheet.
 
-The four systems added after the 62-system audit subset were classified with the same guide and checked against their full texts in the final 66-system audit table. They are not included in the Cohen-kappa or Fleiss-kappa calculations because no external recoding sheet was collected for those four systems.
+The current manuscript-facing pairwise statistics use `taxonomy_external_pair_66_audit.csv`, which integrates the 62-system external-pair recoding sheet and the four later-system external recodings into one normalized 66-system audit table.
 
 ## Result
 
-- Display-paradigm agreement: `61 / 62 = 98.4%`
-- Cohen's kappa on the four-way display-paradigm label: `0.978`
-- Control-subtype agreement: `60 / 62 = 96.8%`
-- Cohen's kappa on the control-subtype label: `0.964`
-- Retrieval-tag agreement: `62 / 62 = 100.0%`
-- Analysis-tag agreement: `62 / 62 = 100.0%`
-- Deployment-scenario agreement between the two external recodings: `62 / 62 = 100.0%`
+- Display-paradigm agreement: `65 / 66 = 98.5%`
+- Cohen's kappa on the four-way display-paradigm label: `0.980`
+- Control-subtype agreement: `64 / 66 = 97.0%`
+- Cohen's kappa on the control-subtype label: `0.967`
+- Retrieval-tag agreement: `66 / 66 = 100.0%`
+- Analysis-tag agreement: `66 / 66 = 100.0%`
+- Deployment-scenario agreement between the two external recodings: `66 / 66 = 100.0%`
 - Rows with at least one disagreement: `2`
 
 ## Borderline cases
@@ -50,4 +50,4 @@ The main consequence of this audit is that the taxonomy is stable at the display
 
 ## Follow-up path
 
-The source annotation file is `human_taxonomy_annotation_external_pair.csv`, and the agreement numbers above are reproduced by `compute_annotation_agreement.py`.
+The source annotation file is `taxonomy_external_pair_66_audit.csv`, and the agreement numbers above are reproduced by `compute_annotation_agreement.py`.

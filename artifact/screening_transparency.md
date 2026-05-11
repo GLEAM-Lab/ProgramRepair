@@ -63,17 +63,35 @@ The include/exclude screening-decision statistics can be recomputed with:
 python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv
 ```
 
-## Why a large full-text exclusion is plausible
+## Full-text exclusion breakdown
 
-The final adjudicated selection sheet exposes the current per-record include/exclude labels. To make the final drop easier to audit, `exclusion_pattern_audit.csv` also lists 29 high-confidence excluded records drawn from the released `stage5 - stage6` set:
+The final adjudicated selection sheet exposes the current per-record include/exclude labels. The file `full_text_exclusion_breakdown.csv` summarizes the 408 full-text exclusions:
+
+| Exclusion reason | Records |
+|---|---:|
+| Not software repair | 141 |
+| LLM not central at inference time | 82 |
+| Benchmark, evaluation, or empirical study only | 65 |
+| No patch-generation or repair pipeline | 58 |
+| Insufficient full-text detail | 43 |
+| Survey or review | 8 |
+| Detection/localization only | 7 |
+| Duplicate or superseded version | 3 |
+| Other boundary exclusion after adjudication | 1 |
+
+These categories sum to `408` and are aligned with the final `66 / 474` retained-corpus decision.
+
+## Conservative exclusion-pattern examples
+
+To make the final drop easier to inspect manually, `exclusion_pattern_audit.csv` also lists 29 high-confidence excluded records drawn from the released `stage5 - stage6` set:
 
 - 6 survey/review papers
 - 4 detection/localization-only papers
 - 4 benchmark/evaluation-only papers
 - 15 clearly non-code or non-software papers that matched search cues such as "repair" or "patch" in a different domain
 
-This 29-record pattern audit is intentionally conservative: it is not an exhaustive relabeling of all full-text exclusions, because the exhaustive current screening decision file is provided separately as `selection_reference_474_final_adjudicated.csv`.
+This 29-record pattern audit is intentionally conservative: it is not the full exclusion distribution. The full exclusion breakdown is provided in `full_text_exclusion_breakdown.csv`, and the exhaustive current screening decision file is provided separately as `selection_reference_474_final_adjudicated.csv`.
 
 ## Audit scope
 
-The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, and a subset of obvious exclusions. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.
+The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, the full 408-record exclusion breakdown, and conservative exclusion examples. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.

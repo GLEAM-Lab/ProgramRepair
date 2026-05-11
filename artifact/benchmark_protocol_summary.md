@@ -6,8 +6,8 @@ This summary aggregates the 66-system audit table used in the current manuscript
 
 Among the 66 retained systems:
 
-- 19 report `pass@1`
-- 27 report `pass@k` for `k > 1`
+- 21 report `pass@1`
+- 28 report `pass@k` for `k > 1`
 - 4 report `full match`
 - 2 report `F1`
 - 1 reports `accuracy`
@@ -16,10 +16,8 @@ Among the 66 retained systems:
 - 1 reports `CodeBLEU similarity`
 - 1 reports `accept@1`
 - 3 report `EM`
-- 2 report `success rate`
-- 2 report `repair accuracy`
-- 1 reports `exact match`
-- 1 reports `correct repairs`
+- 1 reports `success rate`
+- 1 reports `repair accuracy`
 
 This explains why cross-paper ranking is difficult even within the same benchmark family.
 
@@ -62,12 +60,12 @@ The open-challenge sub-challenge table in the manuscript uses the following aggr
 - 38/66 systems use proprietary/API models, 27/66 use open or academic models, and 1/66 does not specify the base model.
 - 19/21 fine-tuning systems use open or academic models, while 37/45 prompting, procedural, and agentic systems use proprietary/API models.
 - 10/66 systems explicitly assume `Perfect Fault Localization`, 7/66 use train/test split style evaluation, and 6/66 narrow repair to single-function, single-hunk, code-region, or function-level settings.
-- 19/66 systems report `pass@1`, 27/66 report larger pass@k candidate-budget metrics, and 20/66 use single-candidate or non-pass@k task-specific metrics.
+- 21/66 systems report `pass@1`, 28/66 report larger pass@k candidate-budget metrics, and 17/66 use single-candidate or non-pass@k task-specific metrics.
 - 13/66 systems fall into model-controlled, protocol-aligned, or limited within-benchmark comparison tiers, while 53/66 are snapshot-only rows.
 - 13/66 systems target repository-level issue resolution, including 8 agentic systems.
 - 28/66 systems are procedural or agentic, meaning the repair process is explicitly organized as a multi-step scripted or model-controlled loop.
 - Within these loop-oriented systems, the taxonomy records 8 scripted tool loops, 7 tool-augmented agent systems, 4 test-in-the-loop workflows, and 3 self-controlled systems.
-- The manuscript taxonomy table records explicit RAG-tagged prompting/procedural rows for 7 systems, explicit AAG-tagged prompting/procedural rows for 10 systems, 4 test-feedback loops, and 3 human-feedback loops.
+- The manuscript taxonomy table records explicit retrieval-enriched prompting/procedural rows for 7 systems, explicit analysis-enriched prompting/procedural rows for 10 systems, 4 test-feedback loops, and 3 human-feedback loops.
 - 10/66 systems use test feedback, human feedback, or LLM-as-judge review as the recorded control subtype; the complementary 56/66 do not expose such an acceptance gate as their main repair-control mechanism.
 - Security/API/crash repair covers 11 systems, and repository-level issue resolution covers 13 systems.
 
@@ -104,4 +102,4 @@ The remaining systems are spread across many smaller or domain-specific datasets
 
 The current manuscript is synchronized with the final 66-system audit. The SWE-bench protocol table uses `MAGIS` for the SWE-bench Lite `pass@1` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv`.
 
-The remaining alignment checks are also reflected in the manuscript tables: `KNOD` uses `Not specified` as the base model, `TSAPR` is not marked as a Perfect-FL row, and the fragmented security/API/crash table avoids labeling task-specific exact-match, correct-repair, success-rate, or repair-accuracy results as pass@k unless the source paper explicitly reports pass@k.
+The remaining alignment checks are also reflected in the manuscript tables: `KNOD` uses `Not specified` as the base model, `TSAPR` is not marked as a Perfect-FL row, and the fragmented security/API/crash table follows the final audit's metric labels, including `pass@1`/`pass@5` rows when they match the paper's candidate-budget definition.

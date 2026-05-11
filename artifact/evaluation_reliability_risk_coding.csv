@@ -1,0 +1,10 @@
+risk_factor,coding_criterion,count,denominator,source,interpretation
+perfect_fault_localization,Explicit perfect fault-localization assumption,10,66,benchmark_protocol_comparability_by_system.csv,Rows whose assumption bucket is Perfect FL.
+train_test_split_style,Train/test-split-style repair evaluation,7,66,benchmark_protocol_comparability_by_system.csv,Rows whose assumption bucket records a train/test split.
+narrowed_repair_scope,"Single-function, single-hunk, code-region, or function-level setting",6,66,benchmark_protocol_comparability_by_system.csv,Rows with explicitly narrowed repair scope in the assumption field.
+pass_at_1_reporting,Reports pass@1,21,66,benchmark_passk_distribution_by_k.csv,Rows whose primary reported metric is pass@1.
+larger_pass_at_k_reporting,Reports pass@k with k > 1,28,66,benchmark_passk_distribution_by_k.csv,Rows with a multiple-candidate pass@k metric.
+non_passk_or_single_candidate_metric,Uses single-candidate or non-pass@k task-specific metric,17,66,benchmark_passk_distribution_by_k.csv,"Rows reported with full-match, EM, F1, CodeBLEU, success rate, repair accuracy, accept@1, merged PRs, or related task-specific metrics."
+protocol_comparable_tier,"Falls in model-controlled, protocol-aligned, or limited comparison tier",13,66,benchmark_protocol_comparability_by_system.csv,"Rows in A, B, or C comparability tiers."
+snapshot_only_tier,Snapshot-only for benchmark comparison,53,66,benchmark_protocol_comparability_by_system.csv,Rows in D_snapshot_only tier.
+explicit_acceptance_gate_control,"Primary control subtype exposes test feedback, human feedback, or LLM-as-judge review",10,66,taxonomy_assignment_audit.csv,"Rows whose control subtype is Test-in-the-Loop, Human-in-the-Loop, or LLM-as-Judges."

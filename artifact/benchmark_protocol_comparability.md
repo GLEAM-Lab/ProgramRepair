@@ -26,16 +26,13 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - Crash bug repair: 1
 
 ## Metric-family counts
-- pass@1: 19
+- pass@1: 21
 - pass@10: 9
-- pass@5: 6
-- full match: 4
+- pass@5: 7
+- full match: 5
 - EM: 3
 - pass@1000: 2
 - F1: 2
-- success rate: 2
-- repair accuracy: 2
-- exact match: 1
 - pass@100: 1
 - pass@k (5h): 1
 - pass@200: 1
@@ -48,17 +45,18 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - avg@5: 1
 - merged PRs: 1
 - pass@5000: 1
-- correct repairs: 1
 - CodeBLEU similarity: 1
 - accept@1: 1
 - pass@32: 1
+- success rate: 1
+- repair accuracy: 1
 
 ## pass@k reporting distribution by year
 - 2022: total=2, pass@1=1, pass@5=0, pass@10=0, other pass@k=1, non-pass@k or related=0, pass@1 share=50.0%
 - 2023: total=12, pass@1=1, pass@5=3, pass@10=2, other pass@k=4, non-pass@k or related=2, pass@1 share=8.3%
 - 2024: total=16, pass@1=5, pass@5=1, pass@10=1, other pass@k=4, non-pass@k or related=5, pass@1 share=31.2%
-- 2025: total=30, pass@1=12, pass@5=2, pass@10=5, other pass@k=3, non-pass@k or related=8, pass@1 share=40.0%
-- 2026: total=6, pass@1=0, pass@5=0, pass@10=1, other pass@k=0, non-pass@k or related=5, pass@1 share=0.0%
+- 2025: total=30, pass@1=13, pass@5=3, pass@10=5, other pass@k=3, non-pass@k or related=6, pass@1 share=43.3%
+- 2026: total=6, pass@1=1, pass@5=0, pass@10=1, other pass@k=0, non-pass@k or related=4, pass@1 share=16.7%
 
 ## Protocol-aligned windows
 
@@ -96,10 +94,10 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 
 ### G10_security_api_crash_fragmented: Vulnerability, API-misuse, and crash-repair datasets
 - **N**: 11
-- **Systems**: VulMaster (EM 20%); Vul-R2 (exact match 24.83%); Appatch (F1 36.46); SAN2PATCH (success rate 79.49% (31/39)); PredicateFix (correct repairs 81/117 (69.2%)); LLM4CVE (CodeBLEU similarity +20%); VulDebugger (repair accuracy 60.00% (30/50)); PailGen (EM 23.23%); ACFix (success rate 94.92%); Dr.Fix (EM 96.00%); IntDiagSolver (repair accuracy 86.7%)
+- **Systems**: VulMaster (EM 20%); Vul-R2 (full match 24.83%); Appatch (F1 36.46); SAN2PATCH (pass@5 79.49% (31/39)); PredicateFix (pass@1 81/117 (69.2%)); LLM4CVE (CodeBLEU similarity +20%); VulDebugger (pass@1 60.00% (30/50)); PailGen (EM 23.23%); ACFix (success rate 94.92%); Dr.Fix (EM 96.00%); IntDiagSolver (repair accuracy 86.7%)
 - **Normalized Result Range**: 20.00--96.00%
 - **Shared Basis**: Security or robustness-oriented repair tasks.
-- **Noncomparable Dimensions**: Datasets and metrics are disjoint: exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.
+- **Noncomparable Dimensions**: Datasets and metrics are disjoint: full match/EM, F1, pass@1/pass@5, CodeBLEU similarity, success rate, and repair accuracy.
 - **Safe Interpretation**: Supports the conclusion that security/API/crash repair lacks a consolidated benchmark.
 
 ### G11_other_task_specific_or_singleton_benchmarks: Other task-specific or singleton benchmarks
@@ -187,11 +185,11 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - **HumanEval-Java non-pass@10 rows**: NTR uses pass@100, ContrastRepair uses pass@40, and TracePrompt reports accuracy; these should remain protocol snapshots rather than being ranked against pass@10 PEFT rows.
 - **EvalRepair-Java rows**: MORepair and Luo et al. both report pass@10 results on the same augmented benchmark family with CodeLlama 13B, but they are kept separate from HumanEval-Java because EvalRepair-Java adds EvalPlus tests and changes the oracle strength.
 - **SWE-bench Verified/Other**: SWE-RL is a singleton Verified row, while SWE-Agent M and Learn-by-Interact use different SWE-bench variants or extra environment/trajectory conditions.
-- **Vulnerability/API/crash repair**: rows use disjoint datasets and task-specific metric families, including exact match/EM, F1, CodeBLEU similarity, correct repairs, success rate, and repair accuracy.
+- **Vulnerability/API/crash repair**: rows use disjoint datasets and metric families, including full match/EM, F1, pass@1/pass@5, CodeBLEU similarity, success rate, and repair accuracy.
 - **Other benchmark family**: rows use smaller or domain-specific datasets; apparent metric matches can occur across different datasets and should not be ranked.
 
 ## Manuscript consistency checks
 - The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 16.67%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.
 - The current Defects4J table records `KNOD` with base model `Not specified`, matching the audit value `/`.
 - The current Defects4J table does not mark `TSAPR` as a Perfect-FL row, matching the final audit.
-- The current fragmented security/API table does not label security/API/crash success, exact-match, or repair-accuracy results as pass@k unless the source paper explicitly reports pass@k. It also records `Dr.Fix` with base model `GPT-4o`, matching the final audit.
+- The current fragmented security/API table follows the final audit metric labels, including the pass@1/pass@5 entries that satisfy the paper's candidate-budget definition and the remaining task-specific full-match, EM, F1, CodeBLEU, success-rate, and repair-accuracy entries.
