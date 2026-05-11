@@ -17,7 +17,7 @@ Included files:
 - `screening_agreement_labels_474.csv`: per-record second-coder decisions, third-coder raw decisions, third-coder post-adjudication decisions, and adjudication notes used to inspect the screening audit.
 - `compute_screening_agreement.py`: lightweight script for recomputing second/third coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
-- `notable_boundary_records.csv`: checked boundary records that are relevant to reviewer questions or adjacent issue-resolution terminology but are not part of the final 66-system corpus.
+- `notable_boundary_records.csv`: checked boundary records that are relevant to reviewer questions or adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
 - `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.
@@ -44,7 +44,12 @@ Included files:
 - `benchmark_passk_distribution_by_k.csv`: metric-family counts and system lists used to audit pass@1, pass@5, pass@10, and other reporting choices.
 - `benchmark_swebench_verified_context.csv`: SWE-bench Verified pass@1 rows available in surveyed-paper contexts; rows cited to SWE-RL are explicitly marked as comparison baselines rather than the original systems' own reports.
 - `benchmark_protocol_comparability.md`: human-readable benchmark-comparability analysis, including the protocol-aligned windows, full-corpus coverage groups, and manuscript consistency checks.
-- `evaluation_reliability_risk_coding.csv`: corpus-level coding behind the manuscript's evaluation-reliability risk table, including perfect fault localization, train/test split, narrowed scope, metric heterogeneity, comparability tier, and acceptance-gate counts.
+- `requirements.txt`: minimal Python dependency list for full-text PDF extraction.
+- `extract_pdf_text_cache.py`: utility that extracts local full-text PDFs into the ignored cache directory `artifact/pdf_text_cache/` for evidence-audit scripts.
+- `audit_evaluation_reliability.py`: script that links the 66 retained systems to local full-text PDFs, extracts candidate evidence snippets, and regenerates the leakage/validation rows in `evaluation_reliability_risk_coding.csv`.
+- `evaluation_reliability_candidate_snippets.csv`: keyword-based candidate snippets for contamination/leakage and validation evidence, used as an inspection aid rather than as final labels.
+- `evaluation_reliability_by_system.csv`: final per-system evidence table for explicit contamination/leakage reporting and validation beyond ordinary public tests.
+- `evaluation_reliability_risk_coding.csv`: corpus-level coding behind the manuscript's evaluation-reliability risk table, including perfect fault localization, train/test split, contamination/leakage reporting, narrowed scope, metric heterogeneity, comparability tier, acceptance-gate counts, and extra-validation counts.
 - `challenge_evidence_profile.csv`: sub-challenge evidence profile used in Section 10, linking each open challenge to corpus counts, source files, and representative systems.
 - `version_status_audit.md`: arXiv-to-venue status audit showing which retained studies now have verified archival publications and which remain arXiv-only in the current bibliography.
 
@@ -55,3 +60,4 @@ Scope note:
 - Screening-decision agreement is reproducible from `screening_agreement_labels_474.csv` by running `python3 artifact/compute_screening_agreement.py artifact/screening_agreement_labels_474.csv`.
 - Manuscript-facing taxonomy agreement is reported from `taxonomy_external_pair_66_audit.csv` and summarized in `taxonomy_external_pair_66_agreement_summary.md`; the older 62-system three-coder file is retained as an audit trail.
 - The taxonomy sensitivity audit is a separate robustness check for taxonomy coding stability.
+- Evaluation-reliability leakage and extra-validation counts are reproducible from the local retained-paper PDFs. If `artifact/pdf_text_cache/manifest.csv` is absent, first install the extraction dependency with `python3 -m pip install -r artifact/requirements.txt`, run `python3 artifact/extract_pdf_text_cache.py`, and then run `python3 artifact/audit_evaluation_reliability.py`.

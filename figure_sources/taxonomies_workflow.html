@@ -87,6 +87,9 @@
     <pattern id="dotgrid" width="22" height="22" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.1" fill="#dce6ee"/>
     </pattern>
+    <filter id="box-glow" x="-4%" y="-6%" width="108%" height="118%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#00000014"/>
+    </filter>
   </defs>
 
   <rect x="0" y="0" width="1600" height="990" fill="#ffffff"/>
@@ -106,7 +109,7 @@
   </g>
 
   <!-- ===================== LEFT RAIL: BUG-RELATED INFORMATION ===================== -->
-  <rect x="36" y="108" width="232" height="800" fill="#f1f1f1" stroke="#dfe3e8"/>
+  <rect x="36" y="108" width="232" height="800" fill="#f1f1f1" stroke="#d0d6de"/>
 
   <!-- Rail title -->
   <text class="rail-title" x="152" y="148" text-anchor="middle">Bug-Related</text>
@@ -133,17 +136,20 @@
   <!-- ===================== TOP BAND: LLM CHECKPOINTS + FINE-TUNING ===================== -->
   <!-- LLM Checkpoints (light blue background) -->
   <rect x="296" y="108" width="1268" height="200" fill="#e8f2fb"/>
+  <!-- Blue accent strip at top -->
+  <rect x="296" y="108" width="1268" height="4" fill="#3b82f6" opacity=".7"/>
 
-  <!-- Fine-tuning sub-area (yellow, nested inside LLM Checkpoints) -->
-  <rect x="600" y="108" width="964" height="130" fill="#fff4c8"/>
+  <!-- Fine-tuning sub-area (amber/yellow, nested inside LLM Checkpoints) -->
+  <rect x="600" y="112" width="964" height="126" fill="#fff4c8"/>
 
   <!-- Base Checkpoints box -->
-  <rect x="332" y="138" width="220" height="76" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="332" y="138" width="220" height="76" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="442" y="172" text-anchor="middle">Base</text>
   <text class="box-text" x="442" y="198" text-anchor="middle">Checkpoints</text>
 
   <!-- LLM Checkpoints label (bottom-left of band) -->
-  <text class="lane-title" x="312" y="294">LLM Checkpoints</text>
+  <rect x="311" y="273" width="4" height="23" rx="2" fill="#3b82f6" opacity=".8"/>
+  <text class="lane-title" x="320" y="294">LLM Checkpoints</text>
 
   <!-- Fine-tuning icon (compact neural network) -->
   <g transform="translate(666, 158)">
@@ -182,22 +188,26 @@
   </g>
 
   <!-- Training Corpus -->
-  <rect x="746" y="138" width="248" height="56" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="746" y="138" width="248" height="56" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="870" y="172" text-anchor="middle">Training Corpus</text>
 
   <!-- Training Algorithms -->
-  <rect x="1090" y="138" width="282" height="56" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="1090" y="138" width="282" height="56" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="1231" y="172" text-anchor="middle">Training Algorithms</text>
 
   <!-- Fine-tuning label (bottom-left of yellow area) -->
-  <text class="lane-title" x="616" y="226">Fine-tuning</text>
+  <rect x="614" y="205" width="4" height="23" rx="2" fill="#d97706" opacity=".8"/>
+  <text class="lane-title" x="623" y="226">Fine-tuning</text>
 
   <!-- Fine-tuned Checkpoints (white box inside blue band, below yellow area) -->
-  <rect x="1252" y="252" width="312" height="48" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="1252" y="252" width="312" height="48" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="1408" y="282" text-anchor="middle">Fine-tuned Checkpoints</text>
 
   <!-- ===================== PROMPTING BAND ===================== -->
-  <rect x="296" y="328" width="1268" height="138" fill="#fff4c8"/>
+  <!-- Distinct mint-green background for the Prompting paradigm -->
+  <rect x="296" y="328" width="1268" height="138" fill="#ecfdf5"/>
+  <!-- Green accent strip at top -->
+  <rect x="296" y="328" width="1268" height="4" fill="#10b981" opacity=".7"/>
 
   <!-- Prompting icon (paper with hand) -->
   <g transform="translate(348, 360)">
@@ -207,14 +217,16 @@
     <line x1="-16" y1="6" x2="6" y2="6" stroke="#1b2430" stroke-width="1.4"/>
     <path d="M14 8 Q22 14 24 18 Q24 22 18 22 Q12 22 10 16 Z" fill="#fff" stroke="#1b2430" stroke-width="1.6"/>
   </g>
-  <text class="lane-title" x="316" y="446">Prompting</text>
+  <!-- Prompting label -->
+  <rect x="311" y="425" width="4" height="23" rx="2" fill="#10b981" opacity=".8"/>
+  <text class="lane-title" x="320" y="446">Prompting</text>
 
   <!-- Human-Written Prompt -->
-  <rect x="498" y="362" width="402" height="60" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="498" y="362" width="402" height="60" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="699" y="398" text-anchor="middle">Human-Written Prompt</text>
 
   <!-- Zero/Few-Shot Examples -->
-  <rect x="954" y="362" width="448" height="60" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="954" y="362" width="448" height="60" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="1178" y="398" text-anchor="middle">Zero-/Few-Shot Examples</text>
 
   <!-- ===================== AUXILIARY CONTEXTS BAND (DARK) ===================== -->
@@ -222,20 +234,30 @@
   <text x="316" y="534" font-size="22" font-weight="800" fill="#ffffff">Auxiliary Contexts</text>
 
   <!-- Retrieval -->
-  <rect x="700" y="510" width="234" height="42" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="700" y="510" width="234" height="42" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
   <text class="tag" x="817" y="538" text-anchor="middle">Retrieval</text>
 
   <!-- Program Analysis -->
-  <rect x="1010" y="510" width="320" height="42" rx="2" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="1010" y="510" width="320" height="42" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
   <text class="tag" x="1170" y="538" text-anchor="middle">Program Analysis</text>
 
   <!-- ===================== BOTTOM ROW: PROCEDURAL / HUMAN INTERACTIONS / AGENTIC ===================== -->
-  <!-- Procedural -->
-  <rect x="296" y="586" width="540" height="240" fill="#fff4c8"/>
+
+  <!-- Procedural — soft lavender -->
+  <rect x="296" y="586" width="540" height="240" fill="#f5f3ff"/>
+  <!-- Purple accent strip at top -->
+  <rect x="296" y="586" width="540" height="4" fill="#8b5cf6" opacity=".7"/>
+
+  <!-- Human Interactions connector zone (neutral gray bridge) -->
+  <rect x="836" y="586" width="288" height="240" fill="#f3f4f6"/>
+
+  <!-- Agentic — soft peach/orange -->
+  <rect x="1124" y="586" width="440" height="240" fill="#fff7ed"/>
+  <!-- Orange accent strip at top -->
+  <rect x="1124" y="586" width="440" height="4" fill="#f97316" opacity=".7"/>
 
   <!-- Gear/Process icon -->
   <g transform="translate(352, 626)">
-    <!-- Gear -->
     <g stroke="#1b2430" stroke-width="2" fill="none">
       <circle cx="0" cy="0" r="11"/>
       <circle cx="0" cy="0" r="4" fill="#1b2430"/>
@@ -254,22 +276,21 @@
     <line x1="-9" y1="33" x2="6" y2="33" stroke="#1b2430" stroke-width="1.4"/>
     <path d="M-7 39 L-3 42 L1 38" fill="none" stroke="#3f8558" stroke-width="1.8"/>
   </g>
-  <text class="lane-title" x="316" y="812">Procedural</text>
+  <!-- Procedural label -->
+  <rect x="311" y="791" width="4" height="23" rx="2" fill="#8b5cf6" opacity=".8"/>
+  <text class="lane-title" x="320" y="812">Procedural</text>
 
   <!-- Scripted Controller -->
-  <rect x="446" y="650" width="290" height="84" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="446" y="650" width="290" height="84" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="591" y="686" text-anchor="middle">Scripted</text>
   <text class="box-text" x="591" y="714" text-anchor="middle">Controller</text>
 
-  <!-- Human Interactions (white box bridging the two paradigms) -->
-  <rect x="860" y="650" width="240" height="84" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <!-- Human Interactions (bridges Procedural and Agentic) -->
+  <rect x="860" y="650" width="240" height="84" rx="8" fill="#fff" stroke="#b0bac5" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="980" y="686" text-anchor="middle">Human</text>
   <text class="box-text" x="980" y="714" text-anchor="middle">Interactions</text>
 
-  <!-- Agentic -->
-  <rect x="1124" y="586" width="440" height="240" fill="#fff4c8"/>
-
-  <!-- Cloud + network icon (top-right) -->
+  <!-- Cloud + network icon (top-right of Agentic) -->
   <g transform="translate(1500, 626)">
     <path d="M-22 -2 Q-22 -12 -12 -12 Q-10 -20 0 -20 Q12 -20 14 -12 Q24 -12 24 -2 Q24 6 14 6 L-12 6 Q-22 6 -22 -2 Z"
           fill="#fff" stroke="#1b2430" stroke-width="1.8"/>
@@ -284,19 +305,27 @@
       <line x1="12" y1="18" x2="2" y2="10"/>
     </g>
   </g>
-  <text class="lane-title" x="1546" y="812" text-anchor="end">Agentic</text>
+  <!-- Agentic label (right-aligned, colored dot accent) -->
+  <circle cx="1536" cy="803" r="5" fill="#f97316" opacity=".85"/>
+  <text class="lane-title" x="1530" y="812" text-anchor="end">Agentic</text>
 
   <!-- LLM-Driven Controller -->
-  <rect x="1170" y="650" width="290" height="84" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <rect x="1170" y="650" width="290" height="84" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
   <text class="box-text" x="1315" y="686" text-anchor="middle">LLM-Driven</text>
   <text class="box-text" x="1315" y="714" text-anchor="middle">Controller</text>
 
   <!-- ===================== SUBMITTED PATCH ===================== -->
-  <rect x="296" y="846" width="1268" height="62" fill="#e8f2fb"/>
-  <text x="930" y="886" text-anchor="middle" font-size="24" font-weight="800" fill="#1b2430">Submitted Patch</text>
+  <!-- Green background signals successful output -->
+  <rect x="296" y="846" width="1268" height="62" fill="#dcfce7"/>
+  <!-- Green accent strip at top -->
+  <rect x="296" y="846" width="1268" height="4" fill="#16a34a" opacity=".7"/>
+  <text x="930" y="886" text-anchor="middle" font-size="24" font-weight="800" fill="#166534">Submitted Patch</text>
 
   <!-- ===================== MAIN ARROWS (solid) ===================== -->
-  <!-- Base Checkpoints -> Fine-tuning area (dashed, since it precedes the FT subprocess) -->
+  <!-- Base Checkpoints -> Human-Written Prompt (base model used directly, without fine-tuning) -->
+  <path d="M552 214 L552 308 L699 308 L699 362" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Base Checkpoints -> Fine-tuning area (optional, dashed) -->
   <path d="M552 176 L600 176" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
 
   <!-- Training Corpus -> Training Algorithms -->
@@ -308,8 +337,8 @@
   <!-- Fine-tuned Checkpoints -> Prompting (down + jog left to Zero-/Few-Shot) -->
   <path d="M1408 300 L1408 320 L1178 320 L1178 358" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
 
-  <!-- Human-Written Prompt -> Zero/Few-Shot Examples -->
-  <path d="M900 392 L950 392" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+  <!-- Human-Written Prompt -> Zero/Few-Shot Examples (optional augmentation) -->
+  <path d="M900 392 L950 392" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
 
   <!-- Prompting (left) -> Procedural (Scripted Controller) -->
   <path d="M591 422 L591 646" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
@@ -322,6 +351,9 @@
 
   <!-- Agentic -> Submitted Patch -->
   <path d="M1315 734 L1315 842" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Prompting -> Submitted Patch (Prompting paradigm: single inference, right-margin route) -->
+  <path d="M1564 392 L1582 392 L1582 858 L1564 858" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
 
   <!-- ===================== EVIDENCE / AUX FLOWS (dashed) ===================== -->
   <!-- Bug-Related rail -> Prompting -->

@@ -70,6 +70,8 @@ artifact/extract_pdf_benchmark_mentions.py
 artifact/pdf_text_cache/
 artifact/annotation_to_send/
 artifact/fulltexts/
+.venv-pdf/
+*:Zone.Identifier
 
 # Local remote-run caches
 remote_results/cache/
@@ -83,12 +85,6 @@ remote_results/update_zotero_major_revision.py
 # Local figure drafts not referenced by the public artifact
 figure_sources/framework_pipeline*.html
 figure_sources/workflow_archetypes.html
-
-# Old full-text PDF library kept locally but not as public artifact content
-Agentic Approaches/
-Fine-Tuning Approaches/
-Procedural Approaches/
-Prompting Approaches/
 
 # LaTeX build byproducts
 *.aux

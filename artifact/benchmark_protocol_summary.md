@@ -60,6 +60,8 @@ The open-challenge sub-challenge table in the manuscript uses the following aggr
 - 38/66 systems use proprietary/API models, 27/66 use open or academic models, and 1/66 does not specify the base model.
 - 19/21 fine-tuning systems use open or academic models, while 37/45 prompting, procedural, and agentic systems use proprietary/API models.
 - 10/66 systems explicitly assume `Perfect Fault Localization`, 7/66 use train/test split style evaluation, and 6/66 narrow repair to single-function, single-hunk, code-region, or function-level settings.
+- 36/66 systems explicitly discuss or control benchmark, pretraining, train/test, temporal, or corpus contamination/leakage risk.
+- 39/66 systems use hidden, held-out, or additional tests, manual/expert review, LLM/human review, static/runtime validation, sanitizer/exploit reproduction, or a comparable independent validation signal beyond ordinary public benchmark tests.
 - 21/66 systems report `pass@1`, 28/66 report larger pass@k candidate-budget metrics, and 17/66 use single-candidate or non-pass@k task-specific metrics.
 - 13/66 systems fall into model-controlled, protocol-aligned, or limited within-benchmark comparison tiers, while 53/66 are snapshot-only rows.
 - 13/66 systems target repository-level issue resolution, including 8 agentic systems.
@@ -82,8 +84,10 @@ For the model-dependency count, the grouping is derived from the recorded `base_
 - 1 system explicitly reports a function-level vulnerability-patch setting
 - 10 systems use test feedback, human feedback, or LLM-as-judge review as the recorded control subtype
 - 7 systems explicitly frame evaluation around a train/test split
+- 36 systems explicitly report contamination/leakage discussion or control
+- 39 systems use extra validation signals beyond ordinary public benchmark tests
 
-The first five assumption rows indicate that at least 16 systems use a narrowed setup that is weaker than fully end-to-end repair, even before considering differences in sampling budget, benchmark version, or oracle strength. The acceptance-gate row is used separately for the Section 10 trust analysis.
+The first five assumption rows indicate that at least 16 systems use a narrowed setup that is weaker than fully end-to-end repair, even before considering differences in sampling budget, benchmark version, or oracle strength. The leakage-reporting and extra-validation rows are tracked separately because they improve protocol transparency but remain too heterogeneous to normalize into a single comparable repair score.
 
 ## Selected recurring benchmark families in the 66-system table
 

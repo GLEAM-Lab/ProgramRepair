@@ -18,7 +18,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 |---|---|---|
 | Full-text exclusion breakdown totaling 408 excluded records | `full_text_exclusion_breakdown.csv`; `selection_reference_474_final_adjudicated.csv`; `screening_transparency.md` | Category counts sum to the 408 excluded records in the final 474-record adjudicated sheet. |
 | Conservative examples of clear exclusions | `exclusion_pattern_audit.csv`; `screening_transparency.md` | Provides high-confidence examples only; it is not the full exclusion distribution. |
-| Notable adjacent or reviewer-mentioned boundary records | `notable_boundary_records.csv`; `screening_transparency.md` | Documents checked records that are not counted in the final 66-system corpus, including issue-resolution records outside the finalized auditable candidate pool. |
+| Notable adjacent or reviewer-mentioned boundary records | `notable_boundary_records.csv`; `screening_transparency.md` | Documents checked records that are not counted in the final 66-system corpus, including issue-resolution records outside the finalized auditable candidate pool and whether each boundary record would change the taxonomy dimensions or protocol-comparison windows. |
 
 ## Taxonomy and Scenario Coding
 
@@ -40,7 +40,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 | Benchmark-family coverage groups | `benchmark_protocol_coverage_groups.csv`; `benchmark_family_breakdown.md` | Assigns all 66 systems to same-family or singleton benchmark groups. |
 | pass@k reporting distribution | `benchmark_passk_distribution_by_year.csv`; `benchmark_passk_distribution_by_k.csv` | Source for year-level and metric-family pass@k distribution tables. |
 | SWE-bench Verified context rows | `benchmark_swebench_verified_context.csv` | Records Verified pass@1 rows available in surveyed-paper contexts. |
-| Evaluation-reliability risk coding | `evaluation_reliability_risk_coding.csv` | Source for perfect-FL, train/test split, narrowed-scope, metric-heterogeneity, comparability-tier, and acceptance-gate counts. |
+| Evaluation-reliability risk coding | `evaluation_reliability_risk_coding.csv`; `evaluation_reliability_by_system.csv`; `audit_evaluation_reliability.py`; `extract_pdf_text_cache.py`; `requirements.txt` | Source for perfect-FL, train/test split, contamination/leakage reporting, narrowed-scope, metric-heterogeneity, comparability-tier, acceptance-gate, and extra-validation counts. If the text cache is absent, install `python3 -m pip install -r artifact/requirements.txt` and run `python3 artifact/extract_pdf_text_cache.py`; then run `python3 artifact/audit_evaluation_reliability.py` to regenerate the leakage and extra-validation rows from local full-text PDFs. |
 
 ## Open Challenges and Version Status
 

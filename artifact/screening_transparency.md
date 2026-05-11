@@ -94,7 +94,7 @@ This 29-record pattern audit is intentionally conservative: it is not the full e
 
 ## Notable boundary records
 
-The file `notable_boundary_records.csv` documents a small set of adjacent or reviewer-mentioned records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions. If a boundary record later becomes an accepted in-scope archival paper, it should be handled through a future corpus update that reruns the same screening and coding protocol rather than by changing the current frozen audit denominator.
+The file `notable_boundary_records.csv` documents a small set of adjacent or reviewer-mentioned records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions. Boundary records are checked for whether they would introduce a new taxonomy dimension or protocol-aligned comparison window; the currently logged records do not change the codebook or benchmark-comparability windows. If a boundary record later enters the in-scope archival venue set, it should be handled through a future corpus update that reruns the same screening and coding protocol rather than by changing the current frozen audit denominator.
 
 ## Audit scope
 
