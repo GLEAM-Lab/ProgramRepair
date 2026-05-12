@@ -64,21 +64,21 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - **Tier**: B_protocol_aligned_stack_snapshot
 - **Criteria**: SWE-bench Lite, pass@1, repository-level issue repair.
 - **N**: 8
-- **Systems**: MAGIS (16.67%); SWE-Agent (18.00%); AutoCodeRover (19.00%); OpenHands (26%); SWE-Search (31.00%); SpecRover (31.00%); Agentless (32%); KGCompass (58.3%)
-- **Result Range**: 16.67--58.30%
+- **Systems**: SWE-Agent (18.00%); AutoCodeRover (19.00%); MAGIS (25.33%); OpenHands (26%); SWE-Search (31.00%); SpecRover (31.00%); Agentless (32%); KGCompass (58.3%)
+- **Result Range**: 18.00--58.30%
 - **Controlled Factors**: Benchmark variant and metric.
 - **Remaining Confounders**: Base model, cost budget, search depth, validation strategy, and publication snapshot.
-- **Supported Interpretation**: Whole-system stacks vary from 16.67% to 58.30%; repository context selection and search/validation design materially affect results.
+- **Supported Interpretation**: The original papers report 18.00% to 58.30% under their own protocol snapshots; the range should be read as whole-system evidence, not as an isolated paradigm effect.
 
 ### W4_HUMANEVAL_JAVA_PASS10_PEFT
 - **Tier**: C_limited_within_benchmark_comparison
 - **Criteria**: HumanEval-Java, pass@10, PEFT-oriented systems.
 - **N**: 3
-- **Systems**: RepairLLaMA (67.28%); Li et al. (68.10%); Ruiz et al. (128/164)
-- **Result Range**: 67.28--78.05%
+- **Systems**: RepairLLaMA (67.28%); Li et al. (68.10%); Ruiz et al. (78%)
+- **Result Range**: 67.28--78.00%
 - **Controlled Factors**: Benchmark and metric.
 - **Remaining Confounders**: Base model, training data, adaptation objective, and FL/oracle assumptions.
-- **Supported Interpretation**: The three pass@10 rows range from 67.28% to 78.05%; useful for a bounded discussion, not for broad paradigm ranking.
+- **Supported Interpretation**: The three original papers report pass@10 results from 67.28% to 78.00%; the window supports a bounded discussion, not broad paradigm ranking.
 
 ### W5_EVALREPAIR_JAVA_CODELLAMA13B_PASS10
 - **Tier**: A_model_controlled_comparison
@@ -88,7 +88,7 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - **Result Range**: 76.88--77.90%
 - **Controlled Factors**: Augmented benchmark, metric, base model, and no-FL-prompt setting.
 - **Remaining Confounders**: Training corpus, objective, and federated versus multi-objective fine-tuning setup.
-- **Supported Interpretation**: MORepair reports 77.90% and Luo et al. report 76.88%; the close pass@10 scores support a narrow comparison of adaptation strategies under an augmented Java repair oracle.
+- **Supported Interpretation**: MORepair reports 77.90% and Luo et al. report 76.88% under this protocol snapshot; the close pass@10 scores support a narrow comparison of adaptation strategies under an augmented Java repair oracle.
 
 ## Same-benchmark/family protocol coverage groups
 
@@ -102,7 +102,7 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 
 ### G11_other_task_specific_or_singleton_benchmarks: Other task-specific or singleton benchmarks
 - **N**: 24
-- **Systems**: RepairCAT (pass@1000 14%); DistiLRR (pass@1 42.10%); RePair (pass@5 65.66%); SecRepair (F1 82); AdaPatcher (pass@1 67.57%); TraceFixer (pass@10 87%); InferFix (pass@1 76.80%); PyTy (full match 54.40%); Prenner et al. (pass@1 37/80); Fan et al. (pass@5 46/113); Tian et al. (pass@5 84.00%); Gao et al. (full match 32.25%); Ahmed et al. (pass@30 31.80%); CEDAR (full match 76.55%); Ehsani et al. (pass@5 79.62%); RLCE (pass@1 81.45%); DsRepair (pass@1 29.18%); REx (pass@300 73.70%); CREF (avg@5 76.60%); HULA (merged PRs 56); DRCodePilot (full match 15.27%); PATCH (pass@5 39.81%); LANTERN (pass@10 87.67%); Abstain and Validate (accept@1 62%)
+- **Systems**: RepairCAT (pass@1000 14%); DistiLRR (pass@1 43.9%); RePair (pass@5 65.66%); SecRepair (F1 82); AdaPatcher (pass@1 67.57%); TraceFixer (pass@10 87%); InferFix (pass@1 76.80%); PyTy (full match 54.40%); Prenner et al. (pass@1 37/80); Fan et al. (pass@5 46/113); Tian et al. (pass@5 84.00%); Gao et al. (full match 32.25%); Ahmed et al. (pass@30 31.80%); CEDAR (full match 76.55%); Ehsani et al. (pass@5 79.62%); RLCE (pass@1 81.45%); DsRepair (pass@1 29.18%); REx (pass@300 73.70%); CREF (avg@5 76.60%); HULA (merged PRs 56); DRCodePilot (full match 15.27%); PATCH (pass@5 39.81%); LANTERN (pass@10 87.67%); Abstain and Validate (accept@1 62%)
 - **Normalized Result Range**: 14.00--87.67%
 - **Shared Basis**: Each row is retained in the corpus-level audit.
 - **Noncomparable Dimensions**: These rows span non-overlapping or singleton benchmarks, including APR Competition, QuixBugs, BugsInPy, RepoBugs, DS-1000, TutorCode, Flink, and Google accept@1.
@@ -150,32 +150,32 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 
 ### G6_HumanEvalJava_pass10: HumanEval-Java pass@10
 - **N**: 3
-- **Systems**: RepairLLaMA (pass@10 67.28%); Li et al. (pass@10 68.10%); Ruiz et al. (pass@10 128/164)
-- **Normalized Result Range**: 67.28--78.05%
+- **Systems**: RepairLLaMA (pass@10 67.28%); Li et al. (pass@10 68.10%); Ruiz et al. (pass@10 78%)
+- **Normalized Result Range**: 67.28--78.00%
 - **Shared Basis**: Same benchmark and pass@10 metric.
 - **Noncomparable Dimensions**: Base model, training data, PEFT objective, and FL reporting differ.
 - **Safe Interpretation**: Supports bounded comparison of PEFT-oriented repair systems, but not a model-controlled ranking because base model, adaptation objective, and localization reporting differ.
 
 ### G7_HumanEvalJava_other_metrics: HumanEval-Java non-pass@10 rows
 - **N**: 3
-- **Systems**: NTR (pass@100 83.44%); TracePrompt (accuracy 71.30%); ContrastRepair (pass@40 84.05%)
-- **Normalized Result Range**: 71.30--84.05%
+- **Systems**: NTR (pass@100 90.6%); TracePrompt (accuracy 71.30%); ContrastRepair (pass@40 84.05%)
+- **Normalized Result Range**: 71.30--90.60%
 - **Shared Basis**: Same benchmark.
 - **Noncomparable Dimensions**: pass@100, pass@40, and accuracy are different metrics.
 - **Safe Interpretation**: Used to show metric heterogeneity rather than ranked against pass@10.
 
 ### G8_SWEBench_Lite_pass1: SWE-bench Lite pass@1
 - **N**: 8
-- **Systems**: Agentless (pass@1 32%); KGCompass (pass@1 58.3%); SWE-Agent (pass@1 18.00%); OpenHands (pass@1 26%); AutoCodeRover (pass@1 19.00%); SpecRover (pass@1 31.00%); MAGIS (pass@1 16.67%); SWE-Search (pass@1 31.00%)
-- **Normalized Result Range**: 16.67--58.30%
+- **Systems**: Agentless (pass@1 32%); KGCompass (pass@1 58.3%); SWE-Agent (pass@1 18.00%); OpenHands (pass@1 26%); AutoCodeRover (pass@1 19.00%); SpecRover (pass@1 31.00%); MAGIS (pass@1 25.33%); SWE-Search (pass@1 31.00%)
+- **Normalized Result Range**: 18.00--58.30%
 - **Shared Basis**: Same benchmark variant and pass@1 metric.
 - **Noncomparable Dimensions**: Base model, exact snapshot, cost budget, search depth, retrieval policy, and validation depth differ.
-- **Safe Interpretation**: Largest protocol-aligned whole-stack comparison window in the corpus.
+- **Safe Interpretation**: Most populated protocol-aligned whole-stack comparison window in the corpus.
 
 ### G9_SWEBench_other_variants: SWE-bench Verified, Multimodal, and full/conditioned variants
 - **N**: 3
-- **Systems**: SWE-RL (pass@1 41.00%); SWE-Agent M (pass@1 12.20%); Learn-by-Interact (pass@1 60.00%)
-- **Normalized Result Range**: 12.20--60.00%
+- **Systems**: SWE-RL (pass@1 41.00%); SWE-Agent M (pass@1 12.5%); Learn-by-Interact (pass@1 60.00%)
+- **Normalized Result Range**: 12.50--60.00%
 - **Shared Basis**: Same repository-level benchmark family.
 - **Noncomparable Dimensions**: Different benchmark variants and additional environment, multimodal, or trajectory conditions.
 - **Safe Interpretation**: Kept separate from Lite pass@1 while still contributing to repository-level protocol analysis.
@@ -189,7 +189,7 @@ This audit covers all 66 retained systems. It separates bounded protocol-aligned
 - **Other benchmark family**: rows use smaller or domain-specific datasets; apparent metric matches can occur across different datasets and should not be ranked.
 
 ## Manuscript consistency checks
-- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 16.67%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.
+- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 25.33%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.
 - The current Defects4J table records `KNOD` with base model `Not specified`, matching the audit value `/`.
 - The current Defects4J table does not mark `TSAPR` as a Perfect-FL row, matching the final audit.
 - The current fragmented security/API table follows the final audit metric labels, including the pass@1/pass@5 entries that satisfy the paper's candidate-budget definition and the remaining task-specific full-match, EM, F1, CodeBLEU, success-rate, and repair-accuracy entries.

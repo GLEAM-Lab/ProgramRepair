@@ -1,6 +1,6 @@
 # Human Taxonomy Annotation Agreement Summary
 
-This file preserves the normalized taxonomy recoding audit for the 62-system core set. The manuscript-facing final-corpus taxonomy audit is now reported in `taxonomy_independent_pair_66_agreement_summary.md` and `taxonomy_independent_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet; perfect raw-agreement rows are noted as complete raw agreement rather than emphasized as perfect kappa. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
+This file preserves the normalized taxonomy coding reliability assessment for the 62-system core set. The manuscript-facing final-corpus taxonomy reliability audit is now reported in `taxonomy_independent_pair_66_agreement_summary.md` and `taxonomy_independent_pair_66_audit.csv`, which cover all 66 retained systems. The pairwise and Fleiss-kappa statistics below are retained as an audit trail for the earlier 62-system core recoding sheet; perfect raw-agreement rows are noted as complete raw agreement rather than emphasized as perfect kappa. The `display_paradigm` field in these files is the manuscript's compact display-paradigm label derived from the multidimensional codebook.
 
 ## Inputs
 

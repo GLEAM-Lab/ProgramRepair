@@ -8,7 +8,7 @@ Among the 66 retained systems:
 
 - 21 report `pass@1`
 - 28 report `pass@k` for `k > 1`
-- 4 report `full match`
+- 5 report `full match`
 - 2 report `F1`
 - 1 reports `accuracy`
 - 1 reports `avg@5`
@@ -29,8 +29,8 @@ We therefore identify comparison windows conservatively. The full per-system aud
 
 The final 66-system audit supports three useful windows:
 
-- `EvalRepair-Java`, `pass@10`, `CodeLlama 13B`, no fault-location prompt: 2 systems. This is the cleanest model-controlled fine-tuning comparison window in the current audit, while training data, objective, and federated versus multi-objective setup remain different.
-- `SWE-bench Lite`, `pass@1`: 8 systems. This is comparable as whole system+model stacks, but not as isolated algorithm effects because base models, search budgets, cost, and validation depth differ.
+- `EvalRepair-Java`, `pass@10`, `CodeLlama 13B`, no fault-location prompt: 2 systems. This is the most tightly controlled model-comparable fine-tuning window in the current audit, while training data, objective, and federated versus multi-objective setup remain different.
+- `SWE-bench Lite`, `pass@1`: 8 systems. This is comparable as whole system+model stacks under protocol snapshots reported by the original papers, but not as isolated algorithm effects because base models, search budgets, cost, and validation depth differ.
 - `HumanEval-Java`, `pass@10`, PEFT-oriented systems: 3 systems. This supports a limited same-benchmark/metric comparison, but it does not control base model, training objective, or localization assumption.
 
 All remaining rows should be treated as protocol snapshots rather than global leaderboard entries.

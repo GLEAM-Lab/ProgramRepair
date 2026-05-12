@@ -17,6 +17,7 @@ Included files:
 - `screening_agreement_labels_474.csv`: per-record audit-coder decisions and adjudication notes used to inspect the screening audit.
 - `compute_screening_agreement.py`: lightweight script for recomputing raw two-coder include/exclude agreement and the post-adjudication consistency check from `screening_agreement_labels_474.csv`.
 - `full_text_exclusion_breakdown.csv`: final 408-record full-text exclusion breakdown used in the manuscript, with operational definitions and representative examples for each exclusion category.
+- `benchmark_filter_random_audit.csv`: fixed-seed 100-record random audit of records removed by the automatic benchmark-related filter; the audit found 0 potential false negatives and made no corpus change.
 - `notable_boundary_records.csv`: checked boundary records that are relevant to adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
@@ -29,8 +30,8 @@ Included files:
 - `human_taxonomy_annotation_template.csv`: blank annotation template aligned with the current taxonomy and scenario fields.
 - `compute_annotation_agreement.py`: lightweight script for computing agreement statistics and enumerating disagreement rows once two coders have filled the template.
 - `human_taxonomy_annotation_independent_pair.csv`: normalized paired annotation sheet for the two independent taxonomy coders, compatible with `compute_annotation_agreement.py`.
-- `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy audit combining the released coding sheet with the two independent recoding sheets.
-- `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core recoding audit; the manuscript-facing final-corpus audit is superseded by `taxonomy_independent_pair_66_agreement_summary.md`.
+- `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy reliability audit combining the released coding sheet with the two independent recoding sheets.
+- `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core coding reliability assessment; the manuscript-facing final-corpus reliability audit is superseded by `taxonomy_independent_pair_66_agreement_summary.md`.
 - `taxonomy_independent_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus.
 - `taxonomy_independent_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting independent-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.

@@ -104,6 +104,8 @@ def norm_model(value: str) -> str:
         return "Claude 3.5 Sonnet + GPT-4o"
     if "claude" in text and "3.5" in text and "sonnet" in text:
         return "Claude 3.5 Sonnet"
+    if "claude" in text and "sonnet" in text and "4" in text:
+        return "Claude Sonnet 4"
     if "deepseek" in text and "coder" in text and ("6.7b" in text or "7b" in text):
         return "DeepSeek-Coder 6.7B"
     if "codellama" in text and "13b" in text:
@@ -357,21 +359,21 @@ def main() -> None:
             "SWE-bench Lite, pass@1, repository-level issue repair.",
             "Benchmark variant and metric.",
             "Base model, cost budget, search depth, validation strategy, and publication snapshot.",
-            "Whole-system stacks vary from 16.67% to 58.30%; repository context selection and search/validation design materially affect results.",
+            "The original papers report 18.00% to 58.30% under their own protocol snapshots; the range should be read as whole-system evidence, not as an isolated paradigm effect.",
         ),
         "W4_HUMANEVAL_JAVA_PASS10_PEFT": (
             "C_limited_within_benchmark_comparison",
             "HumanEval-Java, pass@10, PEFT-oriented systems.",
             "Benchmark and metric.",
             "Base model, training data, adaptation objective, and FL/oracle assumptions.",
-            "The three pass@10 rows range from 67.28% to 78.05%; useful for a bounded discussion, not for broad paradigm ranking.",
+            "The three original papers report pass@10 results from 67.28% to 78.00%; the window supports a bounded discussion, not broad paradigm ranking.",
         ),
         "W5_EVALREPAIR_JAVA_CODELLAMA13B_PASS10": (
             "A_model_controlled_comparison",
             "EvalRepair-Java, pass@10, CodeLlama 13B, no fault-location prompt.",
             "Augmented benchmark, metric, base model, and no-FL-prompt setting.",
             "Training corpus, objective, and federated versus multi-objective fine-tuning setup.",
-            "MORepair reports 77.90% and Luo et al. report 76.88%; the close pass@10 scores support a narrow comparison of adaptation strategies under an augmented Java repair oracle.",
+            "MORepair reports 77.90% and Luo et al. report 76.88% under this protocol snapshot; the close pass@10 scores support a narrow comparison of adaptation strategies under an augmented Java repair oracle.",
         ),
     }
 
@@ -449,7 +451,7 @@ def main() -> None:
             "SWE-bench Lite pass@1",
             "Same benchmark variant and pass@1 metric.",
             "Base model, exact snapshot, cost budget, search depth, retrieval policy, and validation depth differ.",
-            "Largest protocol-aligned whole-stack comparison window in the corpus.",
+            "Most populated protocol-aligned whole-stack comparison window in the corpus.",
         ),
         "G9_SWEBench_other_variants": (
             "SWE-bench Verified, Multimodal, and full/conditioned variants",
@@ -650,7 +652,7 @@ def main() -> None:
     report.append("- **Vulnerability/API/crash repair**: rows use disjoint datasets and metric families, including full match/EM, F1, pass@1/pass@5, CodeBLEU similarity, success rate, and repair accuracy.\n")
     report.append("- **Other benchmark family**: rows use smaller or domain-specific datasets; apparent metric matches can occur across different datasets and should not be ranked.\n")
     report.append("\n## Manuscript consistency checks\n")
-    report.append("- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 16.67%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.\n")
+    report.append("- The current SWE-bench table uses `MAGIS` for the SWE-bench Lite `pass@1: 25.33%` row and keeps `TSAPR` only in the Defects4J table, matching `taxonomy_assignment_audit.csv` and the detailed system table.\n")
     report.append("- The current Defects4J table records `KNOD` with base model `Not specified`, matching the audit value `/`.\n")
     report.append("- The current Defects4J table does not mark `TSAPR` as a Perfect-FL row, matching the final audit.\n")
     report.append("- The current fragmented security/API table follows the final audit metric labels, including the pass@1/pass@5 entries that satisfy the paper's candidate-budget definition and the remaining task-specific full-match, EM, F1, CodeBLEU, success-rate, and repair-accuracy entries.\n")

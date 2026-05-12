@@ -92,10 +92,26 @@ To make the final drop easier to inspect manually, `exclusion_pattern_audit.csv`
 
 This 29-record pattern audit is intentionally conservative: it is not the full exclusion distribution. The full exclusion breakdown is provided in `full_text_exclusion_breakdown.csv`, and the exhaustive current screening decision file is provided separately as `selection_reference_474_final_adjudicated.csv`.
 
+## Benchmark-filter random rejected-record audit
+
+We also audited a fixed-seed random sample of records removed by the automatic benchmark-related filter. The source population is the 291-record difference between the 752 records retained after the LLM-related filter and the 461 records retained after the benchmark-related filter in the current manuscript screening flow.
+
+The audit record is `benchmark_filter_random_audit.csv`:
+
+| Audit item | Value |
+|---|---:|
+| Source population | 291 benchmark-filter rejected records |
+| Random seed | 20260512 |
+| Sample size | 100 |
+| Potential false negatives | 0 |
+| Action taken | No corpus change; retained-system count remains 66 |
+
+This rejected-record audit checks whether the high-recall benchmark-related prefilter missed obvious in-scope LLM-based repair systems. It is separate from the 29-record exclusion-pattern audit, which documents representative exclusion categories rather than estimating false negatives.
+
 ## Notable boundary records
 
 The file `notable_boundary_records.csv` documents a small set of adjacent records that were checked during revision but are not part of the final 66-system corpus. These rows are transparency notes, not additional screening records: they are not included in the 474-record denominator for the screening-agreement audit, and they do not change the reported 66 retained systems or 408 full-text exclusions. Boundary records are checked for whether they would introduce a new taxonomy dimension or protocol-aligned comparison window; the currently logged records do not change the codebook or benchmark-comparability windows. If a boundary record later enters the in-scope archival venue set, it should be handled through a future corpus update that reruns the same screening and coding protocol rather than by changing the current frozen audit denominator.
 
 ## Audit scope
 
-The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, the full 408-record exclusion breakdown, conservative exclusion examples, and the documented boundary notes. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.
+The released stage files and supplemental files verify the stage counts, net deltas, final retained corpus, independent include/exclude agreement under the released protocol, the full 408-record exclusion breakdown, conservative exclusion examples, the benchmark-filter rejected-record audit, and the documented boundary notes. The manuscript uses these directly auditable files for the reported screening-flow and agreement statistics.

@@ -1,6 +1,6 @@
 # Taxonomy Sensitivity Audit
 
-This file records the current human coding audit for the taxonomy coding rules.
+This file records the current human coding reliability assessment for the taxonomy coding rules.
 
 Purpose:
 

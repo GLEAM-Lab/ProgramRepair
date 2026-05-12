@@ -61,7 +61,7 @@ For rankability, use `artifact/benchmark_protocol_comparability_by_system.csv` a
 
 - Narrowed settings (`Perfect Fault Localization`, `single-function`, or `single-hunk`): 0
 
-- Comparability interpretation: the cleanest whole-system comparison window in the corpus because all eight rows report SWE-bench Lite pass@1. It is still a stack comparison, not an isolated paradigm comparison, because base model, search depth, cost budget, and validation policy vary.
+- Comparability interpretation: the most populated whole-system comparison window in the corpus because all eight rows report SWE-bench Lite pass@1. It is still a stack comparison, not an isolated paradigm comparison, because base model, search depth, cost budget, and validation policy vary.
 
 
 ## SWE-bench Verified
