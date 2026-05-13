@@ -73,6 +73,7 @@ artifact/annotation_to_send/
 *:Zone.Identifier
 
 # Local remote-run caches
+results/
 remote_results/cache/
 remote_results/data/
 remote_results/__pycache__/
