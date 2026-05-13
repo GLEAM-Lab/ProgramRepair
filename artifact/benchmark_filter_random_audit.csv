@@ -1,0 +1,2 @@
+audit_id,source_population,population_count,random_seed,sample_size,audit_date,potential_false_negatives,action_taken,notes
+benchmark_filter_rejected_record_random_audit_2026_05_12,"Records retained by the LLM-related filter but removed by the automatic benchmark-related filter",291,20260512,100,2026-05-12,0,"No corpus change; retained-system count remains 66","Manual audit of the fixed-seed random sample found no record that should have entered the 474-record candidate pool under the released inclusion criteria."

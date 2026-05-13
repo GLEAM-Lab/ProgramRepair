@@ -1,0 +1,88 @@
+{
+  "counts": {
+    "final_reference": {
+      "exclude": 408,
+      "include": 66
+    },
+    "audit_coder_a": {
+      "exclude": 408,
+      "include": 66
+    },
+    "audit_coder_b_raw": {
+      "exclude": 411,
+      "include": 63
+    },
+    "audit_coder_b_after_adjudication": {
+      "exclude": 408,
+      "include": 66
+    }
+  },
+  "metrics": {
+    "audit_coder_a_vs_b_raw_include_exclude": {
+      "agreement": "467/474",
+      "po": "0.9852",
+      "kappa": "0.9372",
+      "confusion": {
+        "include_include": 61,
+        "include_exclude": 5,
+        "exclude_include": 2,
+        "exclude_exclude": 406
+      }
+    },
+    "post_adjudication_consistency_check": {
+      "agreement": "474/474",
+      "note": "Consistency check against the final reference after adjudication; not an independent agreement statistic."
+    }
+  },
+  "raw_disagreements": [
+    {
+      "id": "S5-021",
+      "title": "ACFix: Guiding LLMs With Mined Common RBAC Practices for Context-Aware Repair of Access Control Vulnerabilities in Smart Contracts",
+      "coder_a": "exclude",
+      "coder_b_raw": "include",
+      "adjudication_note": "duplicate of U-001 ACFix; final corpus keeps the archival-status record"
+    },
+    {
+      "id": "S5-035",
+      "title": "An Empirical Study on Fine-tuning Large Language Models of Code for Automated Program Repair",
+      "coder_a": "include",
+      "coder_b_raw": "exclude",
+      "adjudication_note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-097",
+      "title": "CigaR: Cost-efficient Program Repair with LLMs",
+      "coder_a": "exclude",
+      "coder_b_raw": "include",
+      "adjudication_note": "coder-B-only inclusion; adjudicated as not retained in the core corpus"
+    },
+    {
+      "id": "S5-204",
+      "title": "Impact of Code Language Models on Automated Program Repair",
+      "coder_a": "include",
+      "coder_b_raw": "exclude",
+      "adjudication_note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-443",
+      "title": "When Fine-Tuning LLMs Meets Data Privacy: An Empirical Study of Federated Learning in LLM-Based Program Repair",
+      "coder_a": "include",
+      "coder_b_raw": "exclude",
+      "adjudication_note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-449",
+      "title": "Better Patching Using LLM Prompting, via Self-Consistency",
+      "coder_a": "include",
+      "coder_b_raw": "exclude",
+      "adjudication_note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    },
+    {
+      "id": "S5-456",
+      "title": "Is ChatGPT the ultimate programming assistant--how far is it?",
+      "coder_a": "include",
+      "coder_b_raw": "exclude",
+      "adjudication_note": "retained: empirical study proposes or evaluates a key LLM-based repair method used in the taxonomy/evidence base"
+    }
+  ]
+}

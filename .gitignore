@@ -1,1 +1,95 @@
+# Local working state
+.codex
+now
+cache/
+data/
+
+# Local manuscript/source working copies
+origin_submission/
+revised_submission/
+diff_submission/
+response_letter/
+overleaf_latest/
+revised_submission_overleaf_*/
+artifact/overleaf_after_new_papers_2026-05-01/
+artifact/overleaf_before_major_source_2026-05-01/
+artifact/revised_submission_base_for_new_paper_diff_2026-05-01/
+artifact/frozen_results_2025-10-31/
+
+# Draft manual diffs, patch plans, and local working notes
+*_overleaf_*.txt
+overleaf_*.txt
+*_overleaf_*.patch
+manual_diff_*.txt
+*_manual_diff_zh_*.txt
+major_revision_*.txt
+major_revision_*.patch
+minimal_localfix_*.txt
+minimal_localfix_*.patch
+balanced_localfix_*.txt
+balanced_localfix_*.patch
+localfix_*.txt
+localfix_*.patch
+strict_remaining_diff_*.txt
+review_resolution_audit_*.md
+rq_*_diff_*.txt
+final_polish_manual_diff_*.txt
+final_hygiene_manual_diff_*.txt
+fixed_taxonomy_table_*.txt
+major_revision.txt
+submission_consistency_audit_*.md
+remaining_alignment_diff_*.txt
+diff.txt
+newpic.png
+
+# Annotation handoff scratch files
+annotation_followup_20260503/
+screening_annotation_template_462_coder1and2.csv
+screening_annotation_missing_12_two_coder.csv
+human_taxonomy_annotation_1.csv
+human_taxonomy_annotation_2.csv
+artifact/*_zh.md
+artifact/*_zh_*.txt
+artifact/screening_annotation_template_462.csv
+artifact/screening_reference_labels_462.csv
+
+# Non-public update-sweep and full-text working artifacts
+artifact/latest_*
+artifact/new_*
+artifact/major_revision_*
+artifact/fulltext_*
+artifact/pipeline_update_sweep_rerun_2026-05-01.md
+artifact/published_only_update_decisions_2026-05-01.md
+artifact/screening_counts_reproduction_note_zh_2026-05-01.txt
+artifact/zotero_update_report_2026-05-01.csv
+artifact/人工标注说明_外发版.md
+artifact/benchmark_pdf_mentions*.csv
+artifact/benchmark_pdf_mentions_summary.md
+artifact/benchmark_rq3_*manual_diff_zh_*.txt
+artifact/extract_pdf_benchmark_mentions.py
+artifact/pdf_text_cache/
+artifact/annotation_to_send/
+.venv-pdf/
 *:Zone.Identifier
+
+# Local remote-run caches
+remote_results/cache/
+remote_results/data/
+remote_results/__pycache__/
+remote_results/cdp_command.ps1
+remote_results/cdp_eval.ps1
+remote_results/download_open_access_pdfs.py
+remote_results/update_zotero_major_revision.py
+
+# Local figure drafts not referenced by the public artifact
+figure_sources/framework_pipeline*.html
+figure_sources/workflow_archetypes.html
+
+# LaTeX build byproducts
+*.aux
+*.blg
+*.log
+*.out
+*.fdb_latexmk
+*.fls
+*.synctex.gz

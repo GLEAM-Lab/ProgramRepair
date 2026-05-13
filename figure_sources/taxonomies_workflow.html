@@ -1,0 +1,426 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM-based Software Repair Workflow</title>
+  <style>
+    :root{
+      --paper:#f7f4ec;
+      --ink:#18212c;
+      --muted:#566474;
+      --line:#1f6381;
+      --dash:#8bb6c9;
+      --soft:#eaf4fb;
+      --cream:#fff4c8;
+      --green:#3f8558;
+      --border:#c8d4df;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      background:var(--paper);
+      font-family:"Helvetica Neue",Arial,"DejaVu Sans",sans-serif;
+      color:var(--ink);
+      padding:28px;
+    }
+    main{width:min(98vw,1600px)}
+    .toolbar{
+      display:flex;
+      justify-content:flex-end;
+      gap:8px;
+      margin-bottom:12px;
+    }
+    button{
+      border:1px solid rgba(24,33,44,.15);
+      background:#fff;
+      border-radius:8px;
+      padding:7px 12px;
+      font:700 13px/1 inherit;
+      cursor:pointer;
+      color:var(--ink);
+      box-shadow:0 2px 8px rgba(24,33,44,.08);
+    }
+    button.primary{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .frame{
+      background:#fff;
+      border:1px solid rgba(24,33,44,.12);
+      border-radius:14px;
+      overflow:hidden;
+      box-shadow:0 18px 40px rgba(24,33,44,.12);
+    }
+    svg{display:block;width:100%;height:auto}
+    .title{font-size:28px;font-weight:800;letter-spacing:.2px;fill:var(--ink)}
+    .subtitle{font-size:15px;font-weight:500;fill:var(--muted)}
+    .lane-title{font-size:22px;font-weight:800;fill:#1b2430}
+    .box-text{font-size:18px;font-weight:600;fill:#1b2430}
+    .small{font-size:14px;font-weight:600;fill:var(--muted)}
+    .tiny{font-size:12px;font-weight:500;fill:var(--muted)}
+    .tag{font-size:16px;font-weight:600;fill:#1b2430}
+    .evidence{font-size:18px;font-weight:700;fill:#1b2430}
+    .rail-title{font-size:20px;font-weight:800;fill:#1b2430}
+    .legend-text{font-size:13px;font-weight:500;fill:var(--muted)}
+  </style>
+</head>
+<body>
+<main>
+  <div class="toolbar">
+    <button class="primary" onclick="downloadSvg()">SVG</button>
+    <button onclick="downloadPng(2)">PNG 2x</button>
+    <button onclick="downloadPng(3)">PNG 3x</button>
+  </div>
+  <div class="frame">
+<svg id="workflow" xmlns="http://www.w3.org/2000/svg" width="1600" height="990" viewBox="0 0 1600 990" role="img" aria-label="Workflow view of LLM-based software repair">
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L10,6 L1,11 Z" fill="#1f6381"/>
+    </marker>
+    <marker id="arrow-dash" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L10,6 L1,11 Z" fill="#8bb6c9"/>
+    </marker>
+    <marker id="arrow-dash-rev" markerWidth="12" markerHeight="12" refX="2" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M10,1 L1,6 L10,11 Z" fill="#8bb6c9"/>
+    </marker>
+    <pattern id="dotgrid" width="22" height="22" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.1" fill="#dce6ee"/>
+    </pattern>
+    <filter id="box-glow" x="-4%" y="-6%" width="108%" height="118%">
+      <feDropShadow dx="0" dy="1" stdDeviation="2.5" flood-color="#00000014"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="1600" height="990" fill="#ffffff"/>
+  <rect x="0" y="0" width="1600" height="990" fill="url(#dotgrid)" opacity=".18"/>
+
+  <!-- ===================== HEADER ===================== -->
+  <text class="title" x="42" y="46">Workflow view of LLM-based software repair</text>
+  <text class="subtitle" x="42" y="74">The four display paradigms differ in parameter adaptation and runtime control; retrieval and analysis are cross-cutting auxiliary evidence sources.</text>
+
+  <!-- Legend -->
+  <g transform="translate(1098, 30)">
+    <rect x="0" y="0" width="464" height="48" rx="10" fill="#ffffff" stroke="#d9e1e8"/>
+    <line x1="22" y1="24" x2="68" y2="24" stroke="#1f6381" stroke-width="3" marker-end="url(#arrow)"/>
+    <text class="legend-text" x="78" y="29">main workflow</text>
+    <line x1="218" y1="24" x2="266" y2="24" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)"/>
+    <text class="legend-text" x="276" y="29">optional evidence flow</text>
+  </g>
+
+  <!-- ===================== LEFT RAIL: BUG-RELATED INFORMATION ===================== -->
+  <rect x="36" y="108" width="232" height="800" fill="#f1f1f1" stroke="#d0d6de"/>
+
+  <!-- Rail title -->
+  <text class="rail-title" x="152" y="148" text-anchor="middle">Bug-Related</text>
+  <text class="rail-title" x="152" y="174" text-anchor="middle">Information</text>
+
+  <!-- 5 evidence items, each centered in its slot -->
+  <text class="evidence" x="152" y="240" text-anchor="middle">Buggy Program</text>
+  <text class="evidence" x="152" y="266" text-anchor="middle">or Repository</text>
+  <line x1="36" y1="312" x2="268" y2="312" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <text class="evidence" x="152" y="380" text-anchor="middle">Test Suites</text>
+  <line x1="36" y1="430" x2="268" y2="430" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <text class="evidence" x="152" y="498" text-anchor="middle">Runtime Logs</text>
+  <line x1="36" y1="548" x2="268" y2="548" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <text class="evidence" x="152" y="610" text-anchor="middle">Internal</text>
+  <text class="evidence" x="152" y="636" text-anchor="middle">Knowledge</text>
+  <line x1="36" y1="686" x2="268" y2="686" stroke="#9aa3ad" stroke-width="1.5" stroke-dasharray="6 5"/>
+
+  <text class="evidence" x="152" y="748" text-anchor="middle">Global</text>
+  <text class="evidence" x="152" y="774" text-anchor="middle">Knowledge</text>
+
+  <!-- ===================== TOP BAND: LLM CHECKPOINTS + FINE-TUNING ===================== -->
+  <!-- LLM Checkpoints (light blue background) -->
+  <rect x="296" y="108" width="1268" height="200" fill="#e8f2fb"/>
+  <!-- Blue accent strip at top -->
+  <rect x="296" y="108" width="1268" height="4" fill="#3b82f6" opacity=".7"/>
+
+  <!-- Fine-tuning sub-area (amber/yellow, nested inside LLM Checkpoints) -->
+  <rect x="600" y="112" width="964" height="126" fill="#fff4c8"/>
+
+  <!-- Base Checkpoints box -->
+  <rect x="332" y="138" width="220" height="76" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="442" y="172" text-anchor="middle">Base</text>
+  <text class="box-text" x="442" y="198" text-anchor="middle">Checkpoints</text>
+
+  <!-- LLM Checkpoints label (bottom-left of band) -->
+  <rect x="311" y="273" width="4" height="23" rx="2" fill="#3b82f6" opacity=".8"/>
+  <text class="lane-title" x="320" y="294">LLM Checkpoints</text>
+
+  <!-- Fine-tuning icon (compact neural network) -->
+  <g transform="translate(666, 158)">
+    <circle r="26" fill="#ffffff" stroke="#1b2430" stroke-width="2.2"/>
+    <g stroke="#1b2430" stroke-width="0.8" opacity=".55">
+      <line x1="-12" y1="-10" x2="0" y2="-10"/>
+      <line x1="-12" y1="-10" x2="0" y2="0"/>
+      <line x1="-12" y1="-10" x2="0" y2="10"/>
+      <line x1="-12" y1="0" x2="0" y2="-10"/>
+      <line x1="-12" y1="0" x2="0" y2="0"/>
+      <line x1="-12" y1="0" x2="0" y2="10"/>
+      <line x1="-12" y1="10" x2="0" y2="-10"/>
+      <line x1="-12" y1="10" x2="0" y2="0"/>
+      <line x1="-12" y1="10" x2="0" y2="10"/>
+      <line x1="0" y1="-10" x2="12" y2="-10"/>
+      <line x1="0" y1="-10" x2="12" y2="0"/>
+      <line x1="0" y1="-10" x2="12" y2="10"/>
+      <line x1="0" y1="0" x2="12" y2="-10"/>
+      <line x1="0" y1="0" x2="12" y2="0"/>
+      <line x1="0" y1="0" x2="12" y2="10"/>
+      <line x1="0" y1="10" x2="12" y2="-10"/>
+      <line x1="0" y1="10" x2="12" y2="0"/>
+      <line x1="0" y1="10" x2="12" y2="10"/>
+    </g>
+    <g fill="#1b2430">
+      <circle cx="-12" cy="-10" r="2.6"/>
+      <circle cx="-12" cy="0" r="2.6"/>
+      <circle cx="-12" cy="10" r="2.6"/>
+      <circle cx="0" cy="-10" r="2.6"/>
+      <circle cx="0" cy="0" r="2.6"/>
+      <circle cx="0" cy="10" r="2.6"/>
+      <circle cx="12" cy="-10" r="2.6"/>
+      <circle cx="12" cy="0" r="2.6"/>
+      <circle cx="12" cy="10" r="2.6"/>
+    </g>
+  </g>
+
+  <!-- Training Corpus -->
+  <rect x="746" y="138" width="248" height="56" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="870" y="172" text-anchor="middle">Training Corpus</text>
+
+  <!-- Training Algorithms -->
+  <rect x="1090" y="138" width="282" height="56" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="1231" y="172" text-anchor="middle">Training Algorithms</text>
+
+  <!-- Fine-tuning label (bottom-left of yellow area) -->
+  <rect x="614" y="205" width="4" height="23" rx="2" fill="#d97706" opacity=".8"/>
+  <text class="lane-title" x="623" y="226">Fine-tuning</text>
+
+  <!-- Fine-tuned Checkpoints (white box inside blue band, below yellow area) -->
+  <rect x="1252" y="252" width="312" height="48" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="1408" y="282" text-anchor="middle">Fine-tuned Checkpoints</text>
+
+  <!-- ===================== PROMPTING BAND ===================== -->
+  <!-- Distinct mint-green background for the Prompting paradigm -->
+  <rect x="296" y="328" width="1268" height="138" fill="#ecfdf5"/>
+  <!-- Green accent strip at top -->
+  <rect x="296" y="328" width="1268" height="4" fill="#10b981" opacity=".7"/>
+
+  <!-- Prompting icon (paper with hand) -->
+  <g transform="translate(348, 360)">
+    <rect x="-22" y="-12" width="40" height="22" rx="2" fill="#fff" stroke="#1b2430" stroke-width="1.8"/>
+    <line x1="-16" y1="-6" x2="12" y2="-6" stroke="#1b2430" stroke-width="1.4"/>
+    <line x1="-16" y1="0" x2="12" y2="0" stroke="#1b2430" stroke-width="1.4"/>
+    <line x1="-16" y1="6" x2="6" y2="6" stroke="#1b2430" stroke-width="1.4"/>
+    <path d="M14 8 Q22 14 24 18 Q24 22 18 22 Q12 22 10 16 Z" fill="#fff" stroke="#1b2430" stroke-width="1.6"/>
+  </g>
+  <!-- Prompting label -->
+  <rect x="311" y="425" width="4" height="23" rx="2" fill="#10b981" opacity=".8"/>
+  <text class="lane-title" x="320" y="446">Prompting</text>
+
+  <!-- Human-Written Prompt -->
+  <rect x="498" y="362" width="402" height="60" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="699" y="398" text-anchor="middle">Human-Written Prompt</text>
+
+  <!-- Zero/Few-Shot Examples -->
+  <rect x="954" y="362" width="448" height="60" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="1178" y="398" text-anchor="middle">Zero-/Few-Shot Examples</text>
+
+  <!-- ===================== AUXILIARY CONTEXTS BAND (DARK) ===================== -->
+  <rect x="296" y="486" width="1268" height="80" fill="#1b2430"/>
+  <text x="316" y="534" font-size="22" font-weight="800" fill="#ffffff">Auxiliary Contexts</text>
+
+  <!-- Retrieval -->
+  <rect x="700" y="510" width="234" height="42" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <text class="tag" x="817" y="538" text-anchor="middle">Retrieval</text>
+
+  <!-- Program Analysis -->
+  <rect x="1010" y="510" width="320" height="42" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2"/>
+  <text class="tag" x="1170" y="538" text-anchor="middle">Program Analysis</text>
+
+  <!-- ===================== BOTTOM ROW: PROCEDURAL / HUMAN INTERACTIONS / AGENTIC ===================== -->
+
+  <!-- Procedural — soft lavender -->
+  <rect x="296" y="586" width="540" height="240" fill="#f5f3ff"/>
+  <!-- Purple accent strip at top -->
+  <rect x="296" y="586" width="540" height="4" fill="#8b5cf6" opacity=".7"/>
+
+  <!-- Human Interactions connector zone (neutral gray bridge) -->
+  <rect x="836" y="586" width="288" height="240" fill="#f3f4f6"/>
+
+  <!-- Agentic — soft peach/orange -->
+  <rect x="1124" y="586" width="440" height="240" fill="#fff7ed"/>
+  <!-- Orange accent strip at top -->
+  <rect x="1124" y="586" width="440" height="4" fill="#f97316" opacity=".7"/>
+
+  <!-- Gear/Process icon -->
+  <g transform="translate(352, 626)">
+    <g stroke="#1b2430" stroke-width="2" fill="none">
+      <circle cx="0" cy="0" r="11"/>
+      <circle cx="0" cy="0" r="4" fill="#1b2430"/>
+      <line x1="0" y1="-15" x2="0" y2="-11"/>
+      <line x1="0" y1="11" x2="0" y2="15"/>
+      <line x1="-15" y1="0" x2="-11" y2="0"/>
+      <line x1="11" y1="0" x2="15" y2="0"/>
+      <line x1="-10.6" y1="-10.6" x2="-7.8" y2="-7.8"/>
+      <line x1="10.6" y1="-10.6" x2="7.8" y2="-7.8"/>
+      <line x1="-10.6" y1="10.6" x2="-7.8" y2="7.8"/>
+      <line x1="10.6" y1="10.6" x2="7.8" y2="7.8"/>
+    </g>
+    <!-- mini list/check -->
+    <rect x="-14" y="20" width="32" height="22" rx="2" fill="#fff" stroke="#1b2430" stroke-width="1.6"/>
+    <line x1="-9" y1="27" x2="13" y2="27" stroke="#1b2430" stroke-width="1.4"/>
+    <line x1="-9" y1="33" x2="6" y2="33" stroke="#1b2430" stroke-width="1.4"/>
+    <path d="M-7 39 L-3 42 L1 38" fill="none" stroke="#3f8558" stroke-width="1.8"/>
+  </g>
+  <!-- Procedural label -->
+  <rect x="311" y="791" width="4" height="23" rx="2" fill="#8b5cf6" opacity=".8"/>
+  <text class="lane-title" x="320" y="812">Procedural</text>
+
+  <!-- Scripted Controller -->
+  <rect x="446" y="650" width="290" height="84" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="591" y="686" text-anchor="middle">Scripted</text>
+  <text class="box-text" x="591" y="714" text-anchor="middle">Controller</text>
+
+  <!-- Human Interactions (bridges Procedural and Agentic) -->
+  <rect x="860" y="650" width="240" height="84" rx="8" fill="#fff" stroke="#b0bac5" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="980" y="686" text-anchor="middle">Human</text>
+  <text class="box-text" x="980" y="714" text-anchor="middle">Interactions</text>
+
+  <!-- Cloud + network icon (top-right of Agentic) -->
+  <g transform="translate(1500, 626)">
+    <path d="M-22 -2 Q-22 -12 -12 -12 Q-10 -20 0 -20 Q12 -20 14 -12 Q24 -12 24 -2 Q24 6 14 6 L-12 6 Q-22 6 -22 -2 Z"
+          fill="#fff" stroke="#1b2430" stroke-width="1.8"/>
+    <g fill="#fff" stroke="#1b2430" stroke-width="1.6">
+      <circle cx="-12" cy="22" r="4"/>
+      <circle cx="0" cy="22" r="4"/>
+      <circle cx="12" cy="22" r="4"/>
+    </g>
+    <g stroke="#1b2430" stroke-width="1.4" fill="none">
+      <line x1="-12" y1="18" x2="-2" y2="10"/>
+      <line x1="0" y1="18" x2="0" y2="10"/>
+      <line x1="12" y1="18" x2="2" y2="10"/>
+    </g>
+  </g>
+  <!-- Agentic label (right-aligned, colored dot accent) -->
+  <circle cx="1536" cy="803" r="5" fill="#f97316" opacity=".85"/>
+  <text class="lane-title" x="1530" y="812" text-anchor="end">Agentic</text>
+
+  <!-- LLM-Driven Controller -->
+  <rect x="1170" y="650" width="290" height="84" rx="8" fill="#fff" stroke="#c8d4df" stroke-width="2" filter="url(#box-glow)"/>
+  <text class="box-text" x="1315" y="686" text-anchor="middle">LLM-Driven</text>
+  <text class="box-text" x="1315" y="714" text-anchor="middle">Controller</text>
+
+  <!-- ===================== SUBMITTED PATCH ===================== -->
+  <!-- Green background signals successful output -->
+  <rect x="296" y="846" width="1268" height="62" fill="#dcfce7"/>
+  <!-- Green accent strip at top -->
+  <rect x="296" y="846" width="1268" height="4" fill="#16a34a" opacity=".7"/>
+  <text x="930" y="886" text-anchor="middle" font-size="24" font-weight="800" fill="#166534">Submitted Patch</text>
+
+  <!-- ===================== MAIN ARROWS (solid) ===================== -->
+  <!-- Base Checkpoints -> Human-Written Prompt (base model used directly, without fine-tuning) -->
+  <path d="M552 214 L552 308 L699 308 L699 362" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Base Checkpoints -> Fine-tuning area (optional, dashed) -->
+  <path d="M552 176 L600 176" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Training Corpus -> Training Algorithms -->
+  <path d="M994 166 L1086 166" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Training Algorithms -> Fine-tuned Checkpoints (down + jog right) -->
+  <path d="M1231 194 L1231 226 L1408 226 L1408 248" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Fine-tuned Checkpoints -> Prompting (down + jog left to Zero-/Few-Shot) -->
+  <path d="M1408 300 L1408 320 L1178 320 L1178 358" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Human-Written Prompt -> Zero/Few-Shot Examples (optional augmentation) -->
+  <path d="M900 392 L950 392" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Prompting (left) -> Procedural (Scripted Controller) -->
+  <path d="M591 422 L591 646" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Prompting (right) -> Agentic (LLM-Driven Controller) -->
+  <path d="M1315 422 L1315 646" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Procedural -> Submitted Patch -->
+  <path d="M591 734 L591 842" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Agentic -> Submitted Patch -->
+  <path d="M1315 734 L1315 842" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- Prompting -> Submitted Patch (Prompting paradigm: single inference, right-margin route) -->
+  <path d="M1564 392 L1582 392 L1582 858 L1564 858" stroke="#1f6381" stroke-width="2.5" marker-end="url(#arrow)" fill="none"/>
+
+  <!-- ===================== EVIDENCE / AUX FLOWS (dashed) ===================== -->
+  <!-- Bug-Related rail -> Prompting -->
+  <path d="M268 392 L294 392" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Bug-Related rail -> Auxiliary Contexts -->
+  <path d="M268 526 L294 526" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Bug-Related rail -> Procedural -->
+  <path d="M268 692 L294 692" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Auxiliary Contexts <-> Prompting (vertical, double-headed) -->
+  <path d="M817 482 L817 426" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" marker-start="url(#arrow-dash-rev)" fill="none"/>
+
+  <!-- Auxiliary Contexts (Retrieval) -> Procedural (down) -->
+  <path d="M817 566 L817 646" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Auxiliary Contexts (Program Analysis) -> Agentic (down) -->
+  <path d="M1170 566 L1170 646" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" fill="none"/>
+
+  <!-- Procedural <-> Human Interactions -->
+  <path d="M740 692 L856 692" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" marker-start="url(#arrow-dash-rev)" fill="none"/>
+
+  <!-- Human Interactions <-> Agentic -->
+  <path d="M1104 692 L1166 692" stroke="#8bb6c9" stroke-width="2.5" stroke-dasharray="8 6" marker-end="url(#arrow-dash)" marker-start="url(#arrow-dash-rev)" fill="none"/>
+</svg>
+  </div>
+</main>
+<script>
+  function serializedSvg(){
+    const svg = document.getElementById('workflow').cloneNode(true);
+    svg.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    const style = document.createElementNS('http://www.w3.org/2000/svg','style');
+    style.textContent = Array.from(document.styleSheets)
+      .map(sheet => {
+        try { return Array.from(sheet.cssRules).map(rule => rule.cssText).join('\n'); }
+        catch(e) { return ''; }
+      }).join('\n');
+    svg.insertBefore(style, svg.firstChild);
+    return new XMLSerializer().serializeToString(svg);
+  }
+  function downloadBlob(blob, name){
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = name; document.body.appendChild(a); a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 200);
+  }
+  function downloadSvg(){
+    downloadBlob(new Blob([serializedSvg()], {type:'image/svg+xml;charset=utf-8'}), 'taxonomies_workflow.svg');
+  }
+  function downloadPng(scale){
+    const svgText = serializedSvg();
+    const img = new Image();
+    const url = URL.createObjectURL(new Blob([svgText], {type:'image/svg+xml;charset=utf-8'}));
+    img.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = 1600 * scale;
+      canvas.height = 990 * scale;
+      const ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#ffffff';
+      ctx.fillRect(0,0,canvas.width,canvas.height);
+      ctx.drawImage(img,0,0,canvas.width,canvas.height);
+      canvas.toBlob(blob => downloadBlob(blob, scale === 2 ? 'taxonomies_workflow.png' : `taxonomies_workflow_${scale}x.png`), 'image/png');
+      URL.revokeObjectURL(url);
+    };
+    img.src = url;
+  }
+</script>
+</body>
+</html>

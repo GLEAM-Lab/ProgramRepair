@@ -1,0 +1,7 @@
+arxiv
+bibtexparser
+beautifulsoup4
+rapidfuzz
+requests
+tqdm
+Unidecode

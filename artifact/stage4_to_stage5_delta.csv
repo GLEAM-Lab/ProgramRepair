@@ -1,0 +1,16 @@
+change_type,title,note
+added,Can OpenAI's codex fix bugs? an evaluation on QuixBugs,present in released stage5 only
+added,DistiLRR: Transferring Code Repair for Low-Resource Programming Languages,explicit citation-chasing supplement
+added,Enhancing LLM-Based Automated Program Repair with Design Rationales,present in released stage5 only
+added,Human-in-the-loop software development agents,present in released stage5 only
+added,Is ChatGPT the ultimate programming assistant--how far is it?,present in released stage5 only
+added,Logs In, Patches Out: Automated Vulnerability Repair via $\{$Tree-of-Thought$\}$$\{$LLM$\}$ Analysis,present in released stage5 only
+added,Majority Rule: better patching via Self-Consistency,present in released stage5 only
+added,Out of sight, out of mind: Better automatic vulnerability repair by broadening input ranges and sources,present in released stage5 only
+added,RepairCAT: Applying Large Language Model to Fix Bugs in AI-Generated Programs,present in released stage5 only
+added,Retrieval-based prompt selection for code-related few-shot learning,present in released stage5 only
+added,SWE-bench Multimodal: Do AI Systems Generalize to Visual Software Domains?,present in released stage5 only
+added,Smart-LLaMA-DPO: Reinforced Large Language Model for Explainable Smart Contract Vulnerability Detection,present in released stage5 only
+added,Unlocking LLM Repair Capabilities in Low-Resource Programming Languages Through Cross-Language Translation and Multi-Agent Refinement,explicit citation-chasing supplement
+added,What makes good in-context demonstrations for code intelligence tasks with llms?,present in released stage5 only
+removed,InfCode: Adversarial Iterative Refinement of Tests and Patches for Reliable Software Issue Resolution,present in released stage4 only

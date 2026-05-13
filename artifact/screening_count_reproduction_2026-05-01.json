@@ -1,0 +1,16 @@
+{
+  "screening_flow": {
+    "search_query_hits": 2317,
+    "repair_related_filter": 1020,
+    "llm_related_filter": 752,
+    "benchmark_related_filter": 461,
+    "snowballing": 474,
+    "representative_works": 66
+  },
+  "update_increments": {
+    "query_hits": 736,
+    "title_screen_candidates": 26,
+    "archival_full_text_candidates": 12,
+    "retained_additions": 4
+  }
+}

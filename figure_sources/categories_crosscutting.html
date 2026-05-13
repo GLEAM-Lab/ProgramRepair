@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LLM-based Software Repair Taxonomy</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/svg2pdf.js@2.2.3/dist/svg2pdf.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#efece5;
+      --frame:#ffffff;
+      --text:#1b2430;
+      --muted:#6b7280;
+      --border:rgba(27,36,48,.10);
+      --border-strong:rgba(27,36,48,.22);
+      --shadow-sm:0 1px 2px rgba(27,36,48,.06);
+      --shadow-md:0 14px 36px rgba(27,36,48,.10);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      min-height:100vh;display:grid;place-items:center;
+      background:var(--bg);color:var(--text);
+      padding:32px 16px;
+      font-family:system-ui,-apple-system,"Segoe UI","Inter","Helvetica Neue","DejaVu Sans",Arial,sans-serif;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      text-rendering:optimizeLegibility;
+    }
+    main{width:min(96vw,1600px)}
+    .toolbar{
+      display:flex;justify-content:flex-end;flex-wrap:wrap;
+      gap:10px;margin-bottom:14px;align-items:center;
+    }
+    .group{
+      display:flex;gap:6px;padding:4px;
+      background:rgba(255,255,255,.55);
+      border:1px solid var(--border);border-radius:10px;
+      backdrop-filter:blur(6px);
+    }
+    button{
+      border:1px solid var(--border);background:#fff;color:var(--text);
+      border-radius:7px;padding:7px 13px;
+      font:600 13px/1 inherit;cursor:pointer;
+      box-shadow:var(--shadow-sm);
+      transition:transform 120ms ease,box-shadow 120ms ease,border-color 120ms ease,background 120ms ease;
+    }
+    button:hover{
+      border-color:var(--border-strong);
+      transform:translateY(-1px);
+      box-shadow:0 4px 10px rgba(27,36,48,.10);
+    }
+    button:active{transform:translateY(0)}
+    button.primary{background:#1b2430;color:#fff;border-color:#1b2430}
+    button.primary:hover{background:#2d3a4a;border-color:#2d3a4a}
+    button:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:var(--shadow-sm)}
+    .frame{
+      background:var(--frame);border-radius:14px;overflow:hidden;
+      border:1px solid var(--border);box-shadow:var(--shadow-md);
+    }
+    svg{display:block;width:100%;height:auto}
+    .toast{
+      position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(8px);
+      background:#1b2430;color:#fff;padding:10px 16px;border-radius:999px;
+      font:600 13px/1 inherit;box-shadow:0 8px 22px rgba(27,36,48,.22);
+      opacity:0;pointer-events:none;transition:opacity 180ms ease,transform 180ms ease;
+    }
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    .toast.error{background:#a23a3a}
+  </style>
+</head>
+<body>
+  <main>
+    <div class="toolbar" aria-hidden="true">
+      <div class="group">
+        <button class="primary" id="btn-pdf" onclick="downloadPdf()">PDF (vector)</button>
+        <button class="primary" onclick="downloadSvg()">SVG</button>
+      </div>
+      <div class="group">
+        <button onclick="downloadPng(1)">PNG 1×</button>
+        <button onclick="downloadPng(2)">PNG 2×</button>
+        <button onclick="downloadPng(3)">PNG 3×</button>
+      </div>
+    </div>
+
+    <div class="frame">
+<svg id="taxonomy" role="img" aria-label="LLM-based software repair taxonomy"
+     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="1298.88pt" height="420pt" viewBox="0 130 1298.88 420">
+ <defs>
+  <style>*{stroke-linejoin:round;stroke-linecap:butt}</style>
+  <clipPath id="clip"><rect x="1.44" y="1.44" width="1296" height="900"/></clipPath>
+ </defs>
+
+ <!-- Background -->
+ <path d="M0 900 L1298.88 900 L1298.88 0 L0 0 z" style="fill:#ffffff"/>
+
+ <!-- Top section dividers + group labels -->
+ <path d="M 70 163 L 340 163"   clip-path="url(#clip)" style="fill:none;stroke:#c88631;stroke-width:2.4;stroke-linecap:round"/>
+ <path d="M 360 163 L 1230 163" clip-path="url(#clip)" style="fill:none;stroke:#647282;stroke-width:2.4;stroke-linecap:round"/>
+ <text style="font-weight:700;font-size:17px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#b06f1c;letter-spacing:0.4px" x="205.92" y="158">Adapted backbone</text>
+ <text style="font-weight:700;font-size:17px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#3d4855;letter-spacing:0.4px" x="790.56" y="158">Frozen backbone at runtime</text>
+
+ <!-- Four category panels -->
+ <path d="M 78.36 359 L 333.48 359 Q 350.48 359 350.48 342.0 L 350.48 198.0 Q 350.48 181 333.48 181 L 78.36 181 Q 61.36 181 61.36 198.0 L 61.36 342.0 Q 61.36 359 78.36 359 z"      clip-path="url(#clip)" style="fill:#fff2da;stroke:#c88631;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 370.68 359 L 625.8 359 Q 642.8 359 642.8 342.0 L 642.8 198.0 Q 642.8 181 625.8 181 L 370.68 181 Q 353.68 181 353.68 198.0 L 353.68 342.0 Q 353.68 359 370.68 359 z"     clip-path="url(#clip)" style="fill:#e5f6f8;stroke:#278ea5;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 663.0 359 L 918.12 359 Q 935.12 359 935.12 342.0 L 935.12 198.0 Q 935.12 181 918.12 181 L 663.0 181 Q 646.0 181 646.0 198.0 L 646.0 342.0 Q 646.0 359 663.0 359 z"     clip-path="url(#clip)" style="fill:#eaf1fd;stroke:#3d6fb6;stroke-width:1.8;stroke-linejoin:miter"/>
+ <path d="M 955.32 359 L 1210.44 359 Q 1227.44 359 1227.44 342.0 L 1227.44 198.0 Q 1227.44 181 1210.44 181 L 955.32 181 Q 938.32 181 938.32 198.0 L 938.32 342.0 Q 938.32 359 955.32 359 z" clip-path="url(#clip)" style="fill:#f0ecfa;stroke:#7657b8;stroke-width:1.8;stroke-linejoin:miter"/>
+
+ <!-- Icons -->
+ <g transform="translate(77.36 190.00)">
+  <g fill="none" stroke="#c88631" stroke-width="2.6" stroke-linecap="round">
+   <line x1="2" y1="6" x2="30" y2="6"/><line x1="2" y1="16" x2="30" y2="16"/><line x1="2" y1="26" x2="30" y2="26"/>
+  </g>
+  <g fill="#fff2da" stroke="#c88631" stroke-width="2.2">
+   <circle cx="10" cy="6" r="4"/><circle cx="22" cy="16" r="4"/><circle cx="14" cy="26" r="4"/>
+  </g>
+ </g>
+ <g transform="translate(369.68 190.00)">
+  <g fill="none" stroke="#278ea5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <rect x="2" y="12" width="12" height="10" rx="2" fill="#e5f6f8" stroke="#278ea5"/>
+   <line x1="15" y1="17" x2="28" y2="17"/><polyline points="24 13 28 17 24 21"/>
+  </g>
+ </g>
+ <g transform="translate(662.00 190.00)">
+  <g fill="none" stroke="#3d6fb6" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M 26 17 A 10 10 0 1 1 16 7"/><polyline points="13 4 16 7 19 4.5"/>
+  </g>
+ </g>
+ <g transform="translate(954.32 190.00)">
+  <g fill="none" stroke="#7657b8" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+   <line x1="16" y1="8" x2="16" y2="14"/>
+   <line x1="16" y1="14" x2="6"  y2="23"/><line x1="16" y1="14" x2="16" y2="23"/><line x1="16" y1="14" x2="26" y2="23"/>
+  </g>
+  <g fill="#f0ecfa" stroke="#7657b8" stroke-width="2.2">
+   <circle cx="16" cy="6"  r="3.2"/><circle cx="6"  cy="25" r="3.2"/>
+   <circle cx="16" cy="25" r="3.2"/><circle cx="26" cy="25" r="3.2"/>
+  </g>
+ </g>
+
+ <!-- Category titles + descriptions -->
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="77.36"  y="248">Fine-Tuning</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="77.36"  y="267">Backbone updated on repair data.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="369.68" y="248">Prompting</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="369.68" y="267">Frozen model; one prompt per defect.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="662.00" y="248">Procedural</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="662.00" y="267">Frozen model; fixed external loop.</text>
+ <text style="font-weight:700;font-size:24px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="954.32" y="248">Agentic</text>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#4a5660"                       x="954.32" y="267">Frozen model; LLM picks tools/steps.</text>
+
+ <!-- Pills: Fine-Tuning -->
+ <rect x="86.32"  y="286" width="65.32" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="118.98" y="301.5">Full FT</text>
+ <rect x="157.88" y="286" width="52.16" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="183.96" y="301.5">PEFT</text>
+ <rect x="221.69" y="286" width="36.86" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="240.12" y="301.5">KD</text>
+ <rect x="270.26" y="286" width="52.04" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#fffdf5;stroke:#d4a855;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="296.28" y="301.5">RLFT</text>
+
+ <!-- Pills: Prompting -->
+ <rect x="374.58" y="286" width="87.12" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f1fbfd;stroke:#6abecf;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="418.14" y="301.5">Zero-shot</text>
+ <rect x="460.58" y="286" width="83.24" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f1fbfd;stroke:#6abecf;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="502.20" y="301.5">Few-shot</text>
+
+ <!-- Pills: Procedural -->
+ <rect x="650.58" y="286" width="127.44" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="714.30" y="301.5">Test-in-the-loop</text>
+ <rect x="783.02" y="286" width="147.52" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="856.78" y="301.5">Human-in-the-loop</text>
+ <rect x="712.61" y="313" width="146.79" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f0f5fd;stroke:#7ea4d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="786.00" y="328.5">Scripted tool loop</text>
+
+ <!-- Pills: Agentic -->
+ <rect x="945.07"  y="286" width="167.07" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:12px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1028.60" y="301.5">Tool-augmented agents</text>
+ <rect x="1117.14" y="286" width="103.55" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:12px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1168.92" y="301.5">LLM-as-judges</text>
+ <rect x="988.40"  y="313" width="188.96" height="22" rx="11" ry="11" clip-path="url(#clip)" style="fill:#f7f4fd;stroke:#a890d0;stroke-width:1.1"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430" x="1082.88" y="328.5">Self-controlled systems</text>
+
+ <!-- Bottom legend -->
+ <path d="M 72 380 L 1226 380" clip-path="url(#clip)" style="fill:none;stroke:#c8d0d9;stroke-width:1.4;stroke-linecap:square"/>
+ <circle cx="205.92"  cy="380" r="5.6" style="fill:#c88631;stroke:#c88631"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="205.92"  y="398">training-time control</text>
+ <circle cx="498.24"  cy="380" r="5.6" style="fill:#278ea5;stroke:#278ea5"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="498.24"  y="398">human prompt</text>
+ <circle cx="790.56"  cy="380" r="5.6" style="fill:#3d6fb6;stroke:#3d6fb6"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="790.56"  y="398">scripted controller</text>
+ <circle cx="1082.88" cy="380" r="5.6" style="fill:#7657b8;stroke:#7657b8"/>
+ <text style="font-size:14px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#4a5660" x="1082.88" y="398">LLM-selected actions</text>
+
+ <!-- Cross-cutting section -->
+ <path d="M 79.36 524.0 L 1219.52 524.0 Q 1235.52 524.0 1235.52 508.0 L 1235.52 431.0 Q 1235.52 415 1219.52 415 L 79.36 415 Q 63.36 415 63.36 431.0 L 63.36 508.0 Q 63.36 524.0 79.36 524.0 z" clip-path="url(#clip)" style="fill:#eaf7ed;stroke:#438a5e;stroke-width:1.8;stroke-linejoin:miter"/>
+ <text style="font-weight:700;font-size:22px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:middle;fill:#1b2430;letter-spacing:0.3px" x="649.44" y="442">Cross-cutting auxiliary evidence tags</text>
+
+ <rect x="73.36"   y="468" width="160.38" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="92.76"   cy="484" r="5.4" style="fill:#438a5e;stroke:#438a5e"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="104.16"  y="488.5">Retrieval (RAG)</text>
+
+ <rect x="292.22"  y="468" width="221.09" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="311.62"  cy="484" r="5.4" style="fill:#3d6fb6;stroke:#3d6fb6"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="323.02"  y="488.5">Program analysis (AAG)</text>
+
+ <rect x="581.80"  y="468" width="149.99" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="601.20"  cy="484" r="5.4" style="fill:#c88631;stroke:#c88631"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="612.60"  y="488.5">Test feedback</text>
+
+ <rect x="800.28"  y="468" width="170.06" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="819.68"  cy="484" r="5.4" style="fill:#c05a73;stroke:#c05a73"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="831.08"  y="488.5">Human feedback</text>
+
+ <rect x="1038.82" y="468" width="186.62" height="32" rx="16" ry="16" clip-path="url(#clip)" style="fill:#fff;stroke:#c7dccb;stroke-width:1.0"/>
+ <circle cx="1058.22" cy="484" r="5.4" style="fill:#7657b8;stroke:#7657b8"/>
+ <text style="font-weight:600;font-size:13px;font-family:'DejaVu Sans','Arial',sans-serif;text-anchor:start;fill:#1b2430" x="1069.62" y="488.5">Domain knowledge</text>
+</svg>
+    </div>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const svg = document.getElementById('taxonomy');
+
+    function toast(msg, isError){
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.classList.toggle('error', !!isError);
+      t.classList.add('show');
+      clearTimeout(toast._h);
+      toast._h = setTimeout(() => t.classList.remove('show'), 2200);
+    }
+
+    function serializeSvg(){
+      const c = svg.cloneNode(true);
+      c.setAttribute('xmlns', SVG_NS);
+      c.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+      return new XMLSerializer().serializeToString(c);
+    }
+
+    function downloadBlob(blob, name){
+      const u = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = u; a.download = name;
+      document.body.appendChild(a); a.click(); a.remove();
+      URL.revokeObjectURL(u);
+    }
+
+    function downloadSvg(){
+      try{
+        downloadBlob(new Blob([serializeSvg()], {type:'image/svg+xml;charset=utf-8'}), 'llm_repair_taxonomy.svg');
+        toast('SVG downloaded');
+      }catch(e){ toast('SVG export failed', true); console.error(e); }
+    }
+
+    function downloadPng(scale){
+      try{
+        const u = URL.createObjectURL(new Blob([serializeSvg()], {type:'image/svg+xml;charset=utf-8'}));
+        const img = new Image();
+        img.onload = () => {
+          const bx = svg.viewBox.baseVal;
+          const c  = document.createElement('canvas');
+          c.width  = Math.round(bx.width  * scale);
+          c.height = Math.round(bx.height * scale);
+          const ctx = c.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, c.width, c.height);
+          ctx.drawImage(img, 0, 0, c.width, c.height);
+          URL.revokeObjectURL(u);
+          c.toBlob(b => {
+            downloadBlob(b, `llm_repair_taxonomy_${scale}x.png`);
+            toast(`PNG ${scale}× downloaded`);
+          }, 'image/png');
+        };
+        img.onerror = () => { URL.revokeObjectURL(u); toast('PNG export failed', true); };
+        img.src = u;
+      }catch(e){ toast('PNG export failed', true); console.error(e); }
+    }
+
+    async function downloadPdf(){
+      const btn = document.getElementById('btn-pdf');
+      const orig = btn.textContent;
+      try{
+        if (!window.jspdf || !window.jspdf.jsPDF){
+          toast('PDF library not loaded — check network', true);
+          return;
+        }
+        const { jsPDF } = window.jspdf;
+        const bx = svg.viewBox.baseVal;
+        const w = bx.width, h = bx.height;
+
+        const pdf = new jsPDF({
+          orientation: w > h ? 'landscape' : 'portrait',
+          unit: 'pt',
+          format: [w, h],
+          compress: true,
+        });
+
+        if (typeof pdf.svg !== 'function'){
+          toast('svg2pdf.js not loaded — check network', true);
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Rendering…';
+
+        await pdf.svg(svg, { x: 0, y: 0, width: w, height: h });
+        pdf.save('llm_repair_taxonomy.pdf');
+        toast('Vector PDF downloaded');
+      }catch(e){
+        console.error(e);
+        toast('PDF export failed: ' + e.message, true);
+      }finally{
+        btn.disabled = false;
+        btn.textContent = orig;
+      }
+    }
+  </script>
+</body>
+</html>
