@@ -77,6 +77,8 @@ results/
 remote_results/cache/
 remote_results/data/
 remote_results/__pycache__/
+__pycache__/
+*.py[cod]
 remote_results/cdp_command.ps1
 remote_results/cdp_eval.ps1
 remote_results/download_open_access_pdfs.py

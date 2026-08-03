@@ -17,4 +17,5 @@ This file reports the manuscript-facing taxonomy reliability audit over the fina
 - The remaining display-paradigm disagreement is PATCH, where one independent coder emphasized the agentic search structure and the other emphasized the procedural/scripted loop.
 - The two remaining control-subtype disagreements are PATCH and TSAPR. These are boundary systems where search, judge, and scripted-loop evidence overlap.
 - PailGen was a supplemental boundary case: both independent coders marked a fine-tuning-style label in the supplemental sheet, while the final adjudicated manuscript label is Prompting because the retained paper is centered on in-context, fix-pattern-aware generation rather than model-parameter adaptation as the display paradigm.
+- Both raw retrieval coders marked PailGen as retrieval-negative. A targeted full-text recheck (Approach Sections 3.1-3.2, p. 5) confirmed query-time BM25 + DPR retrieval, so the raw no/no fields are preserved while `final_retrieval_tag` records the adjudicated yes label.
 - The final coding sheet is `artifact/taxonomy_assignment_audit.csv`; deployment-scenario labels are in `artifact/scenario_assignment_audit.csv`.

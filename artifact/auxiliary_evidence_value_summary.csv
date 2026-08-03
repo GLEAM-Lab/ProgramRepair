@@ -1,0 +1,31 @@
+scope,group,signal,count,denominator,percent
+all_systems,all,retrieval_tag,29,66,43.9%
+all_systems,all,analysis_tag,59,66,89.4%
+all_systems,all,retrieval_or_analysis_tag,63,66,95.5%
+by_paradigm,Fine-Tuning,retrieval_tag,1,21,4.8%
+by_paradigm,Fine-Tuning,analysis_tag,20,21,95.2%
+by_paradigm,Fine-Tuning,retrieval_or_analysis_tag,20,21,95.2%
+by_paradigm,Prompting,retrieval_tag,10,17,58.8%
+by_paradigm,Prompting,analysis_tag,11,17,64.7%
+by_paradigm,Prompting,retrieval_or_analysis_tag,15,17,88.2%
+by_paradigm,Procedural,retrieval_tag,8,15,53.3%
+by_paradigm,Procedural,analysis_tag,15,15,100.0%
+by_paradigm,Procedural,retrieval_or_analysis_tag,15,15,100.0%
+by_paradigm,Agentic,retrieval_tag,10,13,76.9%
+by_paradigm,Agentic,analysis_tag,13,13,100.0%
+by_paradigm,Agentic,retrieval_or_analysis_tag,13,13,100.0%
+by_scenario,Educational tutoring,retrieval_tag,0,1,0.0%
+by_scenario,Educational tutoring,analysis_tag,1,1,100.0%
+by_scenario,Educational tutoring,retrieval_or_analysis_tag,1,1,100.0%
+by_scenario,Industrial / practitioner workflow,retrieval_tag,3,3,100.0%
+by_scenario,Industrial / practitioner workflow,analysis_tag,3,3,100.0%
+by_scenario,Industrial / practitioner workflow,retrieval_or_analysis_tag,3,3,100.0%
+by_scenario,Localized benchmark repair,retrieval_tag,9,39,23.1%
+by_scenario,Localized benchmark repair,analysis_tag,33,39,84.6%
+by_scenario,Localized benchmark repair,retrieval_or_analysis_tag,36,39,92.3%
+by_scenario,Repository-level issue resolution,retrieval_tag,12,13,92.3%
+by_scenario,Repository-level issue resolution,analysis_tag,13,13,100.0%
+by_scenario,Repository-level issue resolution,retrieval_or_analysis_tag,13,13,100.0%
+by_scenario,Vulnerability repair,retrieval_tag,5,10,50.0%
+by_scenario,Vulnerability repair,analysis_tag,9,10,90.0%
+by_scenario,Vulnerability repair,retrieval_or_analysis_tag,10,10,100.0%

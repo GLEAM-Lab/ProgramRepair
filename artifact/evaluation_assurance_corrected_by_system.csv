@@ -1,0 +1,67 @@
+system,display_paradigm,leakage_discussion_confirmed,active_leakage_control_confirmed,generalization_threat_confirmed_lower_bound,correctness_threat_confirmed_lower_bound,additional_validation_confirmed,independent_validation_confirmed_lower_bound,randomness_explicit_concern,randomness_controlled_configuration,randomness_repeated_main_evaluation,randomness_targeted_repetition,randomness_candidate_multiplicity,randomness_reports_run_dispersion,randomness_acknowledged_no_empirical_control,correction_notes
+ACFix,Prompting,yes,yes,yes,no,yes,no,yes,yes,no,no,no,no,no,leakage: earliest-cutoff models and GPT-4o exclusion
+Abstain and Validate,Agentic,no,no,yes,yes,yes,yes,no,no,no,no,no,no,no,
+AdaPatcher,Fine-Tuning,yes,yes,yes,no,no,no,no,no,no,no,no,no,no,
+Agentless,Procedural,yes,yes,yes,no,yes,no,no,no,no,no,no,no,no,
+Ahmed et al.,Prompting,no,no,no,no,no,no,no,no,no,no,no,no,no,
+AlphaRepair,Prompting,no,no,yes,yes,yes,no,no,no,no,no,no,no,no,
+Appatch,Prompting,yes,yes,yes,no,yes,no,no,no,no,no,no,no,no,
+AutoCodeRover,Agentic,no,no,no,no,yes,no,yes,yes,yes,no,no,no,no,
+CEDAR,Prompting,yes,no,no,no,yes,no,no,no,no,no,no,no,no,validation_add: sampled assertions manually checked for semantic equivalence
+CREF,Procedural,yes,yes,yes,no,no,no,yes,yes,no,yes,yes,no,no,
+ChatRepair,Procedural,yes,yes,yes,yes,yes,no,no,no,no,no,no,no,no,
+ContrastRepair,Procedural,yes,yes,yes,no,yes,no,yes,no,no,yes,no,no,no,
+D4C,Prompting,yes,yes,yes,yes,yes,no,no,no,no,no,no,no,no,correctness: incomplete test coverage and weak test oracles
+DRCodePilot,Procedural,no,no,yes,yes,no,no,no,no,no,no,no,no,no,
+DistiLRR,Fine-Tuning,no,no,yes,no,no,no,yes,yes,no,no,yes,no,no,
+Dr.Fix,Prompting,yes,yes,yes,yes,yes,no,yes,yes,no,no,no,no,no,validation_add: human inspection underpins API-misuse labels and repair analysis
+DsRepair,Prompting,yes,yes,yes,no,no,no,yes,no,no,yes,no,yes,no,"validation_remove: DS-1000's ordinary benchmark tests, not additional validation"
+Ehsani et al.,Prompting,yes,no,yes,no,no,no,yes,no,no,yes,no,no,no,generalization: may not generalize to all LLMs and has imbalanced bug types
+Fan et al.,Prompting,no,no,yes,no,yes,yes,no,no,no,no,no,no,no,"generalization: may not generalize beyond studied configurations, language, and model"
+Gao et al.,Prompting,yes,no,yes,no,no,no,no,no,no,no,no,no,no,
+HULA,Procedural,no,no,yes,no,yes,no,no,no,no,no,no,no,no,generalization: findings limited to Atlassian Jira and GPT-4
+Huang et al.,Fine-Tuning,yes,no,no,no,yes,no,no,no,no,no,no,no,no,
+InferFix,Fine-Tuning,no,no,no,no,no,no,no,no,no,no,no,no,no,"validation_remove: CI validation is a deployment description, not reported empirical evidence"
+IntDiagSolver,Procedural,yes,yes,yes,no,yes,no,yes,no,no,yes,no,no,no,generalization: specific-model and ten-case limitations are explicitly stated
+Jiang et al.,Fine-Tuning,yes,yes,no,no,yes,no,no,yes,no,no,no,no,no,
+KGCompass,Procedural,yes,yes,yes,no,yes,no,yes,yes,no,no,no,no,no,
+KNOD,Fine-Tuning,no,no,yes,yes,yes,no,no,no,no,no,no,no,no,validation_add: two-person manual correctness labeling with disagreement resolution
+LANTERN,Agentic,no,no,yes,no,no,no,no,no,no,no,no,no,no,
+LLM4CVE,Procedural,no,no,no,no,yes,no,no,no,no,no,no,no,no,
+Learn-by-Interact,Agentic,no,no,no,no,no,no,no,yes,no,no,no,no,no,"validation_remove: cited scripts validate OSWorld/Spider2-V, not the selected SWE-bench result"
+Li et al.,Fine-Tuning,yes,yes,no,yes,yes,no,no,no,no,no,no,no,no,correctness: test-passing patches are plausible rather than necessarily correct; validation_add: manual sample of generated plausible patches
+Luo et al.,Fine-Tuning,yes,yes,yes,yes,yes,yes,yes,no,no,yes,no,yes,no,
+MAGIS,Agentic,no,no,no,no,no,no,no,no,yes,no,no,no,no,
+MORepair,Fine-Tuning,yes,yes,yes,yes,yes,yes,yes,yes,no,no,yes,no,no,
+NARRepair,Fine-Tuning,yes,yes,yes,no,no,no,no,no,no,no,no,no,no,
+NTR,Fine-Tuning,yes,yes,no,yes,yes,no,no,no,no,no,no,no,no,correctness: reports an explicit patch-overfitting rate
+OpenHands,Agentic,no,no,no,no,no,no,no,no,no,no,no,no,no,
+PATCH,Procedural,yes,yes,yes,yes,yes,no,no,yes,no,no,no,no,no,leakage: repository-disjoint split and benchmark-memorization discussion; correctness: exact match misses semantically equivalent patches; validation_add: all plausible patches manually reviewed for semantic equivalence
+PailGen,Prompting,yes,yes,yes,yes,yes,yes,no,no,no,no,no,no,no,leakage: post-release CVED benchmark and temporal split
+PredicateFix,Procedural,yes,yes,no,yes,yes,no,no,no,no,no,no,no,no,correctness: one RQ reports plausible repairs without feasible human inspection
+Prenner et al.,Prompting,yes,no,yes,no,yes,no,yes,yes,no,no,no,no,no,
+PyTy,Fine-Tuning,no,no,no,no,yes,no,no,no,no,no,no,no,no,
+REx,Procedural,yes,yes,no,no,no,no,no,no,no,no,no,no,no,"leakage: older-model contamination robustness comparison; validation_remove: Z3 evidence is for loop-invariant synthesis, not the selected repair result"
+RLCE,Prompting,yes,yes,yes,no,no,no,yes,yes,no,no,no,no,no,
+RePair,Fine-Tuning,yes,yes,no,no,yes,yes,no,no,no,no,no,no,no,validation_add: manually collected additional hidden tests
+RepairAgent,Agentic,yes,yes,yes,no,yes,no,yes,no,no,no,no,no,yes,leakage: post-cutoff GitBug-Java evaluation
+RepairCAT,Fine-Tuning,no,no,no,no,no,no,no,no,no,no,no,no,no,
+RepairLLaMA,Fine-Tuning,yes,yes,yes,no,yes,no,no,no,no,no,no,no,no,
+Repilot,Procedural,no,no,yes,yes,yes,no,yes,no,no,no,yes,no,no,
+Ruiz et al.,Fine-Tuning,yes,yes,yes,yes,yes,no,yes,yes,no,no,no,no,no,"validation_add: 3,298 plausible patches manually checked for overfitting"
+SAN2PATCH,Procedural,yes,yes,no,no,yes,no,no,no,no,no,no,no,no,leakage: training/test similarity and label-leakage audit
+SWE-Agent,Agentic,no,no,no,no,no,no,no,no,no,yes,yes,no,no,
+SWE-Agent M,Agentic,yes,yes,no,no,yes,yes,no,no,no,no,no,no,no,
+SWE-RL,Fine-Tuning,yes,yes,no,no,no,no,no,yes,no,no,no,no,no,"validation_remove: SWE-bench Verified is the primary public benchmark, not added validation"
+SWE-Search,Agentic,no,no,no,no,yes,yes,no,no,no,no,no,no,no,
+SecRepair,Fine-Tuning,no,no,no,no,yes,no,no,no,no,no,no,no,no,validation_add: developer and security-expert human evaluation
+SpecRover,Agentic,yes,no,no,yes,yes,no,yes,yes,no,no,no,no,no,correctness: reports test-passing overfitting patches after manual investigation
+TSAPR,Agentic,yes,yes,yes,no,yes,no,no,no,no,no,no,no,no,"leakage: training-data inspection, ConDefects, and overlap sensitivity analysis"
+ThinkRepair,Procedural,yes,yes,yes,yes,yes,no,no,no,no,no,no,no,no,
+Tian et al.,Prompting,yes,yes,no,no,no,no,yes,no,no,yes,yes,no,no,
+TraceFixer,Fine-Tuning,no,no,no,no,no,no,no,no,no,no,no,no,no,
+TracePrompt,Prompting,no,no,no,no,no,no,no,no,no,no,no,no,no,
+Vul-R2,Fine-Tuning,yes,yes,yes,no,no,no,no,no,no,no,no,no,no,
+VulDebugger,Agentic,yes,no,no,no,yes,yes,yes,yes,no,no,yes,no,no,
+VulMaster,Fine-Tuning,yes,yes,yes,yes,yes,no,no,no,no,no,no,no,no,correctness: exact match counts semantically equivalent patches as incorrect; validation_add: manual failure investigation identifies semantic-equivalent fixes
+Xia et al.,Prompting,yes,no,no,yes,yes,no,no,no,no,no,no,no,no,

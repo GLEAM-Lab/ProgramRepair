@@ -26,9 +26,10 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 | Manuscript item | Artifact source | Reproduction or check |
 |---|---|---|
 | Multidimensional taxonomy rules | `taxonomy_coding_guide.md` | Defines display paradigm, control subtype, auxiliary evidence tags, and scenario labels. |
-| Final 66-system taxonomy labels | `taxonomy_assignment_audit.csv` | Per-system display paradigm, control subtype, benchmark family, metric, and assumptions. |
+| Final 66-system taxonomy labels | `taxonomy_assignment_audit.csv` | Per-system display paradigm, control subtype, benchmark family, metric, assumptions, and focused LLM-Gated Review re-audit evidence. |
 | Deployment-scenario counts | `scenario_assignment_audit.csv` | Source for the deployment-scenario count table replacing the earlier qualitative fit figure. |
 | 66-system independent-coder taxonomy reliability audit | `taxonomy_independent_pair_66_audit.csv`; `taxonomy_independent_pair_66_agreement_summary.md` | Run `python3 artifact/compute_annotation_agreement.py artifact/taxonomy_independent_pair_66_audit.csv`. |
+| Retrieval/scenario association: 15/29 versus 1/37; OR=38.57; BH-adjusted q=0.000072 | `taxonomy_independent_pair_66_audit.csv`; `evaluation_assurance_corrected_by_system.csv`; `auxiliary_evidence_value_by_system.csv`; `auxiliary_evidence_value_tests.csv`; `auxiliary_evidence_value_audit.md` | Run `python3 artifact/analyze_auxiliary_evidence_value.py`; the primary table uses final adjudicated retrieval and scenario labels; raw independent-pair labels are preserved, and the all-raw-label sensitivity is reported in the audit. The script emits the explicitly defined 3 x 7 exploratory family and applies Benjamini--Hochberg correction. Five assurance outcomes are conservative, non-exhaustive second-pass lower bounds without an independent-coder agreement claim. |
 | Historical 62-system three-coder audit trail | `taxonomy_three_coder_audit.csv`; `taxonomy_three_coder_agreement_summary.md` | Retained as an audit trail; manuscript-facing final-corpus statistics use the 66-system files above. |
 | Sensitivity and boundary-case discussion | `taxonomy_sensitivity_audit.md` | Documents remaining hybrid edge cases such as PATCH and TSAPR. |
 
@@ -38,6 +39,7 @@ This file maps the current manuscript's reported counts, audit statistics, and s
 |---|---|---|
 | Per-system benchmark, metric, assumptions, and comparability tier | `benchmark_protocol_comparability_by_system.csv` | 66-row audit table used for benchmark protocol profiles. |
 | Protocol-aligned comparison windows | `benchmark_protocol_comparability_windows.csv`; `benchmark_protocol_comparability.md` | Produced by `analyze_benchmark_comparability.py`. |
+| Pairwise protocol-comparability attrition: 2,145 -> 100 -> 32 -> 4 -> 1 | `protocol_comparability_attrition.csv`; `protocol_comparability_pairwise.csv`; `protocol_comparability_evidence.md` | Run `python3 artifact/analyze_protocol_comparability_attrition.py`. |
 | Benchmark-family coverage groups | `benchmark_protocol_coverage_groups.csv`; `benchmark_family_breakdown.md` | Assigns all 66 systems to same-family or singleton benchmark groups. |
 | pass@k reporting distribution | `benchmark_passk_distribution_by_year.csv`; `benchmark_passk_distribution_by_k.csv` | Source for year-level and metric-family pass@k distribution tables. |
 | SWE-bench Verified context rows | `benchmark_swebench_verified_context.csv` | Records Verified pass@1 rows available in surveyed-paper contexts. |

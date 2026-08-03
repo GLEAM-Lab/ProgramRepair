@@ -1,0 +1,19 @@
+scope,measure,count,denominator,percent
+all_system_pairs,all possible pairs among 66 systems,2145,2145,100.0%
+same_benchmark_pairs,pairs sharing the exact recorded benchmark label,100,2145,4.7%
+same_benchmark_pairs,pairs retained in a protocol-aligned comparison window,32,100,32.0%
+same_benchmark_pairs,same-benchmark pairs outside predefined windows,68,100,68.0%
+sequential_attrition,protocol-aligned pairs also sharing a normalized base model,4,32,12.5%
+sequential_attrition,same-model aligned pairs meeting the model-controlled definition,1,4,25.0%
+same_benchmark_pairs_diagnostic,same exact metric,34,100,34.0%
+same_benchmark_pairs_diagnostic,same metric family,51,100,51.0%
+same_benchmark_pairs_diagnostic,same assumption bucket,47,100,47.0%
+same_benchmark_pairs_diagnostic,same normalized base model,12,100,12.0%
+aligned_pair_strength,A_model_controlled_comparison,1,100,1.0%
+aligned_pair_strength,B_protocol_aligned_stack_snapshot,28,100,28.0%
+aligned_pair_strength,C_limited_within_benchmark_comparison,3,100,3.0%
+benchmark_breakdown,Defects4J v1.2/2.0: aligned pairs,0,55,0.0%
+benchmark_breakdown,SWE-bench Lite: aligned pairs,28,28,100.0%
+benchmark_breakdown,HumanEval-Java: aligned pairs,3,15,20.0%
+benchmark_breakdown,CVEFixes: aligned pairs,0,1,0.0%
+benchmark_breakdown,EvalRepair-Java: aligned pairs,1,1,100.0%

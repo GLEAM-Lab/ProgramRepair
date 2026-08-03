@@ -1,0 +1,67 @@
+system,display_paradigm,deployment_scenario,retrieval_tag,analysis_tag,retrieval_or_analysis_tag,repository_or_industrial_scenario,vulnerability_repair_scenario,active_leakage_control_confirmed,additional_validation_confirmed,independent_validation_confirmed_lower_bound,correctness_threat_confirmed_lower_bound,generalization_threat_confirmed_lower_bound
+ACFix,Prompting,Vulnerability repair,yes,yes,yes,no,yes,yes,yes,no,no,yes
+Abstain and Validate,Agentic,Industrial / practitioner workflow,yes,yes,yes,yes,no,no,yes,yes,yes,yes
+AdaPatcher,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,no,no,no,yes
+Agentless,Procedural,Repository-level issue resolution,yes,yes,yes,yes,no,yes,yes,no,no,yes
+Ahmed et al.,Prompting,Localized benchmark repair,yes,no,yes,no,no,no,no,no,no,no
+AlphaRepair,Prompting,Localized benchmark repair,no,yes,yes,no,no,no,yes,no,yes,yes
+Appatch,Prompting,Vulnerability repair,yes,yes,yes,no,yes,yes,yes,no,no,yes
+AutoCodeRover,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,yes,no,no,no
+CEDAR,Prompting,Localized benchmark repair,yes,no,yes,no,no,no,yes,no,no,no
+CREF,Procedural,Educational tutoring,no,yes,yes,no,no,yes,no,no,no,yes
+ChatRepair,Procedural,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,yes,yes
+ContrastRepair,Procedural,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,no,yes
+D4C,Prompting,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,yes,yes
+DRCodePilot,Procedural,Industrial / practitioner workflow,yes,yes,yes,yes,no,no,no,no,yes,yes
+DistiLRR,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,no,no,no,yes
+Dr.Fix,Prompting,Localized benchmark repair,yes,yes,yes,no,no,yes,yes,no,yes,yes
+DsRepair,Prompting,Localized benchmark repair,yes,yes,yes,no,no,yes,no,no,no,yes
+Ehsani et al.,Prompting,Localized benchmark repair,yes,yes,yes,no,no,no,no,no,no,yes
+Fan et al.,Prompting,Localized benchmark repair,no,yes,yes,no,no,no,yes,yes,no,yes
+Gao et al.,Prompting,Localized benchmark repair,yes,no,yes,no,no,no,no,no,no,yes
+HULA,Procedural,Industrial / practitioner workflow,yes,yes,yes,yes,no,no,yes,no,no,yes
+Huang et al.,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,yes,no,no,no
+InferFix,Fine-Tuning,Localized benchmark repair,yes,yes,yes,no,no,no,no,no,no,no
+IntDiagSolver,Procedural,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,no,yes
+Jiang et al.,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,no,no
+KGCompass,Procedural,Repository-level issue resolution,yes,yes,yes,yes,no,yes,yes,no,no,yes
+KNOD,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,yes,no,yes,yes
+LANTERN,Agentic,Localized benchmark repair,no,yes,yes,no,no,no,no,no,no,yes
+LLM4CVE,Procedural,Vulnerability repair,yes,yes,yes,no,yes,no,yes,no,no,no
+Learn-by-Interact,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,no,no,no,no
+Li et al.,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,yes,no
+Luo et al.,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,yes,yes,yes
+MAGIS,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,no,no,no,no
+MORepair,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,yes,yes,yes
+NARRepair,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,no,no,no,yes
+NTR,Fine-Tuning,Localized benchmark repair,no,no,no,no,no,yes,yes,no,yes,no
+OpenHands,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,no,no,no,no
+PATCH,Procedural,Repository-level issue resolution,yes,yes,yes,yes,no,yes,yes,no,yes,yes
+PailGen,Prompting,Vulnerability repair,yes,no,yes,no,yes,yes,yes,yes,yes,yes
+PredicateFix,Procedural,Vulnerability repair,yes,yes,yes,no,yes,yes,yes,no,yes,no
+Prenner et al.,Prompting,Localized benchmark repair,no,no,no,no,no,no,yes,no,no,yes
+PyTy,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,yes,no,no,no
+REx,Procedural,Localized benchmark repair,no,yes,yes,no,no,yes,no,no,no,no
+RLCE,Prompting,Repository-level issue resolution,yes,yes,yes,yes,no,yes,no,no,no,yes
+RePair,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,yes,no,no
+RepairAgent,Agentic,Localized benchmark repair,yes,yes,yes,no,no,yes,yes,no,no,yes
+RepairCAT,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,no,no,no,no
+RepairLLaMA,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,no,yes
+Repilot,Procedural,Localized benchmark repair,yes,yes,yes,no,no,no,yes,no,yes,yes
+Ruiz et al.,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,yes,yes
+SAN2PATCH,Procedural,Vulnerability repair,no,yes,yes,no,yes,yes,yes,no,no,no
+SWE-Agent,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,no,no,no,no
+SWE-Agent M,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,yes,yes,yes,no,no
+SWE-RL,Fine-Tuning,Repository-level issue resolution,no,yes,yes,yes,no,yes,no,no,no,no
+SWE-Search,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,yes,yes,no,no
+SecRepair,Fine-Tuning,Vulnerability repair,no,yes,yes,no,yes,no,yes,no,no,no
+SpecRover,Agentic,Repository-level issue resolution,yes,yes,yes,yes,no,no,yes,no,yes,no
+TSAPR,Agentic,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,no,yes
+ThinkRepair,Procedural,Localized benchmark repair,no,yes,yes,no,no,yes,yes,no,yes,yes
+Tian et al.,Prompting,Localized benchmark repair,no,no,no,no,no,yes,no,no,no,no
+TraceFixer,Fine-Tuning,Localized benchmark repair,no,yes,yes,no,no,no,no,no,no,no
+TracePrompt,Prompting,Localized benchmark repair,no,yes,yes,no,no,no,no,no,no,no
+Vul-R2,Fine-Tuning,Vulnerability repair,no,yes,yes,no,yes,yes,no,no,no,yes
+VulDebugger,Agentic,Vulnerability repair,no,yes,yes,no,yes,no,yes,yes,no,no
+VulMaster,Fine-Tuning,Vulnerability repair,no,yes,yes,no,yes,yes,yes,no,yes,yes
+Xia et al.,Prompting,Localized benchmark repair,no,yes,yes,no,no,no,yes,no,yes,no

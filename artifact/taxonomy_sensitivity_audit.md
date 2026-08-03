@@ -34,7 +34,11 @@ The current manuscript-facing pairwise statistics use `taxonomy_independent_pair
 | System | Disagreed fields | Coder 1 label | Coder 2 label | Why this case is borderline |
 |---|---|---|---|---|
 | `PATCH` | display paradigm and control subtype | `Agentic` / `Self-Controlled System` | `Procedural` / `Scripted Tool Loop` | The paper studies patch-assessment and overfitting workflows; the boundary is whether its model-guided decision process should be treated as runtime self-control or as a scripted assessment loop. |
-| `TSAPR` | control subtype | `Self-Controlled System` | `LLM-as-Judges` | The tree-search framework combines search control with an LLM judge, making the finer control-subtype label less obvious even though both coders agree on the Agentic display paradigm. |
+| `TSAPR` | control subtype | `Self-Controlled System` | `LLM-Gated Review` | The tree-search framework combines search control with an LLM judge, making the finer control-subtype label less obvious even though both coders agree on the Agentic display paradigm. |
+
+## Auxiliary-tag adjudication note
+
+The raw independent retrieval labels are preserved. Both coders marked PailGen as retrieval-negative, but a targeted full-text recheck found query-time hybrid retrieval of vulnerability-fix pairs (BM25 + DPR). The released sheet therefore keeps the raw no/no fields and records `final_retrieval_tag=yes`; no final analysis tags differ from the raw pair. The auxiliary-evidence audit reports an all-raw-label sensitivity check so this correction cannot silently drive the reported association.
 
 ## Scenario-label note
 

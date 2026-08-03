@@ -68,7 +68,7 @@ These records do not change the 66-system corpus, but they affect the year label
 - `Aligning the Objective of LLM-based Program Repair` (`D4C`)
   - Released-stage status: arXiv `2404.08877`
   - Current archival version: ICSE 2025, DOI `10.1109/ICSE55347.2025.00169`
-  - Current action: keep the system in the Prompting/AAG row and normalize table year labels to 2025.
+  - Current action: keep the system in the Prompting/program-analysis-supported row and normalize table year labels to 2025.
 
 - `Template-Guided Program Repair in the Era of Large Language Models` (`NTR`)
   - Released-stage status: research-track/program-record entry
@@ -78,7 +78,7 @@ These records do not change the 66-system corpus, but they affect the year label
 - `ContrastRepair: Enhancing Conversation-Based Automated Program Repair via Contrastive Test Case Pairs`
   - Released-stage status: arXiv `2403.01971`
   - Current archival version: TOSEM 2025, DOI `10.1145/3719345`
-  - Current action: keep the system in the Procedural/Test-in-the-Loop row and normalize benchmark year labels to 2025.
+  - Current action: keep the system in the Procedural/Test-Feedback Loop row and normalize benchmark year labels to 2025.
 
 - `Demystifying LLM-based Software Engineering Agents` (`Agentless`)
   - Released-stage status: arXiv `2407.01489`
@@ -129,12 +129,12 @@ Current conversion and retention audit for these retained arXiv records:
 |---|---|---|
 | `Agent That Debugs: Dynamic State-Guided Vulnerability Repair` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as a vulnerability-repair system with a concrete dynamic-state-guided LLM repair pipeline and benchmark evidence. |
 | `Enhancing repository-level software repair via repository-aware knowledge graphs` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as a repository-level repair system because it reports SWE-bench Lite evidence and is central to the RAG/procedural benchmark analysis. |
-| `LLM-Powered Code Vulnerability Repair with Reinforcement Learning and Semantic Reward` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an RLFT-style vulnerability-repair system with semantic reward design and reported repair results. |
-| `LLM4CVE: Enabling Iterative Automated Vulnerability Repair with Large Language Models` | Has a DSD 2025 DOI, but DSD is outside the configured venue families for the manuscript figure. | Retained as an iterative LLM-based vulnerability-repair system; cited as arXiv in the manuscript because the archival hint is outside the configured CCF-A venue families. |
+| `LLM-Powered Code Vulnerability Repair with Reinforcement Learning and Semantic Reward` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an RL-tuning vulnerability-repair system with semantic reward design and reported repair results. |
+| `LLM4CVE: Enabling Iterative Automated Vulnerability Repair with Large Language Models` | Has a DSD 2025 DOI, but DSD is outside the configured venue families for the manuscript figure. | Retained as an iterative LLM-based vulnerability-repair system; cited as arXiv in the manuscript because the archival hint is outside the selected archival venue families. |
 | `NARRepair: Non-Autoregressive Code Generation Model for Automatic Program Repair` | DBLP and arXiv list only the CoRR/arXiv version. | Retained because it represents non-autoregressive/distillation-style LLM repair and reports Defects4J repair results. |
-| `The Art of Repair: Optimizing Iterative Program Repair with Instruction-Tuned Models` | Has an EASE 2025 DOI, but EASE is outside the configured venue families for the manuscript figure. | Retained because it reports iterative instruction-tuned repair on HumanEval-Java; cited as arXiv because EASE is outside the configured CCF-A venue families. |
-| `TraceFixer: Execution Trace-Driven Program Repair` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an execution-trace-driven repair system that supports the analysis-augmented repair dimension. |
-| `TSAPR: A Tree Search Framework For Automated Program Repair` | Indexed as an arXiv preprint; no in-scope archival version was found. | Retained because it contributes tree-search and LLM-as-judge repair evidence on Defects4J. |
+| `The Art of Repair: Optimizing Iterative Program Repair with Instruction-Tuned Models` | Has an EASE 2025 DOI, but EASE is outside the configured venue families for the manuscript figure. | Retained because it reports iterative instruction-tuned repair on HumanEval-Java; cited as arXiv because EASE is outside the selected archival venue families. |
+| `TraceFixer: Execution Trace-Driven Program Repair` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an execution-trace-driven repair system that supports the program-analysis evidence dimension. |
+| `TSAPR: A Tree Search Framework For Automated Program Repair` | Indexed as an arXiv preprint; no in-scope archival version was found. | Retained because it contributes tree-search and LLM-gated review evidence on Defects4J. |
 | `Is ChatGPT the ultimate programming assistant--how far is it?` | DBLP and arXiv list only the CoRR/arXiv version. | Retained as an early benchmarked ChatGPT repair study that anchors the prompting baseline in the 2023 corpus. |
 
 ## Legacy stage-6 retained-list repair-scope check

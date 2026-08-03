@@ -1,0 +1,101 @@
+system_a,system_b,benchmark,same_exact_metric,same_metric_family,same_assumption_bucket,same_normalized_base_model,protocol_aligned_window,comparison_window,comparability_tier
+Huang et al.,Jiang et al.,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,KNOD,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,NARRepair,Defects4J v1.2/2.0,no,no,yes,yes,no,None,D_same_benchmark_not_aligned
+Huang et al.,AlphaRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,D4C,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,ChatRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,ThinkRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,Repilot,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Huang et al.,TSAPR,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,KNOD,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,NARRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,AlphaRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,D4C,Defects4J v1.2/2.0,yes,yes,no,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,ChatRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,ThinkRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,Repilot,Defects4J v1.2/2.0,no,no,no,yes,no,None,D_same_benchmark_not_aligned
+Jiang et al.,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Jiang et al.,TSAPR,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+VulMaster,LLM4CVE,CVEFixes,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+RepairLLaMA,Li et al.,HumanEval-Java,yes,yes,no,no,yes,W4_HUMANEVAL_JAVA_PASS10_PEFT,C_limited_within_benchmark_comparison
+RepairLLaMA,Ruiz et al.,HumanEval-Java,yes,yes,no,no,yes,W4_HUMANEVAL_JAVA_PASS10_PEFT,C_limited_within_benchmark_comparison
+RepairLLaMA,NTR,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+RepairLLaMA,TracePrompt,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+RepairLLaMA,ContrastRepair,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+MORepair,Luo et al.,EvalRepair-Java,yes,yes,yes,yes,yes,W5_EVALREPAIR_JAVA_CODELLAMA13B_PASS10,A_model_controlled_comparison
+Li et al.,Ruiz et al.,HumanEval-Java,yes,yes,no,yes,yes,W4_HUMANEVAL_JAVA_PASS10_PEFT,C_limited_within_benchmark_comparison
+Li et al.,NTR,HumanEval-Java,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Li et al.,TracePrompt,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Li et al.,ContrastRepair,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Ruiz et al.,NTR,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Ruiz et al.,TracePrompt,HumanEval-Java,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+Ruiz et al.,ContrastRepair,HumanEval-Java,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+KNOD,NARRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+KNOD,AlphaRepair,Defects4J v1.2/2.0,no,yes,yes,no,no,None,D_same_benchmark_not_aligned
+KNOD,D4C,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+KNOD,ChatRepair,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+KNOD,ThinkRepair,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+KNOD,Repilot,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+KNOD,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+KNOD,TSAPR,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,AlphaRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+NARRepair,D4C,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,ChatRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,ThinkRepair,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,Repilot,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,RepairAgent,Defects4J v1.2/2.0,yes,yes,no,no,no,None,D_same_benchmark_not_aligned
+NARRepair,TSAPR,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NTR,TracePrompt,HumanEval-Java,no,no,no,no,no,None,D_same_benchmark_not_aligned
+NTR,ContrastRepair,HumanEval-Java,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,D4C,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,ChatRepair,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,ThinkRepair,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,Repilot,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+AlphaRepair,TSAPR,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+D4C,ChatRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+D4C,ThinkRepair,Defects4J v1.2/2.0,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+D4C,Repilot,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+D4C,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+D4C,TSAPR,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+TracePrompt,ContrastRepair,HumanEval-Java,no,no,yes,no,no,None,D_same_benchmark_not_aligned
+ChatRepair,ThinkRepair,Defects4J v1.2/2.0,no,yes,yes,yes,no,None,D_same_benchmark_not_aligned
+ChatRepair,Repilot,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+ChatRepair,RepairAgent,Defects4J v1.2/2.0,no,no,no,yes,no,None,D_same_benchmark_not_aligned
+ChatRepair,TSAPR,Defects4J v1.2/2.0,no,yes,no,yes,no,None,D_same_benchmark_not_aligned
+ThinkRepair,Repilot,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+ThinkRepair,RepairAgent,Defects4J v1.2/2.0,no,no,no,yes,no,None,D_same_benchmark_not_aligned
+ThinkRepair,TSAPR,Defects4J v1.2/2.0,no,yes,no,yes,no,None,D_same_benchmark_not_aligned
+Agentless,KGCompass,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,SWE-Agent,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,OpenHands,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,AutoCodeRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,SpecRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,MAGIS,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Agentless,SWE-Search,SWE-bench Lite,yes,yes,yes,yes,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,SWE-Agent,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,OpenHands,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,AutoCodeRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,SpecRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,MAGIS,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+KGCompass,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+Repilot,RepairAgent,Defects4J v1.2/2.0,no,no,no,no,no,None,D_same_benchmark_not_aligned
+Repilot,TSAPR,Defects4J v1.2/2.0,no,yes,no,no,no,None,D_same_benchmark_not_aligned
+SWE-Agent,OpenHands,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+SWE-Agent,AutoCodeRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+SWE-Agent,SpecRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+SWE-Agent,MAGIS,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+SWE-Agent,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+OpenHands,AutoCodeRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+OpenHands,SpecRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+OpenHands,MAGIS,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+OpenHands,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+AutoCodeRover,SpecRover,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+AutoCodeRover,MAGIS,SWE-bench Lite,yes,yes,yes,yes,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+AutoCodeRover,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+RepairAgent,TSAPR,Defects4J v1.2/2.0,no,no,yes,yes,no,None,D_same_benchmark_not_aligned
+SpecRover,MAGIS,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+SpecRover,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot
+MAGIS,SWE-Search,SWE-bench Lite,yes,yes,yes,no,yes,W1_SWE_BENCH_LITE_PASS1,B_protocol_aligned_stack_snapshot

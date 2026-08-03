@@ -21,7 +21,7 @@ Included files:
 - `notable_boundary_records.csv`: checked boundary records that are relevant to adjacent issue-resolution terminology but are not part of the final 66-system corpus, including whether each record would change the taxonomy dimensions or protocol-comparison windows.
 - `stage4_to_stage5_delta.csv`: machine-readable list of the 14 additions and 1 removal between the released `remote_results/stage4.jsonl` and `remote_results/stage5.jsonl` files.
 - `taxonomy_coding_guide.md`: operational rules for coding parameter adaptation, runtime control, control subtype, auxiliary evidence tags, and scenario labels, including hybrid-handling guidance and corpus-level display groups.
-- `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, and explicit assumptions.
+- `taxonomy_assignment_audit.csv`: machine-readable export of the final 66-system audit table used in the paper, including display paradigm, control subtype, benchmark family, metric, explicit assumptions, and the focused LLM-Gated Review re-audit.
 - `scenario_assignment_audit.csv`: per-paper deployment-scenario assignments used to replace the earlier qualitative scenario-fit figure with evidence-backed counts.
 - `extraction_form_fields.md`: field-by-field description of the shared extraction form used for the current per-paper audit.
 - `extraction_form_template.csv`: blank extraction template that mirrors the fields populated in the released audit tables.
@@ -32,14 +32,26 @@ Included files:
 - `human_taxonomy_annotation_independent_pair.csv`: normalized paired annotation sheet for the two independent taxonomy coders, compatible with `compute_annotation_agreement.py`.
 - `taxonomy_three_coder_audit.csv`: normalized three-coder taxonomy reliability audit combining the released coding sheet with the two independent recoding sheets.
 - `taxonomy_three_coder_agreement_summary.md`: historical pairwise Cohen's kappa and three-coder Fleiss kappa summary for the 62-system core coding reliability assessment; the manuscript-facing final-corpus reliability audit is superseded by `taxonomy_independent_pair_66_agreement_summary.md`.
-- `taxonomy_independent_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus.
+- `taxonomy_independent_pair_66_audit.csv`: normalized two-independent-coder audit sheet over the final 66-system corpus; raw coder fields are preserved beside final adjudicated retrieval/analysis fields.
 - `taxonomy_independent_pair_66_agreement_summary.md`: manuscript-facing 66-system taxonomy reliability summary, reporting independent-coder agreement on display paradigm, control subtype, auxiliary tags, and deployment scenario.
+- `analyze_auxiliary_evidence_value.py`: reproduces the explicitly defined 3 x 7 exploratory auxiliary-tag/outcome family with a standard-library two-sided Fisher exact implementation and Benjamini--Hochberg correction.
+- `evaluation_assurance_corrected_by_system.csv`: 66-row conservative second-pass assurance coding used as the evaluation-outcome input for exploratory tests; lower-bound fields are non-exhaustive and no independent-coder agreement is claimed for them.
+- `auxiliary_evidence_value_by_system.csv`: 66-row per-system contingency data for the 21 auxiliary-tag/outcome contrasts.
+- `auxiliary_evidence_value_summary.csv`: prevalence summaries by paradigm and deployment scenario.
+- `auxiliary_evidence_value_tests.csv`: the complete 3 auxiliary signals x 7 outcomes test family, with odds ratios, Fisher p-values, BH-adjusted q-values, and interpretation caveats.
+- `auxiliary_evidence_value_audit.md`: human-readable provenance, raw-scenario sensitivity check, and non-causal boundary for the auxiliary-evidence result reported in RQ2.
 - `exclusion_pattern_audit.csv`: a curated high-confidence audit sample of excluded records that explains why a subset of the full-text exclusions is unsurprising.
 - `benchmark_protocol_summary.md`: corpus-level summary of metrics, assumptions, and benchmark concentration derived from the 66-system audit table used in the paper.
 - `benchmark_family_breakdown.md`: benchmark-family-level counts derived from the final 66-system audit table, used to support the current corpus-context and benchmark-protocol synthesis.
 - `analyze_benchmark_comparability.py`: script that identifies protocol-aligned benchmark comparison windows from `taxonomy_assignment_audit.csv`.
 - `benchmark_protocol_comparability_by_system.csv`: 66-row per-system comparability audit showing the benchmark, metric, result, assumption bucket, comparison-window assignment, and reason why a row is or is not rankable.
 - `benchmark_protocol_comparability_windows.csv`: compact summary of the protocol-aligned comparison windows used to support the revised RQ3 analysis.
+- `analyze_protocol_comparability_attrition.py`: computes the pairwise protocol-comparability attrition reported in the revised RQ3 answer.
+- `protocol_comparability_pairwise.csv`: all 100 exact same-benchmark result pairs and their protocol-alignment fields.
+- `protocol_comparability_attrition.csv`: machine-readable summary of the 2,145 -> 100 -> 32 -> 4 -> 1 attrition.
+- `protocol_comparability_evidence.md`: human-readable interpretation of the pairwise attrition and its ranking boundary.
+- `verify_minor_revision_artifact.py`: checks all minor-revision taxonomy, auxiliary-evidence, protocol-attrition, and arXiv-status invariants in one command.
+- `minor_revision_artifact_verification.md`: generated PASS/FAIL report from the focused verifier.
 - `benchmark_protocol_coverage_groups.csv`: full-corpus same-benchmark/family grouping table that assigns all 66 retained systems to a protocol coverage group even when direct score ranking is not valid.
 - `benchmark_passk_distribution_by_year.csv`: year-level counts behind the manuscript's pass@k reporting-distribution table.
 - `benchmark_passk_distribution_by_k.csv`: metric-family counts and system lists used to audit pass@1, pass@5, pass@10, and other reporting choices.
